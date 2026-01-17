@@ -1,0 +1,179 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "view": "Xem",
+    "viewAll": "Xem tất cả",
+    "learnMore": "Tìm hiểu thêm",
+    "contactUs": "Liên hệ",
+    "getStarted": "Bắt đầu"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "services": "Dịch vụ",
+    "projects": "Dự án",
+    "process": "Quy trình",
+    "contact": "Liên hệ"
+  },
+  "home": {
+    "hero": {
+      "title": "Giải pháp kỹ thuật tối ưu",
+      "subtitle": "Cho mọi công trình",
+      "description": "HDG là đơn vị tư vấn và thiết kế xây dựng, định hướng cung cấp các giải pháp kỹ thuật có tính khả thi cao, tối ưu hiệu quả đầu tư và phù hợp với điều kiện triển khai thực tế.",
+      "cta": "Khám phá dịch vụ",
+      "ctaSecondary": "Liên hệ ngay"
+    },
+    "services": {
+      "title": "Dịch vụ của chúng tôi",
+      "subtitle": "Giải pháp toàn diện cho dự án của bạn"
+    },
+    "projects": {
+      "title": "Dự án tiêu biểu",
+      "subtitle": "Những công trình đã triển khai"
+    },
+    "cta": {
+      "title": "Bắt đầu dự án của bạn",
+      "description": "Liên hệ với chúng tôi để được tư vấn giải pháp phù hợp nhất",
+      "button": "Liên hệ ngay"
+    }
+  },
+  "about": {
+    "title": "Về HDG",
+    "subtitle": "Đơn vị tư vấn thiết kế xây dựng uy tín",
+    "intro": "HDG là đơn vị tư vấn và thiết kế xây dựng, định hướng cung cấp các giải pháp kỹ thuật có tính khả thi cao, tối ưu hiệu quả đầu tư và phù hợp với điều kiện triển khai thực tế.",
+    "role": "Chúng tôi đóng vai trò kết nối giữa ý tưởng, kỹ thuật và quá trình triển khai dự án.",
+    "vision": {
+      "title": "Tầm nhìn",
+      "content": "Trở thành đơn vị tư vấn – thiết kế xây dựng uy tín, được tin cậy trong các dự án yêu cầu chất lượng cao, tư duy hệ thống và giá trị bền vững."
+    },
+    "mission": {
+      "title": "Sứ mệnh",
+      "content": "Cung cấp các giải pháp tư vấn và thiết kế hiệu quả, góp phần nâng cao chất lượng và giá trị lâu dài của công trình."
+    },
+    "philosophy": {
+      "title": "Triết lý thiết kế",
+      "content": "Chúng tôi tin rằng một thiết kế tốt không chỉ đáp ứng yêu cầu thẩm mỹ, mà còn phải vận hành hiệu quả trong suốt vòng đời công trình."
+    },
+    "values": {
+      "title": "Giá trị cốt lõi",
+      "systematic": {
+        "title": "Tư duy hệ thống",
+        "description": "Tiếp cận vấn đề một cách toàn diện và có phương pháp"
+      },
+      "responsibility": {
+        "title": "Trách nhiệm nghề nghiệp",
+        "description": "Cam kết chất lượng và đạo đức trong công việc"
+      },
+      "practical": {
+        "title": "Giải pháp thực tiễn",
+        "description": "Đề xuất giải pháp khả thi và hiệu quả"
+      },
+      "partnership": {
+        "title": "Đồng hành lâu dài",
+        "description": "Xây dựng mối quan hệ bền vững với khách hàng"
+      }
+    },
+    "commitment": {
+      "title": "Cam kết chất lượng",
+      "content": "HDG cam kết làm việc trên cơ sở chuyên môn, minh bạch và trách nhiệm lâu dài."
+    }
+  },
+  "services": {
+    "title": "Dịch vụ",
+    "subtitle": "Giải pháp toàn diện cho dự án xây dựng",
+    "design": {
+      "title": "Tư vấn thiết kế",
+      "description": "Cung cấp giải pháp thiết kế tối ưu cho mọi loại công trình, đảm bảo tính thẩm mỹ và công năng."
+    },
+    "engineering": {
+      "title": "Thiết kế kỹ thuật",
+      "description": "Thiết kế chuyên sâu về Kiến trúc, Kết cấu và hệ thống MEP (Cơ điện) với độ chính xác cao.",
+      "architecture": "Kiến trúc",
+      "structure": "Kết cấu",
+      "mep": "MEP"
+    },
+    "integrated": {
+      "title": "Giải pháp tổng thể",
+      "description": "Cung cấp giải pháp toàn diện từ giai đoạn ý tưởng đến hoàn thiện dự án."
+    }
+  },
+  "projects": {
+    "title": "Dự án",
+    "subtitle": "Các dự án tiêu biểu đã triển khai",
+    "filter": {
+      "all": "Tất cả",
+      "residential": "Nhà ở",
+      "commercial": "Thương mại",
+      "industrial": "Công nghiệp",
+      "infrastructure": "Hạ tầng"
+    },
+    "details": {
+      "location": "Địa điểm",
+      "scale": "Quy mô",
+      "year": "Năm",
+      "services": "Dịch vụ"
+    }
+  },
+  "process": {
+    "title": "Quy trình làm việc",
+    "subtitle": "Phương pháp tiếp cận chuyên nghiệp",
+    "steps": {
+      "briefing": {
+        "title": "Tiếp nhận",
+        "description": "Tiếp nhận yêu cầu và thông tin dự án từ khách hàng"
+      },
+      "analysis": {
+        "title": "Phân tích",
+        "description": "Nghiên cứu, phân tích các yếu tố kỹ thuật và điều kiện thực tế"
+      },
+      "proposal": {
+        "title": "Đề xuất giải pháp",
+        "description": "Trình bày phương án thiết kế và giải pháp kỹ thuật phù hợp"
+      },
+      "design": {
+        "title": "Triển khai thiết kế",
+        "description": "Thực hiện thiết kế chi tiết theo phương án đã được duyệt"
+      },
+      "support": {
+        "title": "Hỗ trợ",
+        "description": "Đồng hành và hỗ trợ trong quá trình thực hiện dự án"
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Hãy liên hệ với chúng tôi",
+    "form": {
+      "name": "Họ tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "company": "Công ty",
+      "message": "Nội dung",
+      "submit": "Gửi tin nhắn",
+      "success": "Tin nhắn đã được gửi thành công!",
+      "error": "Có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "info": {
+      "title": "Thông tin liên hệ",
+      "company": "CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG HDG",
+      "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
+      "address": "Địa chỉ",
+      "phone": "Điện thoại",
+      "email": "Email"
+    }
+  },
+  "footer": {
+    "description": "Đơn vị tư vấn thiết kế xây dựng uy tín, cung cấp giải pháp kỹ thuật tối ưu.",
+    "quickLinks": "Liên kết nhanh",
+    "services": "Dịch vụ",
+    "contact": "Liên hệ",
+    "copyright": "© 2024 HDG Design & Engineering. Đã đăng ký bản quyền."
+  }
+}
+

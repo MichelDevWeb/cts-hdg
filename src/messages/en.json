@@ -1,0 +1,179 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "contactUs": "Contact us",
+    "getStarted": "Get started"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "process": "Process",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Optimal Engineering Solutions",
+      "subtitle": "For Every Project",
+      "description": "HDG is a design and engineering consultancy providing highly feasible technical solutions, optimizing investment efficiency and aligning with real-world project conditions.",
+      "cta": "Explore Services",
+      "ctaSecondary": "Contact Now"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive solutions for your project"
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "Our completed works"
+    },
+    "cta": {
+      "title": "Start Your Project",
+      "description": "Contact us for tailored solutions that fit your needs",
+      "button": "Get in Touch"
+    }
+  },
+  "about": {
+    "title": "About HDG",
+    "subtitle": "Trusted Design & Engineering Consultancy",
+    "intro": "HDG is a design and engineering consultancy providing highly feasible technical solutions, optimizing investment efficiency and aligning with real-world project conditions.",
+    "role": "We act as a connector between design concepts, engineering solutions, and project execution.",
+    "vision": {
+      "title": "Vision",
+      "content": "To become a trusted design and engineering consultancy for projects requiring high quality, systematic thinking, and sustainable value."
+    },
+    "mission": {
+      "title": "Mission",
+      "content": "To deliver effective consultancy and design solutions that enhance construction quality and long-term project value."
+    },
+    "philosophy": {
+      "title": "Design Philosophy",
+      "content": "We believe that good design must not only meet aesthetic expectations but also perform effectively throughout the entire lifecycle of a project."
+    },
+    "values": {
+      "title": "Core Values",
+      "systematic": {
+        "title": "Systematic Thinking",
+        "description": "Approaching problems comprehensively and methodically"
+      },
+      "responsibility": {
+        "title": "Professional Responsibility",
+        "description": "Commitment to quality and ethics in our work"
+      },
+      "practical": {
+        "title": "Practical Solutions",
+        "description": "Proposing feasible and effective solutions"
+      },
+      "partnership": {
+        "title": "Long-term Partnership",
+        "description": "Building sustainable relationships with clients"
+      }
+    },
+    "commitment": {
+      "title": "Quality Commitment",
+      "content": "HDG is committed to professional standards, transparency, and long-term responsibility."
+    }
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Comprehensive solutions for construction projects",
+    "design": {
+      "title": "Design Consultancy",
+      "description": "Providing optimal design solutions for all types of buildings, ensuring aesthetics and functionality."
+    },
+    "engineering": {
+      "title": "Engineering Design",
+      "description": "In-depth design for Architecture, Structure, and MEP systems with high precision.",
+      "architecture": "Architecture",
+      "structure": "Structure",
+      "mep": "MEP"
+    },
+    "integrated": {
+      "title": "Integrated Solutions",
+      "description": "Providing comprehensive solutions from concept stage to project completion."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Featured completed projects",
+    "filter": {
+      "all": "All",
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "industrial": "Industrial",
+      "infrastructure": "Infrastructure"
+    },
+    "details": {
+      "location": "Location",
+      "scale": "Scale",
+      "year": "Year",
+      "services": "Services"
+    }
+  },
+  "process": {
+    "title": "Working Process",
+    "subtitle": "Our professional approach",
+    "steps": {
+      "briefing": {
+        "title": "Briefing",
+        "description": "Receiving requirements and project information from clients"
+      },
+      "analysis": {
+        "title": "Analysis",
+        "description": "Researching and analyzing technical factors and real conditions"
+      },
+      "proposal": {
+        "title": "Solution Proposal",
+        "description": "Presenting design options and appropriate technical solutions"
+      },
+      "design": {
+        "title": "Design Implementation",
+        "description": "Executing detailed design according to approved plan"
+      },
+      "support": {
+        "title": "Project Support",
+        "description": "Accompanying and supporting throughout project execution"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch with us",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "company": "Company",
+      "message": "Message",
+      "submit": "Send Message",
+      "success": "Message sent successfully!",
+      "error": "An error occurred. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "company": "HDG DESIGN & ENGINEERING CONSULTANCY JSC",
+      "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    }
+  },
+  "footer": {
+    "description": "Trusted design and engineering consultancy providing optimal technical solutions.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "copyright": "© 2024 HDG Design & Engineering. All rights reserved."
+  }
+}
+
