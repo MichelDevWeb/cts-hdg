@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +13,15 @@ export const metadata: Metadata = {
   title: "Projects | HDG Admin",
 };
 
-export default async function AdminProjectsPage() {
+export default async function AdminProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("admin.projects");
+
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -30,22 +39,20 @@ export default async function AdminProjectsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-heading text-3xl font-bold">Projects</h1>
-          <p className="text-muted-foreground">
-            Manage your project portfolio
-          </p>
+          <h1 className="font-heading text-3xl font-bold">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
         <Link href="/admin-projects/new">
           <Button>
             <Plus className="mr-2 h-4 w-4" />
-            Add Project
+            {t("addProject")}
           </Button>
         </Link>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>All Projects</CardTitle>
+          <CardTitle>{t("allProjects")}</CardTitle>
         </CardHeader>
         <CardContent>
           {projects && projects.length > 0 ? (
@@ -53,12 +60,12 @@ export default async function AdminProjectsPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
-                    <th className="pb-3 font-medium">Title</th>
-                    <th className="pb-3 font-medium">Category</th>
-                    <th className="pb-3 font-medium">Location</th>
-                    <th className="pb-3 font-medium">Year</th>
-                    <th className="pb-3 font-medium">Status</th>
-                    <th className="pb-3 font-medium">Actions</th>
+                    <th className="pb-3 font-medium">{t("table.title")}</th>
+                    <th className="pb-3 font-medium">{t("table.category")}</th>
+                    <th className="pb-3 font-medium">{t("table.location")}</th>
+                    <th className="pb-3 font-medium">{t("table.year")}</th>
+                    <th className="pb-3 font-medium">{t("table.status")}</th>
+                    <th className="pb-3 font-medium">{t("table.actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,12 +90,12 @@ export default async function AdminProjectsPage() {
                         {project.published ? (
                           <span className="flex items-center gap-1 text-sm text-accent">
                             <Eye className="h-4 w-4" />
-                            Published
+                            {t("status.published")}
                           </span>
                         ) : (
                           <span className="flex items-center gap-1 text-sm text-muted-foreground">
                             <EyeOff className="h-4 w-4" />
-                            Draft
+                            {t("status.draft")}
                           </span>
                         )}
                       </td>
@@ -115,7 +122,7 @@ export default async function AdminProjectsPage() {
             </div>
           ) : (
             <div className="py-8 text-center text-muted-foreground">
-              <p>No projects yet. Create your first project!</p>
+              <p>{t("noProjects")}</p>
             </div>
           )}
         </CardContent>

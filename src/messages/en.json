@@ -19,7 +19,8 @@
     "services": "Services",
     "projects": "Projects",
     "process": "Process",
-    "contact": "Contact"
+    "contact": "Contact",
+    "admin": "Admin"
   },
   "home": {
     "hero": {
@@ -174,6 +175,70 @@
     "services": "Services",
     "contact": "Contact",
     "copyright": "© 2024 HDG Design & Engineering. All rights reserved."
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Welcome to HDG Admin Panel",
+      "totalProjects": "Total Projects",
+      "publishedPosts": "Published Posts",
+      "newInquiries": "New Inquiries",
+      "teamMembers": "Team Members",
+      "recentProjects": "Recent Projects",
+      "recentInquiries": "Recent Inquiries",
+      "noProjects": "No recent projects to display.",
+      "noInquiries": "No recent inquiries to display."
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Manage your project portfolio",
+      "allProjects": "All Projects",
+      "addProject": "Add Project",
+      "noProjects": "No projects yet. Create your first project!",
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "location": "Location",
+        "year": "Year",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "published": "Published",
+        "draft": "Draft"
+      }
+    },
+    "inquiries": {
+      "title": "Inquiries",
+      "subtitle": "Manage contact form submissions",
+      "noInquiries": "No inquiries yet.",
+      "status": {
+        "new": "New",
+        "contacted": "Contacted",
+        "resolved": "Resolved"
+      },
+      "actions": {
+        "markContacted": "Mark as Contacted",
+        "markResolved": "Mark as Resolved",
+        "replyEmail": "Reply via Email"
+      }
+    },
+    "posts": {
+      "title": "Posts",
+      "subtitle": "Manage news and articles"
+    },
+    "team": {
+      "title": "Team",
+      "subtitle": "Manage team members"
+    },
+    "clients": {
+      "title": "Clients",
+      "subtitle": "Manage clients and partners"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "System settings"
+    }
   }
 }
 

@@ -1,18 +1,19 @@
 import { Metadata } from "next";
-import { LoginForm } from "@/components/auth/login-form";
+import { ResetPasswordForm } from "@/components/auth/reset-password-form";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Login | HDG Admin",
+  title: "Reset Password | HDG Admin",
 };
 
-export default function LoginPage() {
+export default function ResetPasswordPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-hdg-dark-900 via-hdg-dark-800 to-hdg-blue-900 p-4">
       <div className="w-full max-w-md">
-        <LoginForm />
+        <ResetPasswordForm />
       </div>
     </div>
   );
 }
+

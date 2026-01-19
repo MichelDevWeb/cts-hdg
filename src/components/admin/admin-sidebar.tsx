@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import {
   LayoutDashboard,
@@ -15,37 +17,37 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   {
-    title: "Dashboard",
+    key: "dashboard",
     href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
-    title: "Projects",
+    key: "projects",
     href: "/admin-projects",
     icon: FolderKanban,
   },
   {
-    title: "Posts",
+    key: "posts",
     href: "/admin-posts",
     icon: FileText,
   },
   {
-    title: "Team",
+    key: "team",
     href: "/admin-team",
     icon: Users,
   },
   {
-    title: "Inquiries",
+    key: "inquiries",
     href: "/admin-inquiries",
     icon: MessageSquare,
   },
   {
-    title: "Clients",
+    key: "clients",
     href: "/admin-clients",
     icon: Building2,
   },
   {
-    title: "Settings",
+    key: "settings",
     href: "/admin-settings",
     icon: Settings,
   },
@@ -53,6 +55,7 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const t = useTranslations("admin");
 
   // Extract the path without locale
   const currentPath = pathname.replace(/^\/(vi|en|zh)/, "");
@@ -60,11 +63,16 @@ export function AdminSidebar() {
   return (
     <aside className="hidden w-64 border-r bg-card lg:block">
       <div className="flex h-16 items-center border-b px-6">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-sm font-bold text-white">
-            HDG
-          </div>
-          <span className="font-heading font-semibold">Admin</span>
+        <Link href="/dashboard" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+          <Image
+            src="/images/logo.png"
+            alt="HDG Logo"
+            width={32}
+            height={32}
+            className="h-8 w-8"
+            priority
+          />
+          <span className="font-heading font-semibold text-hdg-dark-700">Admin</span>
         </Link>
       </div>
 
@@ -79,12 +87,12 @@ export function AdminSidebar() {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-hdg-blue-500 text-white"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
               <item.icon className="h-4 w-4" />
-              {item.title}
+              {t(`${item.key}.title`)}
             </Link>
           );
         })}
@@ -92,4 +100,3 @@ export function AdminSidebar() {
     </aside>
   );
 }
-

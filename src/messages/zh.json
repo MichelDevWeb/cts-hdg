@@ -19,7 +19,8 @@
     "services": "服务",
     "projects": "项目",
     "process": "流程",
-    "contact": "联系"
+    "contact": "联系",
+    "admin": "管理"
   },
   "home": {
     "hero": {
@@ -174,6 +175,70 @@
     "services": "服务",
     "contact": "联系",
     "copyright": "© 2024 HDG Design & Engineering. 保留所有权利。"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "仪表板",
+      "subtitle": "欢迎使用HDG管理面板",
+      "totalProjects": "项目总数",
+      "publishedPosts": "已发布文章",
+      "newInquiries": "新询盘",
+      "teamMembers": "团队成员",
+      "recentProjects": "最近项目",
+      "recentInquiries": "最近询盘",
+      "noProjects": "没有最近的项目可显示。",
+      "noInquiries": "没有最近的询盘可显示。"
+    },
+    "projects": {
+      "title": "项目",
+      "subtitle": "管理您的项目组合",
+      "allProjects": "所有项目",
+      "addProject": "添加项目",
+      "noProjects": "还没有项目。创建您的第一个项目！",
+      "table": {
+        "title": "标题",
+        "category": "类别",
+        "location": "位置",
+        "year": "年份",
+        "status": "状态",
+        "actions": "操作"
+      },
+      "status": {
+        "published": "已发布",
+        "draft": "草稿"
+      }
+    },
+    "inquiries": {
+      "title": "询盘",
+      "subtitle": "管理联系表单提交",
+      "noInquiries": "还没有询盘。",
+      "status": {
+        "new": "新",
+        "contacted": "已联系",
+        "resolved": "已解决"
+      },
+      "actions": {
+        "markContacted": "标记为已联系",
+        "markResolved": "标记为已解决",
+        "replyEmail": "通过邮件回复"
+      }
+    },
+    "posts": {
+      "title": "文章",
+      "subtitle": "管理新闻和文章"
+    },
+    "team": {
+      "title": "团队",
+      "subtitle": "管理团队成员"
+    },
+    "clients": {
+      "title": "客户",
+      "subtitle": "管理客户和合作伙伴"
+    },
+    "settings": {
+      "title": "设置",
+      "subtitle": "系统设置"
+    }
   }
 }
 

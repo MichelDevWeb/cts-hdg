@@ -76,17 +76,17 @@ cts-hdg/
 │   │   │   │   ├── dashboard/        # Dashboard overview
 │   │   │   │   ├── admin-projects/   # Project management
 │   │   │   │   ├── admin-inquiries/  # Inquiry management
-│   │   │   │   └── layout.tsx        # Admin layout with sidebar
+│   │   │   │   └── layout.tsx        # Admin layout (no main header/footer)
 │   │   │   ├── (auth)/               # Authentication routes
-│   │   │   │   └── login/            # Login page
+│   │   │   │   └── login/            # Login page (no main header/footer)
 │   │   │   ├── about/                # About page
 │   │   │   ├── services/             # Services page
 │   │   │   ├── projects/             # Projects listing
-│   │   │   │   └── [slug]/           # Project detail page ✨ NEW
+│   │   │   │   └── [slug]/           # Project detail page
 │   │   │   ├── process/              # Working process
 │   │   │   ├── contact/              # Contact page
-│   │   │   ├── [...rest]/            # Catch-all for 404 ✨ NEW
-│   │   │   ├── layout.tsx            # Main layout with Header/Footer
+│   │   │   ├── [...rest]/            # Catch-all for 404
+│   │   │   ├── layout.tsx            # Main layout (conditional header/footer)
 │   │   │   ├── page.tsx              # Home page
 │   │   │   └── not-found.tsx         # 404 page (enhanced)
 │   │   ├── layout.tsx                # Root layout with metadata
@@ -94,22 +94,22 @@ cts-hdg/
 │   │   └── robots.ts                 # Robots.txt
 │   ├── components/
 │   │   ├── admin/                    # Admin-specific components
+│   │   │   ├── admin-sidebar.tsx     # Sidebar with logo
+│   │   │   └── admin-header.tsx
 │   │   ├── auth/                     # Auth components
+│   │   │   └── login-form.tsx        # Login form with logo & password reset
 │   │   ├── forms/                    # Form components
-│   │   ├── layout/                   # Layout components (with logo)
-│   │   │   ├── header.tsx            # Updated with logo ✨
-│   │   │   ├── footer.tsx            # Updated with logo ✨
+│   │   ├── layout/                   # Layout components
+│   │   │   ├── header.tsx            # Main header with logo
+│   │   │   ├── footer.tsx            # Main footer with logo
 │   │   │   └── language-switcher.tsx
 │   │   ├── sections/                 # Page sections
 │   │   └── ui/                       # shadcn/ui components
 │   ├── lib/
-│   │   ├── db/                       # Drizzle ORM ✨ NEW
+│   │   ├── db/                       # Drizzle ORM
 │   │   │   ├── index.ts              # Database connection
 │   │   │   ├── schema.ts             # Table definitions
 │   │   │   └── queries/              # Query functions
-│   │   │       ├── projects.ts
-│   │   │       ├── inquiries.ts
-│   │   │       └── index.ts
 │   │   ├── i18n/                     # Internationalization
 │   │   ├── supabase/                 # Supabase clients (auth)
 │   │   └── utils.ts                  # Utility functions
@@ -117,16 +117,16 @@ cts-hdg/
 │   │   ├── vi.json
 │   │   ├── en.json
 │   │   └── zh.json
-│   └── middleware.ts                 # Next.js middleware
+│   └── middleware.ts                 # Next.js middleware (i18n + pathname)
 ├── public/
 │   └── images/
-│       └── logo.png                  # HDG logo ✨ NEW
-├── drizzle/                          # Drizzle migrations ✨ NEW
+│       └── logo.png                  # HDG logo
+├── drizzle/                          # Drizzle migrations
 ├── docs/
 │   ├── business-solution.md
 │   ├── project-implement.md
-│   └── project-ui-ux-implement.md    # UI/UX guide ✨ NEW
-├── drizzle.config.ts                 # Drizzle config ✨ NEW
+│   └── project-ui-ux-implement.md    # UI/UX guide
+├── drizzle.config.ts                 # Drizzle config
 ├── package.json
 ├── tailwind.config.ts                # Updated with HDG colors
 ├── next.config.mjs
@@ -249,14 +249,15 @@ getNewInquiriesCount()
 | About | `/[locale]/about` | ✅ Complete |
 | Services | `/[locale]/services` | ✅ Complete |
 | Projects | `/[locale]/projects` | ✅ Complete |
-| **Project Detail** | `/[locale]/projects/[slug]` | ✅ **NEW** |
+| **Project Detail** | `/[locale]/projects/[slug]` | ✅ Complete |
 | Process | `/[locale]/process` | ✅ Complete |
 | Contact | `/[locale]/contact` | ✅ Complete |
 | Login | `/[locale]/login` | ✅ Complete |
+| **Reset Password** | `/[locale]/reset-password` | ✅ **NEW** |
 | Dashboard | `/[locale]/dashboard` | ✅ Complete |
 | Admin Projects | `/[locale]/admin-projects` | ✅ Complete |
 | Admin Inquiries | `/[locale]/admin-inquiries` | ✅ Complete |
-| **404 Not Found** | `/[locale]/[...rest]` | ✅ **NEW** |
+| **404 Not Found** | `/[locale]/[...rest]` | ✅ Complete |
 
 ---
 
@@ -313,6 +314,43 @@ npm run db:studio
 - ✅ Added logo to public/images/logo.png
 - ✅ Updated header with logo image and improved layout
 - ✅ Updated footer with inverted logo and refined styling
+- ✅ **Admin sidebar now uses logo image**
+- ✅ **Login form includes logo in card header**
+
+### Layout Improvements
+- ✅ **Main header/footer hidden in admin routes** (dashboard, admin-*)
+- ✅ **Main header/footer hidden in auth routes** (login)
+- ✅ Middleware updated to pass pathname to layout for route detection
+- ✅ Admin layout uses its own header (AdminHeader) and sidebar
+
+### Authentication Features
+- ✅ **Password reset functionality** via Supabase Auth
+- ✅ Reset password dialog with email input
+- ✅ Success/error states for password reset
+- ✅ Email sent confirmation with visual feedback
+- ✅ **Reset password page** (`/reset-password`) with token validation
+- ✅ **Password strength validation** (min 8 chars, uppercase, lowercase, number)
+- ✅ **Password confirmation** matching validation
+- ✅ **Show/hide password** toggle buttons
+- ✅ **Session handling** for recovery tokens
+- ✅ **Auto-redirect** to login after successful reset
+
+### Favicon & Branding
+- ✅ **Favicon.ico** added to root layout
+- ✅ Favicon configured in metadata with multiple formats
+
+### Admin Navigation
+- ✅ **Admin link icon** in main header (Shield icon)
+- ✅ **Real-time auth state** checking with Supabase
+- ✅ **Smooth hover transitions** and styling
+
+### Internationalization (Admin Pages)
+- ✅ **Admin translations** added for all three languages (VI/EN/ZH)
+- ✅ **Dashboard page** fully translated
+- ✅ **Projects management page** fully translated
+- ✅ **Inquiries management page** fully translated
+- ✅ **Admin sidebar** navigation items translated
+- ✅ **Status labels** and action buttons translated
 
 ### Project Detail Page
 - ✅ Dynamic route `/projects/[slug]`
@@ -335,6 +373,37 @@ npm run db:studio
 
 ---
 
+## Authentication Flow
+
+### Login Process
+1. User enters email and password
+2. Form validates input (Zod schema)
+3. Supabase Auth authenticates credentials
+4. On success: redirect to `/dashboard`
+5. On error: display error message
+
+### Password Reset Process
+1. User clicks "Forgot password?" link in login form
+2. Dialog opens with email input
+3. User enters email address
+4. Supabase sends password reset email with recovery token
+5. Email contains link to `/{locale}/reset-password#access_token=...&type=recovery`
+6. User clicks link and is redirected to reset password page
+7. Page validates token and exchanges it for a session
+8. User enters new password (with strength requirements)
+9. User confirms password
+10. Password is updated via Supabase Auth
+11. Session is cleared and user redirected to login
+12. Success confirmation displayed
+
+### Admin Route Protection
+- All admin routes (`/dashboard`, `/admin-*`) require authentication
+- Unauthenticated users redirected to `/login`
+- Main site header/footer hidden in admin area
+- Admin sidebar and header shown instead
+
+---
+
 ## Deliverables Checklist
 
 - [x] Next.js 14 project with TypeScript
@@ -345,6 +414,10 @@ npm run db:studio
 - [x] **Project detail page with dynamic routing**
 - [x] **404 catch-all routing**
 - [x] **Drizzle ORM integration**
+- [x] **Admin layout isolation (no main header/footer)**
+- [x] **Logo integration in admin sidebar and login form**
+- [x] **Password reset functionality**
+- [x] **Reset password page with token validation**
 - [x] Supabase database schema
 - [x] Row Level Security policies
 - [x] Admin dashboard with authentication
@@ -353,3 +426,33 @@ npm run db:studio
 - [x] Vercel deployment configuration
 - [x] **UI/UX implementation guide**
 - [x] Documentation (README)
+
+---
+
+## Future Enhancements
+
+### Authentication
+- [x] **Password reset page (`/reset-password`)** ✅ Complete
+- [ ] Email verification flow
+- [ ] Two-factor authentication (2FA)
+- [ ] Session management and timeout
+
+### Admin Features
+- [ ] Project CRUD forms with image upload
+- [ ] Rich text editor for project content
+- [ ] Bulk operations for projects
+- [ ] Export inquiries to CSV/PDF
+- [ ] Admin activity logs
+
+### Public Features
+- [ ] Project search and advanced filters
+- [ ] Newsletter subscription
+- [ ] Social media integration
+- [ ] Blog/news section
+- [ ] Client testimonials
+
+### Performance
+- [ ] Image optimization with Next.js Image
+- [ ] Lazy loading for project galleries
+- [ ] Caching strategy for static content
+- [ ] CDN integration for assets

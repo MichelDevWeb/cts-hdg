@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { AdminLink } from "@/components/layout/admin-link";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -42,7 +43,7 @@ export function Header() {
                 HDG
               </span>
               <span className="block text-xs text-muted-foreground">
-                Design & Engineering
+                Design & Engineering Consultancy
               </span>
             </div>
           </Link>
@@ -74,6 +75,7 @@ export function Header() {
                 {t("contact")}
               </Button>
             </Link>
+            <AdminLink />
 
             {/* Mobile Menu Button */}
             <Button

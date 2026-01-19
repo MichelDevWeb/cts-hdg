@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,15 @@ export const metadata: Metadata = {
   title: "Inquiries | HDG Admin",
 };
 
-export default async function AdminInquiriesPage() {
+export default async function AdminInquiriesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("admin.inquiries");
+
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -41,10 +50,8 @@ export default async function AdminInquiriesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-heading text-3xl font-bold">Inquiries</h1>
-        <p className="text-muted-foreground">
-          Manage contact form submissions
-        </p>
+        <h1 className="font-heading text-3xl font-bold">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       <div className="grid gap-4">
@@ -84,7 +91,7 @@ export default async function AdminInquiriesPage() {
                       {inquiry.status === "resolved" && (
                         <CheckCircle className="mr-1 inline h-3 w-3" />
                       )}
-                      {inquiry.status}
+                      {t(`status.${inquiry.status}`)}
                     </span>
                     <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Calendar className="h-3 w-3" />
@@ -97,13 +104,13 @@ export default async function AdminInquiriesPage() {
                 <p className="mb-4 text-sm">{inquiry.message}</p>
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline">
-                    Mark as Contacted
+                    {t("actions.markContacted")}
                   </Button>
                   <Button size="sm" variant="outline">
-                    Mark as Resolved
+                    {t("actions.markResolved")}
                   </Button>
                   <Button size="sm" variant="outline" asChild>
-                    <a href={`mailto:${inquiry.email}`}>Reply via Email</a>
+                    <a href={`mailto:${inquiry.email}`}>{t("actions.replyEmail")}</a>
                   </Button>
                 </div>
               </CardContent>
@@ -112,7 +119,7 @@ export default async function AdminInquiriesPage() {
         ) : (
           <Card>
             <CardContent className="py-8 text-center text-muted-foreground">
-              <p>No inquiries yet.</p>
+              <p>{t("noInquiries")}</p>
             </CardContent>
           </Card>
         )}

@@ -36,7 +36,7 @@ export function Footer() {
                   HDG
                 </span>
                 <span className="block text-xs text-gray-400">
-                  Design & Engineering
+                  Design & Engineering Consultancy
                 </span>
               </div>
             </Link>

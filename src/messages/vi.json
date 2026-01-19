@@ -19,7 +19,8 @@
     "services": "Dịch vụ",
     "projects": "Dự án",
     "process": "Quy trình",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "admin": "Quản trị"
   },
   "home": {
     "hero": {
@@ -174,6 +175,70 @@
     "services": "Dịch vụ",
     "contact": "Liên hệ",
     "copyright": "© 2024 HDG Design & Engineering. Đã đăng ký bản quyền."
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "subtitle": "Chào mừng đến với Bảng quản trị HDG",
+      "totalProjects": "Tổng số dự án",
+      "publishedPosts": "Bài viết đã xuất bản",
+      "newInquiries": "Yêu cầu mới",
+      "teamMembers": "Thành viên nhóm",
+      "recentProjects": "Dự án gần đây",
+      "recentInquiries": "Yêu cầu gần đây",
+      "noProjects": "Chưa có dự án nào để hiển thị.",
+      "noInquiries": "Chưa có yêu cầu nào để hiển thị."
+    },
+    "projects": {
+      "title": "Dự án",
+      "subtitle": "Quản lý danh mục dự án",
+      "allProjects": "Tất cả dự án",
+      "addProject": "Thêm dự án",
+      "noProjects": "Chưa có dự án nào. Tạo dự án đầu tiên!",
+      "table": {
+        "title": "Tiêu đề",
+        "category": "Danh mục",
+        "location": "Địa điểm",
+        "year": "Năm",
+        "status": "Trạng thái",
+        "actions": "Thao tác"
+      },
+      "status": {
+        "published": "Đã xuất bản",
+        "draft": "Bản nháp"
+      }
+    },
+    "inquiries": {
+      "title": "Yêu cầu",
+      "subtitle": "Quản lý các yêu cầu từ biểu mẫu liên hệ",
+      "noInquiries": "Chưa có yêu cầu nào.",
+      "status": {
+        "new": "Mới",
+        "contacted": "Đã liên hệ",
+        "resolved": "Đã giải quyết"
+      },
+      "actions": {
+        "markContacted": "Đánh dấu đã liên hệ",
+        "markResolved": "Đánh dấu đã giải quyết",
+        "replyEmail": "Trả lời qua Email"
+      }
+    },
+    "posts": {
+      "title": "Bài viết",
+      "subtitle": "Quản lý tin tức và bài viết"
+    },
+    "team": {
+      "title": "Đội ngũ",
+      "subtitle": "Quản lý thành viên nhóm"
+    },
+    "clients": {
+      "title": "Khách hàng",
+      "subtitle": "Quản lý khách hàng và đối tác"
+    },
+    "settings": {
+      "title": "Cài đặt",
+      "subtitle": "Cài đặt hệ thống"
+    }
   }
 }
 
