@@ -67,17 +67,34 @@ The HDG logo consists of two primary colors forming an "H" shape:
 
 ## Typography
 
+### Font Family: Be Vietnam Pro
+
+**Be Vietnam Pro** is the primary font for HDG, chosen for:
+- ✅ Full Vietnamese diacritics support
+- ✅ Modern, clean aesthetic
+- ✅ Excellent readability at all sizes
+- ✅ Professional appearance for business context
+
 ### Font Stack
 
 | Element | Font | Weight | Size |
 |---------|------|--------|------|
-| **H1** | Outfit | 700 | 48-64px |
-| **H2** | Outfit | 600 | 36-48px |
-| **H3** | Outfit | 600 | 24-30px |
-| **H4** | Outfit | 500 | 20-24px |
-| **Body** | Inter | 400 | 16px |
-| **Body Small** | Inter | 400 | 14px |
-| **Caption** | Inter | 500 | 12px |
+| **H1** | Be Vietnam Pro | 700 | 48-64px |
+| **H2** | Be Vietnam Pro | 600 | 36-48px |
+| **H3** | Be Vietnam Pro | 600 | 24-30px |
+| **H4** | Be Vietnam Pro | 500 | 20-24px |
+| **Body** | Be Vietnam Pro | 400 | 16px |
+| **Body Small** | Be Vietnam Pro | 400 | 14px |
+| **Caption** | Be Vietnam Pro | 500 | 12px |
+
+### Available Weights
+
+- 300: Light
+- 400: Regular
+- 500: Medium
+- 600: Semibold
+- 700: Bold
+- 800: Extrabold
 
 ### Line Heights
 
@@ -406,6 +423,8 @@ Based on 4px grid:
 - [x] Design card components
 - [x] Define animation keyframes
 - [x] Configure responsive breakpoints
+- [x] **Vietnamese-optimized font (Be Vietnam Pro)**
+- [x] **Language switcher with brand styling**
 - [ ] Implement dark mode toggle
 - [ ] Add motion preference detection
 - [ ] Audit accessibility compliance

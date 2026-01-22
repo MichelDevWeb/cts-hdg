@@ -1,10 +1,11 @@
 import { Metadata } from "next";
-import { useTranslations } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
 import { ProjectCard } from "@/components/sections/project-card";
 import { CTASection } from "@/components/sections/cta-section";
+import { projects, getLocalizedProject, projectCategories } from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 interface ProjectsPageProps {
   params: Promise<{ locale: string }>;
@@ -22,68 +23,24 @@ export async function generateMetadata({
   };
 }
 
-// Placeholder projects data
-const projects = [
-  {
-    title: "Modern Office Tower",
-    category: "Commercial",
-    location: "Ho Chi Minh City",
-    year: 2024,
-    coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
-    slug: "modern-office-tower",
-  },
-  {
-    title: "Luxury Residential Complex",
-    category: "Residential",
-    location: "Hanoi",
-    year: 2023,
-    coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-    slug: "luxury-residential-complex",
-  },
-  {
-    title: "Industrial Manufacturing Park",
-    category: "Industrial",
-    location: "Binh Duong",
-    year: 2023,
-    coverImage: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop",
-    slug: "industrial-manufacturing-park",
-  },
-  {
-    title: "Mixed-Use Development",
-    category: "Commercial",
-    location: "Da Nang",
-    year: 2024,
-    coverImage: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop",
-    slug: "mixed-use-development",
-  },
-  {
-    title: "Urban Apartment Tower",
-    category: "Residential",
-    location: "Ho Chi Minh City",
-    year: 2023,
-    coverImage: "https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&h=600&fit=crop",
-    slug: "urban-apartment-tower",
-  },
-  {
-    title: "Logistics Hub",
-    category: "Industrial",
-    location: "Long An",
-    year: 2024,
-    coverImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop",
-    slug: "logistics-hub",
-  },
-];
-
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ProjectsPageContent />;
-}
+  const t = await getTranslations({ locale, namespace: "projects" });
+  const tHome = await getTranslations({ locale, namespace: "home" });
 
-function ProjectsPageContent() {
-  const t = useTranslations("projects");
-  const tHome = useTranslations("home");
+  // Get localized projects
+  const localizedProjects = projects.map((project) =>
+    getLocalizedProject(project, locale as Locale)
+  );
+
+  // Get localized categories
+  const categories = ["all", "residential", "commercial", "industrial"] as const;
+  const localizedCategories = categories.map((cat) => ({
+    key: cat,
+    label: projectCategories[cat][locale as Locale] || projectCategories[cat].en,
+  }));
 
   return (
     <>
@@ -92,26 +49,34 @@ function ProjectsPageContent() {
 
       {/* Projects Grid */}
       <Section>
-        {/* Filter Tabs - Placeholder for future functionality */}
+        {/* Filter Tabs */}
         <div className="mb-8 flex flex-wrap justify-center gap-2">
-          {["all", "residential", "commercial", "industrial"].map((filter) => (
+          {localizedCategories.map((category) => (
             <button
-              key={filter}
+              key={category.key}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                filter === "all"
+                category.key === "all"
                   ? "bg-primary text-white"
                   : "bg-muted text-muted-foreground hover:bg-primary/10"
               }`}
             >
-              {t(`filter.${filter}`)}
+              {category.label}
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} {...project} />
+          {localizedProjects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              category={project.category}
+              location={project.location}
+              year={project.year}
+              coverImage={project.coverImage}
+              slug={project.slug}
+            />
           ))}
         </div>
       </Section>
@@ -125,4 +90,3 @@ function ProjectsPageContent() {
     </>
   );
 }
-

@@ -1,5 +1,4 @@
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Hero } from "@/components/sections/hero";
@@ -13,34 +12,8 @@ import {
   Layers,
   ArrowRight,
 } from "lucide-react";
-
-// Placeholder project data
-const featuredProjects = [
-  {
-    title: "Modern Office Tower",
-    category: "Commercial",
-    location: "Ho Chi Minh City",
-    year: 2024,
-    coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
-    slug: "modern-office-tower",
-  },
-  {
-    title: "Residential Complex",
-    category: "Residential",
-    location: "Hanoi",
-    year: 2023,
-    coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-    slug: "residential-complex",
-  },
-  {
-    title: "Industrial Park",
-    category: "Industrial",
-    location: "Binh Duong",
-    year: 2023,
-    coverImage: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop",
-    slug: "industrial-park",
-  },
-];
+import { getFeaturedProjects, getLocalizedProject } from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -50,13 +23,14 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <HomePageContent />;
-}
+  const t = await getTranslations({ locale, namespace: "home" });
+  const tServices = await getTranslations({ locale, namespace: "services" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
 
-function HomePageContent() {
-  const t = useTranslations("home");
-  const tServices = useTranslations("services");
-  const tCommon = useTranslations("common");
+  // Get localized featured projects
+  const featuredProjects = getFeaturedProjects().map((project) =>
+    getLocalizedProject(project, locale as Locale)
+  );
 
   return (
     <>
@@ -115,7 +89,15 @@ function HomePageContent() {
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project) => (
-            <ProjectCard key={project.slug} {...project} />
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              category={project.category}
+              location={project.location}
+              year={project.year}
+              coverImage={project.coverImage}
+              slug={project.slug}
+            />
           ))}
         </div>
         <div className="mt-10 text-center">
@@ -137,4 +119,3 @@ function HomePageContent() {
     </>
   );
 }
-

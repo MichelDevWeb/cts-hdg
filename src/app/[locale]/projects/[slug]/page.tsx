@@ -191,7 +191,7 @@ function ProjectDetailContent({ project, locale, prevProject, nextProject }: Pro
         {/* Back Button */}
         <div className="absolute left-4 top-4 lg:left-8 lg:top-8">
           <Link href="/projects">
-            <Button variant="secondary" className="bg-white/90 hover:bg-white backdrop-blur-sm">
+            <Button variant="secondary" className="bg-hdg-blue-500 hover:bg-hdg-blue-600 backdrop-blur-sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               {t("title")}
             </Button>

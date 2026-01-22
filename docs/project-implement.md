@@ -50,8 +50,10 @@ The HDG logo features a distinctive "H" shape with two primary colors:
 | **Blue Muted** | `#E8F0F7` | Backgrounds, cards |
 
 ### Typography
-- **Headings**: Outfit (Google Fonts)
-- **Body**: Inter (Google Fonts)
+- **Font Family**: Be Vietnam Pro (Google Fonts)
+  - Optimized for Vietnamese language with full diacritics support
+  - Modern, clean aesthetic suitable for both headings and body text
+  - Weights: 300 (light), 400 (regular), 500 (medium), 600 (semibold), 700 (bold), 800 (extrabold)
 
 ### Animation System
 - Micro transitions: 150ms
@@ -371,6 +373,29 @@ npm run db:studio
 - ✅ Query functions for projects and inquiries
 - ✅ Helper functions for localized content
 
+### Mock Data & Localization
+- ✅ **Created centralized mock data file** (`src/lib/data/mock-data.ts`)
+- ✅ **Projects data** with trilingual titles and summaries
+- ✅ **Services data** with trilingual features
+- ✅ **Engineering services** (Architecture, Structure, MEP) with translations
+- ✅ **Project categories** with translations
+- ✅ **Helper functions** for localized data retrieval
+
+### Vercel Analytics
+- ✅ **Added @vercel/analytics** package
+- ✅ **Integrated Analytics component** in locale layout
+
+### Typography Update
+- ✅ **Changed font to Be Vietnam Pro**
+- ✅ **Full Vietnamese diacritics support**
+- ✅ **Single font family** for consistency
+
+### Language Switcher Enhancement
+- ✅ **Updated styling** to match HDG brand theme
+- ✅ **Added Globe icon** for better UX
+- ✅ **Improved hover states** and transitions
+- ✅ **Backdrop blur effect** for modern look
+
 ---
 
 ## Authentication Flow
@@ -426,6 +451,10 @@ npm run db:studio
 - [x] Vercel deployment configuration
 - [x] **UI/UX implementation guide**
 - [x] Documentation (README)
+- [x] **Vercel Analytics integration**
+- [x] **Vietnamese-optimized font (Be Vietnam Pro)**
+- [x] **Centralized mock data with translations**
+- [x] **Enhanced language switcher UI**
 
 ---
 

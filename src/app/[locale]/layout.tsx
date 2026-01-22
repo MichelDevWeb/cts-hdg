@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/react";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { ConditionalLayout } from "@/components/layout/conditional-layout";
 import "@/app/globals.css";
 
-const inter = Inter({
+// Be Vietnam Pro - optimized for Vietnamese with modern aesthetics
+const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-inter",
-});
-
-const outfit = Outfit({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-outfit",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -32,6 +31,8 @@ export const metadata: Metadata = {
     "MEP",
     "Vietnam",
     "HDG",
+    "tư vấn thiết kế",
+    "xây dựng",
   ],
 };
 
@@ -58,10 +59,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
+      <body className={`${beVietnamPro.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ConditionalLayout>{children}</ConditionalLayout>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
