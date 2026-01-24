@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { getLocalizedContactInfo } from "@/lib/data/mock-data";
+import { useLocale } from "next-intl";
+import type { Locale } from "@/lib/i18n/config";
 
 const quickLinks = [
   { href: "/about", labelKey: "about" },
@@ -16,6 +19,8 @@ const quickLinks = [
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
+  const locale = useLocale() as Locale;
+  const contact = getLocalizedContactInfo(locale);
 
   return (
     <footer className="border-t bg-hdg-dark-900 text-gray-300">
@@ -71,16 +76,16 @@ export function Footer() {
             </h3>
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="hover:text-white transition-colors cursor-default">
-                Design Consultancy
+                {t("serviceDesign")}
               </li>
               <li className="hover:text-white transition-colors cursor-default">
-                Engineering Design
+                {t("serviceEngineering")}
               </li>
               <li className="hover:text-white transition-colors cursor-default">
-                Architecture
+                {t("serviceArchitecture")}
               </li>
               <li className="hover:text-white transition-colors cursor-default">
-                Structure & MEP
+                {t("serviceStructure")}
               </li>
             </ul>
           </div>
@@ -94,19 +99,19 @@ export function Footer() {
               <li className="flex items-start gap-3 group">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
                 <span className="group-hover:text-white transition-colors">
-                  Ho Chi Minh City, Vietnam
+                  {contact.address}
                 </span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone className="h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
                 <span className="group-hover:text-white transition-colors">
-                  +84 xxx xxx xxx
+                  {contact.phone}
                 </span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Mail className="h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
                 <span className="group-hover:text-white transition-colors">
-                  contact@hdg.vn
+                  {contact.email}
                 </span>
               </li>
             </ul>

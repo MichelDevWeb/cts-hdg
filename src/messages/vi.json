@@ -83,6 +83,28 @@
     "commitment": {
       "title": "Cam kết chất lượng",
       "content": "HDG cam kết làm việc trên cơ sở chuyên môn, minh bạch và trách nhiệm lâu dài."
+    },
+    "team": {
+      "title": "Đội ngũ chuyên gia",
+      "subtitle": "Những người dẫn dắt sự phát triển của HDG",
+      "experience": "Kinh nghiệm",
+      "roles": {
+        "designLead": "Chủ trì thiết kế",
+        "architecturalDesigner": "Thiết kế kiến trúc",
+        "structuralDesigner": "Thiết kế kết cấu",
+        "mepfDesigner": "Thiết kế MEPF",
+        "infrastructureDesigner": "Thiết kế hạ tầng",
+        "estimatingEngineer": "Kỹ sư Dự toán",
+        "projectManager": "Quản lý dự án",
+        "surveyingEngineer": "Kỹ sư trắc đạc",
+        "chiefAccountant": "Kế Toán Trưởng"
+      }
+    },
+    "stats": {
+      "years": "Năm kinh nghiệm",
+      "projects": "Dự án hoàn thành",
+      "clients": "Khách hàng tin tưởng",
+      "team": "Thành viên đội ngũ"
     }
   },
   "services": {
@@ -118,7 +140,18 @@
       "location": "Địa điểm",
       "scale": "Quy mô",
       "year": "Năm",
-      "services": "Dịch vụ"
+      "services": "Dịch vụ",
+      "client": "Khách hàng",
+      "projectDetails": "Thông tin dự án"
+    },
+    "gallery": "Hình ảnh dự án",
+    "previous": "Trước",
+    "next": "Tiếp theo",
+    "inquireProject": "Liên hệ về dự án",
+    "services": {
+      "design": "Thiết kế",
+      "engineering": "Kỹ thuật",
+      "integrated": "Tổng thể"
     }
   },
   "process": {
@@ -166,15 +199,21 @@
       "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
       "address": "Địa chỉ",
       "phone": "Điện thoại",
-      "email": "Email"
-    }
+      "email": "Email",
+      "workingHours": "Giờ làm việc"
+    },
+    "mapPlaceholder": "Bản đồ sẽ hiển thị tại đây"
   },
   "footer": {
     "description": "Đơn vị tư vấn thiết kế xây dựng uy tín, cung cấp giải pháp kỹ thuật tối ưu.",
     "quickLinks": "Liên kết nhanh",
     "services": "Dịch vụ",
     "contact": "Liên hệ",
-    "copyright": "© 2024 HDG Design & Engineering. Đã đăng ký bản quyền."
+    "copyright": "© 2026 HDG Design & Engineering Consultancy. Đã đăng ký bản quyền.",
+    "serviceDesign": "Tư vấn thiết kế",
+    "serviceEngineering": "Thiết kế kỹ thuật",
+    "serviceArchitecture": "Kiến trúc",
+    "serviceStructure": "Kết cấu & MEP"
   },
   "admin": {
     "dashboard": {

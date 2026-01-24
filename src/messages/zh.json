@@ -83,6 +83,28 @@
     "commitment": {
       "title": "质量承诺",
       "content": "HDG致力于专业标准、透明度和长期责任。"
+    },
+    "team": {
+      "title": "我们的团队",
+      "subtitle": "推动HDG成功的专家团队",
+      "experience": "经验",
+      "roles": {
+        "designLead": "设计负责人",
+        "architecturalDesigner": "建筑设计师",
+        "structuralDesigner": "结构设计师",
+        "mepfDesigner": "机电设计师",
+        "infrastructureDesigner": "基础设施设计师",
+        "estimatingEngineer": "估算工程师",
+        "projectManager": "项目经理",
+        "surveyingEngineer": "测量工程师",
+        "chiefAccountant": "总会计师"
+      }
+    },
+    "stats": {
+      "years": "年经验",
+      "projects": "完成项目",
+      "clients": "信任客户",
+      "team": "团队成员"
     }
   },
   "services": {
@@ -118,7 +140,18 @@
       "location": "位置",
       "scale": "规模",
       "year": "年份",
-      "services": "服务"
+      "services": "服务",
+      "client": "客户",
+      "projectDetails": "项目信息"
+    },
+    "gallery": "项目图片",
+    "previous": "上一个",
+    "next": "下一个",
+    "inquireProject": "咨询此项目",
+    "services": {
+      "design": "设计",
+      "engineering": "工程",
+      "integrated": "综合"
     }
   },
   "process": {
@@ -166,15 +199,21 @@
       "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
       "address": "地址",
       "phone": "电话",
-      "email": "邮箱"
-    }
+      "email": "邮箱",
+      "workingHours": "工作时间"
+    },
+    "mapPlaceholder": "地图将在此显示"
   },
   "footer": {
     "description": "值得信赖的设计和工程咨询，提供最优技术解决方案。",
     "quickLinks": "快速链接",
     "services": "服务",
     "contact": "联系",
-    "copyright": "© 2024 HDG Design & Engineering. 保留所有权利。"
+    "copyright": "© 2026 HDG Design & Engineering Consultancy. 保留所有权利。",
+    "serviceDesign": "设计咨询",
+    "serviceEngineering": "工程设计",
+    "serviceArchitecture": "建筑",
+    "serviceStructure": "结构与机电"
   },
   "admin": {
     "dashboard": {

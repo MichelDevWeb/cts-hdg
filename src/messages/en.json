@@ -83,6 +83,28 @@
     "commitment": {
       "title": "Quality Commitment",
       "content": "HDG is committed to professional standards, transparency, and long-term responsibility."
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "The experts driving HDG's success",
+      "experience": "Experience",
+      "roles": {
+        "designLead": "Design Lead",
+        "architecturalDesigner": "Architectural Designer",
+        "structuralDesigner": "Structural Designer",
+        "mepfDesigner": "MEPF Designer",
+        "infrastructureDesigner": "Infrastructure Designer",
+        "estimatingEngineer": "Estimating Engineer",
+        "projectManager": "Project Manager",
+        "surveyingEngineer": "Surveying Engineer",
+        "chiefAccountant": "Chief Accountant"
+      }
+    },
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Trusted Clients",
+      "team": "Team Members"
     }
   },
   "services": {
@@ -118,7 +140,18 @@
       "location": "Location",
       "scale": "Scale",
       "year": "Year",
-      "services": "Services"
+      "services": "Services",
+      "client": "Client",
+      "projectDetails": "Project Details"
+    },
+    "gallery": "Gallery",
+    "previous": "Previous",
+    "next": "Next",
+    "inquireProject": "Inquire About This Project",
+    "services": {
+      "design": "Design",
+      "engineering": "Engineering",
+      "integrated": "Integrated"
     }
   },
   "process": {
@@ -166,15 +199,21 @@
       "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
       "address": "Address",
       "phone": "Phone",
-      "email": "Email"
-    }
+      "email": "Email",
+      "workingHours": "Working Hours"
+    },
+    "mapPlaceholder": "Map will be displayed here"
   },
   "footer": {
     "description": "Trusted design and engineering consultancy providing optimal technical solutions.",
     "quickLinks": "Quick Links",
     "services": "Services",
     "contact": "Contact",
-    "copyright": "© 2024 HDG Design & Engineering. All rights reserved."
+    "copyright": "© 2026 HDG Design & Engineering Consultancy. All rights reserved.",
+    "serviceDesign": "Design Consultancy",
+    "serviceEngineering": "Engineering Design",
+    "serviceArchitecture": "Architecture",
+    "serviceStructure": "Structure & MEP"
   },
   "admin": {
     "dashboard": {

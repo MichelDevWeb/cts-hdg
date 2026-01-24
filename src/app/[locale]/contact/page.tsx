@@ -1,11 +1,12 @@
 import { Metadata } from "next";
-import { useTranslations } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ContactForm } from "@/components/forms/contact-form";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { getLocalizedContactInfo } from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -27,32 +28,29 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ContactPageContent />;
-}
-
-function ContactPageContent() {
-  const t = useTranslations("contact");
+  const t = await getTranslations({ locale, namespace: "contact" });
+  const contact = getLocalizedContactInfo(locale as Locale);
 
   const contactInfo = [
     {
       icon: <MapPin className="h-5 w-5" />,
       label: t("info.address"),
-      value: "Ho Chi Minh City, Vietnam",
+      value: contact.address,
     },
     {
       icon: <Phone className="h-5 w-5" />,
       label: t("info.phone"),
-      value: "+84 xxx xxx xxx",
+      value: contact.phone,
     },
     {
       icon: <Mail className="h-5 w-5" />,
       label: t("info.email"),
-      value: "contact@hdg.vn",
+      value: contact.email,
     },
     {
       icon: <Clock className="h-5 w-5" />,
-      label: "Working Hours",
-      value: "Mon - Fri: 8:00 - 17:30",
+      label: t("info.workingHours"),
+      value: contact.workingHours,
     },
   ];
 
@@ -116,7 +114,7 @@ function ContactPageContent() {
                 <div className="flex h-full items-center justify-center text-muted-foreground">
                   <div className="text-center">
                     <MapPin className="mx-auto mb-2 h-8 w-8" />
-                    <p className="text-sm">Map will be displayed here</p>
+                    <p className="text-sm">{t("mapPlaceholder")}</p>
                   </div>
                 </div>
               </div>
@@ -127,4 +125,3 @@ function ContactPageContent() {
     </>
   );
 }
-

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
@@ -15,7 +15,13 @@ import {
   Cpu,
   Wrench,
   Handshake,
+  Calendar,
+  Building2,
+  Users,
+  Award,
 } from "lucide-react";
+import { teamMembers, getLocalizedTeamMember, companyStats } from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
@@ -37,12 +43,39 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <AboutPageContent />;
-}
+  const t = await getTranslations({ locale, namespace: "about" });
+  const tHome = await getTranslations({ locale, namespace: "home" });
 
-function AboutPageContent() {
-  const t = useTranslations("about");
-  const tHome = useTranslations("home");
+  // Get localized team members
+  const localizedTeam = teamMembers.map((member) =>
+    getLocalizedTeamMember(member, locale as Locale)
+  );
+
+  const stats = [
+    {
+      value: companyStats.yearsExperience,
+      label: t("stats.years"),
+      icon: <Calendar className="h-6 w-6" />,
+    },
+    {
+      value: companyStats.projectsCompleted,
+      label: t("stats.projects"),
+      icon: <Building2 className="h-6 w-6" />,
+      suffix: "+",
+    },
+    {
+      value: companyStats.clients,
+      label: t("stats.clients"),
+      icon: <Award className="h-6 w-6" />,
+      suffix: "+",
+    },
+    {
+      value: companyStats.teamMembers,
+      label: t("stats.team"),
+      icon: <Users className="h-6 w-6" />,
+      suffix: "+",
+    },
+  ];
 
   return (
     <>
@@ -50,6 +83,23 @@ function AboutPageContent() {
       <Hero title={t("title")} subtitle={t("subtitle")}>
         <p className="max-w-2xl text-lg text-primary-100">{t("intro")}</p>
       </Hero>
+
+      {/* Stats Section */}
+      <Section className="bg-hdg-blue-500 text-white -mt-12 relative z-10">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="mb-3 flex justify-center text-hdg-blue-200">
+                {stat.icon}
+              </div>
+              <p className="font-heading text-4xl font-bold">
+                {stat.value}{stat.suffix}
+              </p>
+              <p className="text-sm text-hdg-blue-100">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* Role Statement */}
       <Section className="bg-muted/30">
@@ -130,6 +180,42 @@ function AboutPageContent() {
         </div>
       </Section>
 
+      {/* Team Section */}
+      <Section title={t("team.title")} subtitle={t("team.subtitle")}>
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {localizedTeam.map((member) => (
+            <Card key={member.id} className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
+              <div className="relative aspect-square overflow-hidden bg-hdg-blue-50">
+                {member.photo ? (
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center bg-hdg-blue-100">
+                    <Users className="h-16 w-16 text-hdg-blue-400" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-hdg-dark-900/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+              <CardContent className="p-4">
+                <h3 className="font-heading text-base font-semibold mb-1">{member.name}</h3>
+                <p className="mb-2 text-xs font-medium text-hdg-blue-600">
+                  {member.role}
+                </p>
+                {member.bio && (
+                  <p className="text-xs text-muted-foreground line-clamp-2">
+                    {member.bio}
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
       {/* Quality Commitment */}
       <Section>
         <div className="mx-auto max-w-3xl rounded-2xl bg-primary p-8 text-center text-white md:p-12">
@@ -150,4 +236,3 @@ function AboutPageContent() {
     </>
   );
 }
-
