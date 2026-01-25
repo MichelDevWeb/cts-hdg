@@ -88,6 +88,8 @@
       "title": "我们的团队",
       "subtitle": "推动HDG成功的专家团队",
       "experience": "经验",
+      "showAll": "显示全部 ({count} 成员)",
+      "showLess": "显示更少",
       "roles": {
         "designLead": "设计负责人",
         "architecturalDesigner": "建筑设计师",
@@ -178,6 +180,27 @@
         "title": "项目支持",
         "description": "在整个项目执行过程中陪伴和支持"
       }
+    },
+    "highlights": {
+      "timely": {
+        "title": "及时交付",
+        "description": "我们尊重截止日期并按计划交付"
+      },
+      "collaborative": {
+        "title": "协作方法",
+        "description": "在整个过程中与客户密切合作"
+      },
+      "quality": {
+        "title": "质量保证",
+        "description": "在每个阶段进行严格审查"
+      },
+      "result": {
+        "title": "结果导向",
+        "description": "专注于实用、可实施的解决方案"
+      }
+    },
+    "lifecycle": {
+      "title": "项目生命周期"
     }
   },
   "contact": {
@@ -191,7 +214,10 @@
       "message": "留言",
       "submit": "发送消息",
       "success": "消息发送成功！",
-      "error": "发生错误，请重试。"
+      "successMessage": "我们会尽快与您联系。",
+      "sendAnother": "发送另一条消息",
+      "error": "发生错误，请重试。",
+      "sending": "发送中..."
     },
     "info": {
       "title": "联系信息",

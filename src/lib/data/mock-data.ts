@@ -652,7 +652,8 @@ export const teamMembers: TeamMember[] = [
   {
     id: "1",
     name: "Hoàng Đình Cung",
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+    // photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Chủ trì thiết kế",
       en: "Design Lead",
@@ -667,7 +668,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "2",
     name: "Trần Ngọc Chính",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Chủ trì thiết kế",
       en: "Design Lead",
@@ -683,7 +684,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "3",
     name: "Lê Xuân Đức",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế kiến trúc",
       en: "Architectural Designer",
@@ -698,7 +699,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "4",
     name: "Ngô Phước Quang Thặng",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế kiến trúc",
       en: "Architectural Designer",
@@ -714,7 +715,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "5",
     name: "Đặng Hữu Lợi",
-    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế kết cấu",
       en: "Structural Designer",
@@ -729,7 +730,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "6",
     name: "Nguyễn Đình Tuấn",
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế kết cấu",
       en: "Structural Designer",
@@ -745,7 +746,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "7",
     name: "Trương Thanh Hải",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế MEPF",
       en: "MEPF Designer",
@@ -760,7 +761,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "8",
     name: "Huỳnh Văn Hùng",
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế MEPF",
       en: "MEPF Designer",
@@ -775,7 +776,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "9",
     name: "Nguyễn Ngọc Tuấn",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế MEPF",
       en: "MEPF Designer",
@@ -791,7 +792,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "10",
     name: "Lê Xuân Lương",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Thiết kế hạ tầng",
       en: "Infrastructure Designer",
@@ -807,7 +808,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "11",
     name: "Lâm Thị Lệ Thu",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+    photo: "/images/default-women.png",
     role: {
       vi: "Kỹ sư Dự toán",
       en: "Estimating Engineer",
@@ -822,7 +823,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "12",
     name: "Nguyễn Châu Tuấn",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Kỹ sư Dự toán",
       en: "Estimating Engineer",
@@ -838,7 +839,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "13",
     name: "Nghiêm Tủng Minh",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Quản lý dự án",
       en: "Project Manager",
@@ -854,7 +855,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "14",
     name: "Huỳnh Văn Phụng",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    photo: "/images/default-men.png",
     role: {
       vi: "Kỹ sư trắc đạc",
       en: "Surveying Engineer",
@@ -870,7 +871,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "15",
     name: "Nguyễn Thị Ngọc Hà",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    photo: "/images/default-women.png",
     role: {
       vi: "Kế Toán Trưởng",
       en: "Chief Accountant",
@@ -980,6 +981,95 @@ export const areasOfExpertise = [
     zh: "洁净室",
   },
 ];
+
+// ============================================
+// PROCESS HIGHLIGHTS
+// ============================================
+
+export interface ProcessHighlight {
+  key: string;
+  icon: string;
+  title: {
+    vi: string;
+    en: string;
+    zh: string;
+  };
+  description: {
+    vi: string;
+    en: string;
+    zh: string;
+  };
+}
+
+export const processHighlights: ProcessHighlight[] = [
+  {
+    key: "timely",
+    icon: "Clock",
+    title: {
+      vi: "Giao hàng đúng hạn",
+      en: "Timely Delivery",
+      zh: "及时交付",
+    },
+    description: {
+      vi: "Chúng tôi tôn trọng thời hạn và giao hàng đúng lịch trình",
+      en: "We respect deadlines and deliver on schedule",
+      zh: "我们尊重截止日期并按计划交付",
+    },
+  },
+  {
+    key: "collaborative",
+    icon: "Users",
+    title: {
+      vi: "Phương pháp hợp tác",
+      en: "Collaborative Approach",
+      zh: "协作方法",
+    },
+    description: {
+      vi: "Hợp tác chặt chẽ với khách hàng trong suốt quá trình",
+      en: "Close collaboration with clients throughout the process",
+      zh: "在整个过程中与客户密切合作",
+    },
+  },
+  {
+    key: "quality",
+    icon: "FileCheck",
+    title: {
+      vi: "Đảm bảo chất lượng",
+      en: "Quality Assurance",
+      zh: "质量保证",
+    },
+    description: {
+      vi: "Xem xét nghiêm ngặt ở mọi giai đoạn",
+      en: "Rigorous review at every stage",
+      zh: "在每个阶段进行严格审查",
+    },
+  },
+  {
+    key: "result",
+    icon: "Target",
+    title: {
+      vi: "Định hướng kết quả",
+      en: "Result-Oriented",
+      zh: "结果导向",
+    },
+    description: {
+      vi: "Tập trung vào các giải pháp thực tế, có thể triển khai",
+      en: "Focus on practical, implementable solutions",
+      zh: "专注于实用、可实施的解决方案",
+    },
+  },
+];
+
+export function getLocalizedProcessHighlight(
+  highlight: ProcessHighlight,
+  locale: Locale
+) {
+  return {
+    ...highlight,
+    title: highlight.title[locale] || highlight.title.en,
+    description: highlight.description[locale] || highlight.description.en,
+  };
+}
 
 // ============================================
 // STATISTICS

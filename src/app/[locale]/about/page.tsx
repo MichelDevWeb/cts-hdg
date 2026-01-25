@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
 import { ValueCard } from "@/components/sections/value-card";
 import { CTASection } from "@/components/sections/cta-section";
+import { TeamSection } from "@/components/sections/team-section";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Target,
@@ -182,38 +182,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Team Section */}
       <Section title={t("team.title")} subtitle={t("team.subtitle")}>
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {localizedTeam.map((member) => (
-            <Card key={member.id} className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
-              <div className="relative aspect-square overflow-hidden bg-hdg-blue-50">
-                {member.photo ? (
-                  <Image
-                    src={member.photo}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center bg-hdg-blue-100">
-                    <Users className="h-16 w-16 text-hdg-blue-400" />
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-hdg-dark-900/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </div>
-              <CardContent className="p-4">
-                <h3 className="font-heading text-base font-semibold mb-1">{member.name}</h3>
-                <p className="mb-2 text-xs font-medium text-hdg-blue-600">
-                  {member.role}
-                </p>
-                {member.bio && (
-                  <p className="text-xs text-muted-foreground line-clamp-2">
-                    {member.bio}
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <TeamSection members={localizedTeam} />
       </Section>
 
       {/* Quality Commitment */}

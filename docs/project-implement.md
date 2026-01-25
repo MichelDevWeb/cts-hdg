@@ -227,9 +227,11 @@ getNewInquiriesCount()
 - File upload and image optimization pipeline.
 
 ### Phase 5: Lead Generation and Integrations ✅
-- Inquiry form with validation.
-- Admin inquiry management panel.
-- **NEW**: Catch-all routing for 404 handling.
+- ✅ **Contact form** with validation
+- ✅ **Mailto integration** - Contact form redirects to email client (Gmail, Outlook, etc.) with pre-filled information
+- ✅ **Contact form integration** with company email from mock data (`contactInfo.email`)
+- ✅ Admin inquiry management panel.
+- ✅ **NEW**: Catch-all routing for 404 handling.
 
 ### Phase 6: Quality, Performance, and Security (Pending)
 - Core Web Vitals optimization.
@@ -378,14 +380,18 @@ npm run db:studio
 - ✅ **Projects data** with trilingual titles and summaries (9 real projects from business history)
 - ✅ **Contact information** with trilingual support
 - ✅ **Team members** data with photos, roles, and bios (16 actual team members)
+- ✅ **Team photos** using default-men.png and default-women.png from public/images
+- ✅ **Team expand/collapse** functionality - Shows 4 members initially with expand/collapse button to show all
 - ✅ **Team organization** by departments (Design Leads, Architecture, Structure, MEPF, Infrastructure, Estimating, Project Management, Surveying, Finance)
 - ✅ **Services data** with trilingual features
 - ✅ **Engineering services** (Architecture, Structure, MEP) with translations
 - ✅ **Project categories** with translations
+- ✅ **Process highlights** data with trilingual support (Timely Delivery, Collaborative Approach, Quality Assurance, Result-Oriented)
 - ✅ **Helper functions** for localized data retrieval
 - ✅ **Translation keys** used throughout instead of locale checks
 - ✅ **Contact page** uses translation keys for all labels
 - ✅ **Project detail page** uses translation keys for navigation and labels
+- ✅ **Process page** uses translation keys and mock data for highlights
 - ✅ **Footer** uses translation keys for services section
 - ✅ **About page** displays full team with proper organization
 
@@ -469,6 +475,11 @@ npm run db:studio
 - [x] **Translation keys instead of locale checks**
 - [x] **Real team data from business (16 members)**
 - [x] **Team organization by departments**
+- [x] **Team photos using default-men.png and default-women.png**
+- [x] **Contact form mailto integration** (redirects to email client)
+- [x] **Team expand/collapse functionality**
+- [x] **Process highlights with translation keys**
+- [x] **Process page using mock data and translations**
 
 ---
 

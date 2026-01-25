@@ -88,6 +88,8 @@
       "title": "Our Team",
       "subtitle": "The experts driving HDG's success",
       "experience": "Experience",
+      "showAll": "Show All ({count} members)",
+      "showLess": "Show Less",
       "roles": {
         "designLead": "Design Lead",
         "architecturalDesigner": "Architectural Designer",
@@ -178,6 +180,27 @@
         "title": "Project Support",
         "description": "Accompanying and supporting throughout project execution"
       }
+    },
+    "highlights": {
+      "timely": {
+        "title": "Timely Delivery",
+        "description": "We respect deadlines and deliver on schedule"
+      },
+      "collaborative": {
+        "title": "Collaborative Approach",
+        "description": "Close collaboration with clients throughout the process"
+      },
+      "quality": {
+        "title": "Quality Assurance",
+        "description": "Rigorous review at every stage"
+      },
+      "result": {
+        "title": "Result-Oriented",
+        "description": "Focus on practical, implementable solutions"
+      }
+    },
+    "lifecycle": {
+      "title": "Project Lifecycle"
     }
   },
   "contact": {
@@ -191,7 +214,10 @@
       "message": "Message",
       "submit": "Send Message",
       "success": "Message sent successfully!",
-      "error": "An error occurred. Please try again."
+      "successMessage": "We will get back to you soon.",
+      "sendAnother": "Send another message",
+      "error": "An error occurred. Please try again.",
+      "sending": "Sending..."
     },
     "info": {
       "title": "Contact Information",

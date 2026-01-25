@@ -88,6 +88,8 @@
       "title": "Đội ngũ chuyên gia",
       "subtitle": "Những người dẫn dắt sự phát triển của HDG",
       "experience": "Kinh nghiệm",
+      "showAll": "Hiển thị tất cả ({count} thành viên)",
+      "showLess": "Thu gọn",
       "roles": {
         "designLead": "Chủ trì thiết kế",
         "architecturalDesigner": "Thiết kế kiến trúc",
@@ -178,6 +180,27 @@
         "title": "Hỗ trợ",
         "description": "Đồng hành và hỗ trợ trong quá trình thực hiện dự án"
       }
+    },
+    "highlights": {
+      "timely": {
+        "title": "Giao hàng đúng hạn",
+        "description": "Chúng tôi tôn trọng thời hạn và giao hàng đúng lịch trình"
+      },
+      "collaborative": {
+        "title": "Phương pháp hợp tác",
+        "description": "Hợp tác chặt chẽ với khách hàng trong suốt quá trình"
+      },
+      "quality": {
+        "title": "Đảm bảo chất lượng",
+        "description": "Xem xét nghiêm ngặt ở mọi giai đoạn"
+      },
+      "result": {
+        "title": "Định hướng kết quả",
+        "description": "Tập trung vào các giải pháp thực tế, có thể triển khai"
+      }
+    },
+    "lifecycle": {
+      "title": "Vòng đời dự án"
     }
   },
   "contact": {
@@ -191,7 +214,10 @@
       "message": "Nội dung",
       "submit": "Gửi tin nhắn",
       "success": "Tin nhắn đã được gửi thành công!",
-      "error": "Có lỗi xảy ra. Vui lòng thử lại."
+      "successMessage": "Chúng tôi sẽ liên hệ lại với bạn sớm.",
+      "sendAnother": "Gửi tin nhắn khác",
+      "error": "Có lỗi xảy ra. Vui lòng thử lại.",
+      "sending": "Đang gửi..."
     },
     "info": {
       "title": "Thông tin liên hệ",

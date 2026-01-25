@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import { contactInfo } from "@/lib/data/mock-data";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -23,9 +24,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
   const t = useTranslations("contact.form");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "success">("idle");
 
   const {
     register,
@@ -36,18 +35,42 @@ export function ContactForm() {
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async (data: ContactFormData) => {
-    setStatus("loading");
-
-    // Simulate form submission
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form data:", data);
-      setStatus("success");
-      reset();
-    } catch {
-      setStatus("error");
+  const onSubmit = (data: ContactFormData) => {
+    // Get company email from contact info
+    const companyEmail = contactInfo.email;
+    
+    // Build email subject
+    const subject = encodeURIComponent(
+      `Contact Form Submission from ${data.name}`
+    );
+    
+    // Build email body
+    const bodyParts = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+    ];
+    
+    if (data.phone) {
+      bodyParts.push(`Phone: ${data.phone}`);
     }
+    
+    if (data.company) {
+      bodyParts.push(`Company: ${data.company}`);
+    }
+    
+    bodyParts.push("", "Message:", data.message);
+    
+    const body = encodeURIComponent(bodyParts.join("\n"));
+    
+    // Create mailto link
+    const mailtoLink = `mailto:${companyEmail}?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    setStatus("success");
+    reset();
   };
 
   if (status === "success") {
@@ -55,9 +78,9 @@ export function ContactForm() {
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <CheckCircle className="mb-4 h-16 w-16 text-accent" />
         <h3 className="mb-2 font-heading text-xl font-semibold">{t("success")}</h3>
-        <p className="text-muted-foreground">We will get back to you soon.</p>
+        <p className="text-muted-foreground">{t("successMessage")}</p>
         <Button className="mt-6" onClick={() => setStatus("idle")}>
-          Send another message
+          {t("sendAnother")}
         </Button>
       </div>
     );
@@ -127,22 +150,8 @@ export function ContactForm() {
         )}
       </div>
 
-      {status === "error" && (
-        <div className="flex items-center gap-2 rounded-lg bg-destructive/10 p-4 text-destructive">
-          <AlertCircle className="h-5 w-5" />
-          <p className="text-sm">{t("error")}</p>
-        </div>
-      )}
-
-      <Button type="submit" size="lg" disabled={status === "loading"}>
-        {status === "loading" ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Sending...
-          </>
-        ) : (
-          t("submit")
-        )}
+      <Button type="submit" size="lg">
+        {t("submit")}
       </Button>
     </form>
   );

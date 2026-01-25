@@ -7,6 +7,11 @@ import { ProcessStep } from "@/components/sections/process-step";
 import { CTASection } from "@/components/sections/cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Users, FileCheck, Target } from "lucide-react";
+import {
+  processHighlights,
+  getLocalizedProcessHighlight,
+} from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 interface ProcessPageProps {
   params: Promise<{ locale: string }>;
@@ -28,10 +33,14 @@ export default async function ProcessPage({ params }: ProcessPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ProcessPageContent />;
+  return <ProcessPageContent locale={locale as Locale} />;
 }
 
-function ProcessPageContent() {
+interface ProcessPageContentProps {
+  locale: Locale;
+}
+
+function ProcessPageContent({ locale }: ProcessPageContentProps) {
   const t = useTranslations("process");
   const tHome = useTranslations("home");
 
@@ -43,28 +52,20 @@ function ProcessPageContent() {
     { key: "support" as const },
   ];
 
-  const highlights = [
-    {
-      icon: <Clock className="h-6 w-6" />,
-      title: "Timely Delivery",
-      description: "We respect deadlines and deliver on schedule",
-    },
-    {
-      icon: <Users className="h-6 w-6" />,
-      title: "Collaborative Approach",
-      description: "Close collaboration with clients throughout the process",
-    },
-    {
-      icon: <FileCheck className="h-6 w-6" />,
-      title: "Quality Assurance",
-      description: "Rigorous review at every stage",
-    },
-    {
-      icon: <Target className="h-6 w-6" />,
-      title: "Result-Oriented",
-      description: "Focus on practical, implementable solutions",
-    },
-  ];
+  // Get localized process highlights
+  const localizedHighlights = processHighlights.map((highlight) => {
+    const localized = getLocalizedProcessHighlight(highlight, locale);
+    const iconMap: Record<string, JSX.Element> = {
+      Clock: <Clock className="h-6 w-6" />,
+      Users: <Users className="h-6 w-6" />,
+      FileCheck: <FileCheck className="h-6 w-6" />,
+      Target: <Target className="h-6 w-6" />,
+    };
+    return {
+      ...localized,
+      icon: iconMap[highlight.icon] || <Clock className="h-6 w-6" />,
+    };
+  });
 
   return (
     <>
@@ -89,8 +90,8 @@ function ProcessPageContent() {
       {/* Process Highlights */}
       <Section className="bg-muted/30">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((item) => (
-            <Card key={item.title} className="text-center">
+          {localizedHighlights.map((item) => (
+            <Card key={item.key} className="text-center">
               <CardContent className="pt-6">
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
                   {item.icon}
@@ -106,7 +107,7 @@ function ProcessPageContent() {
       </Section>
 
       {/* Visual Process Flow */}
-      <Section title="Project Lifecycle">
+      <Section title={t("lifecycle.title")}>
         <div className="relative">
           {/* Desktop Flow */}
           <div className="hidden overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-secondary to-accent p-1 lg:block">
