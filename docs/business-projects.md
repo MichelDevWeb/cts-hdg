@@ -34,7 +34,6 @@
 **Sectors**: Real Estate/Construction, Design and Build
 
 **Projects Managed**:
-- King Crown Infinity
 - R-PAC
 - Ký túc xá Huế (Hue Dormitory)
 - Bestmix Hà Nam

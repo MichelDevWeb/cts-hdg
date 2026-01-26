@@ -5,6 +5,7 @@ import { Section } from "@/components/sections/section";
 import { ValueCard } from "@/components/sections/value-card";
 import { CTASection } from "@/components/sections/cta-section";
 import { TeamSection } from "@/components/sections/team-section";
+import { ClientsCarousel } from "@/components/sections/clients-carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Target,
@@ -183,6 +184,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {/* Team Section */}
       <Section title={t("team.title")} subtitle={t("team.subtitle")}>
         <TeamSection members={localizedTeam} />
+      </Section>
+
+      {/* Clients & Partners Section */}
+      <Section className="bg-muted/30">
+        <ClientsCarousel />
       </Section>
 
       {/* Quality Commitment */}

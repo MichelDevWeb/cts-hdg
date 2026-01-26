@@ -42,6 +42,10 @@
       "title": "Start Your Project",
       "description": "Contact us for tailored solutions that fit your needs",
       "button": "Get in Touch"
+    },
+    "clients": {
+      "title": "Trusted by Industry Leaders",
+      "subtitle": "Partnering with global corporations and local enterprises"
     }
   },
   "about": {

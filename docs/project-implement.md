@@ -377,11 +377,23 @@ npm run db:studio
 
 ### Mock Data & Localization
 - ✅ **Created centralized mock data file** (`src/lib/data/mock-data.ts`)
-- ✅ **Projects data** with trilingual titles and summaries (9 real projects from business history)
+- ✅ **Projects data** - 35+ projects with trilingual titles, summaries, and detailed content covering:
+  - Tracodi Group projects (2024): R-PAC, Hue Dormitory, Bestmix Ha Nam, VN Apparel
+  - Tung Feng Vietnam (2022-2024): SGSU Model House, Villa Complex, Chateau
+  - Pure VN (2020-2022): The Song Apartment, Wonder Sea Office, IML Factory
+  - Chi Thanh (2018-2020): Newhope VN, Nhat Pham Food, King Yuan Tong Phase 2
+  - Dinco (2014-2018): Phu An Thanh Office, Heineken Factory, Fukuvi Factory
+  - Sanofi, COFICO, Colgate Palmolive, CMIT Port, and more historical projects
+- ✅ **Clients data** - 24 clients with placeholder logos covering:
+  - Japanese companies: Ajinomoto, Wacoal, NEC/Tokin, Shimazu, Fukuvi, Nissey, Lixil
+  - Multinational corporations: Heineken, Colgate Palmolive, Sanofi, Unilever, Mitsubishi Motors, BP-PETRO, Newhope
+  - Construction firms: HAZAMA, Mitsui, SMEC, Tracodi, Dinco, COFICO, PEB Vietnam
+  - Real estate developers: Pure VN, Tung Feng Vietnam, Chi Thanh
 - ✅ **Contact information** with trilingual support
 - ✅ **Team members** data with photos, roles, and bios (16 actual team members)
 - ✅ **Team photos** using default-men.png and default-women.png from public/images
 - ✅ **Team expand/collapse** functionality - Shows 4 members initially with expand/collapse button to show all
+- ✅ **Team hover popover** - Displays detailed member info on hover (name, role, bio)
 - ✅ **Team organization** by departments (Design Leads, Architecture, Structure, MEPF, Infrastructure, Estimating, Project Management, Surveying, Finance)
 - ✅ **Services data** with trilingual features
 - ✅ **Engineering services** (Architecture, Structure, MEP) with translations
@@ -394,6 +406,17 @@ npm run db:studio
 - ✅ **Process page** uses translation keys and mock data for highlights
 - ✅ **Footer** uses translation keys for services section
 - ✅ **About page** displays full team with proper organization
+
+### Clients Carousel
+- ✅ **Created ClientsCarousel component** (`src/components/sections/clients-carousel.tsx`)
+- ✅ **Auto-scrolling animation** - Continuous left-to-right scroll with pause on hover
+- ✅ **Infinite scroll effect** - Seamless looping through duplicated client list
+- ✅ **Gradient fade effects** - Smooth fade on left and right edges
+- ✅ **Grayscale to color transition** - Client logos turn from grayscale to color on hover
+- ✅ **Responsive design** - Works on all screen sizes
+- ✅ **Added to Home page** - Displays before CTA section
+- ✅ **Added to About page** - Displays after Team section
+- ✅ **Translation support** - Title and subtitle in all 3 languages
 
 ### Vercel Analytics
 - ✅ **Added @vercel/analytics** package
@@ -478,8 +501,12 @@ npm run db:studio
 - [x] **Team photos using default-men.png and default-women.png**
 - [x] **Contact form mailto integration** (redirects to email client)
 - [x] **Team expand/collapse functionality**
+- [x] **Team hover popover** for detailed member info
 - [x] **Process highlights with translation keys**
 - [x] **Process page using mock data and translations**
+- [x] **Full projects data** from business-projects.md (35+ projects)
+- [x] **Clients carousel** with auto-scroll animation
+- [x] **Clients carousel** added to home and about pages
 
 ---
 

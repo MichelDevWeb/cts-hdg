@@ -6,6 +6,7 @@ import { Section } from "@/components/sections/section";
 import { ServiceCard } from "@/components/sections/service-card";
 import { ProjectCard } from "@/components/sections/project-card";
 import { CTASection } from "@/components/sections/cta-section";
+import { ClientsCarousel } from "@/components/sections/clients-carousel";
 import {
   Compass,
   PenTool,
@@ -108,6 +109,11 @@ export default async function HomePage({ params }: HomePageProps) {
             </Button>
           </Link>
         </div>
+      </Section>
+
+      {/* Clients Carousel Section */}
+      <Section className="bg-muted/30">
+        <ClientsCarousel />
       </Section>
 
       {/* CTA Section */}
