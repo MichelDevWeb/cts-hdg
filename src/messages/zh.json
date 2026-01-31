@@ -94,6 +94,8 @@
       "experience": "经验",
       "showAll": "显示全部 ({count} 成员)",
       "showLess": "显示更少",
+      "certifications": "专业资格证书",
+      "more": "更多证书",
       "roles": {
         "designLead": "设计负责人",
         "architecturalDesigner": "建筑设计师",
@@ -106,6 +108,8 @@
         "chiefAccountant": "总会计师"
       }
     },
+    "companyProfile": "公司简介",
+    "viewProfile": "查看公司简介",
     "stats": {
       "years": "年经验",
       "projects": "完成项目",
@@ -226,8 +230,10 @@
     "info": {
       "title": "联系信息",
       "company": "HDG设计与工程咨询股份公司",
-      "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
+      "companyEn": "HDG Construction & Design Consulting Joint Stock Company",
       "address": "地址",
+      "officeAddress": "办公地址",
+      "registeredAddress": "注册地址",
       "phone": "电话",
       "email": "邮箱",
       "workingHours": "工作时间"
@@ -239,7 +245,7 @@
     "quickLinks": "快速链接",
     "services": "服务",
     "contact": "联系",
-    "copyright": "© 2026 HDG Design & Engineering Consultancy. 保留所有权利。",
+    "copyright": "© 2026 HDG Construction & Design Consulting. 保留所有权利。",
     "serviceDesign": "设计咨询",
     "serviceEngineering": "工程设计",
     "serviceArchitecture": "建筑",
@@ -263,6 +269,8 @@
       "subtitle": "管理您的项目组合",
       "allProjects": "所有项目",
       "addProject": "添加项目",
+      "editProject": "编辑项目",
+      "createDescription": "创建新项目",
       "noProjects": "还没有项目。创建您的第一个项目！",
       "table": {
         "title": "标题",
@@ -298,15 +306,134 @@
     },
     "team": {
       "title": "团队",
-      "subtitle": "管理团队成员"
+      "subtitle": "管理团队成员",
+      "allMembers": "所有团队成员",
+      "addMember": "添加成员",
+      "editMember": "编辑成员",
+      "createDescription": "添加新团队成员",
+      "noMembers": "还没有团队成员。添加您的第一个成员！",
+      "table": {
+        "name": "姓名",
+        "role": "职位",
+        "status": "状态",
+        "order": "排序",
+        "actions": "操作"
+      },
+      "status": {
+        "active": "活跃",
+        "inactive": "非活跃"
+      },
+      "form": {
+        "name": "姓名",
+        "roleVi": "职位（越南语）",
+        "roleEn": "职位（英语）",
+        "roleZh": "职位（中文）",
+        "bioVi": "简介（越南语）",
+        "bioEn": "简介（英语）",
+        "bioZh": "简介（中文）",
+        "educationVi": "学历（越南语）",
+        "educationEn": "学历（英语）",
+        "educationZh": "学历（中文）",
+        "certificationsVi": "资格证书（越南语）",
+        "certificationsEn": "资格证书（英语）",
+        "certificationsZh": "资格证书（中文）",
+        "photo": "照片",
+        "orderIndex": "显示顺序",
+        "active": "活跃"
+      },
+      "deleteConfirm": "您确定要删除此团队成员吗？",
+      "deleteSuccess": "团队成员删除成功",
+      "saveSuccess": "团队成员保存成功"
     },
     "clients": {
       "title": "客户",
-      "subtitle": "管理客户和合作伙伴"
+      "subtitle": "管理客户和合作伙伴",
+      "allClients": "所有客户和合作伙伴",
+      "addClient": "添加客户",
+      "editClient": "编辑客户",
+      "createDescription": "添加新客户或合作伙伴",
+      "noClients": "还没有客户。添加您的第一个客户！",
+      "table": {
+        "name": "名称",
+        "category": "类别",
+        "status": "状态",
+        "order": "排序",
+        "actions": "操作"
+      },
+      "status": {
+        "active": "活跃",
+        "inactive": "非活跃"
+      },
+      "categories": {
+        "japanese": "日本公司",
+        "multinational": "跨国企业",
+        "construction": "建筑与工程",
+        "developer": "房地产开发商",
+        "other": "其他"
+      },
+      "form": {
+        "name": "客户名称",
+        "logoUrl": "Logo URL",
+        "website": "网站",
+        "category": "类别",
+        "orderIndex": "显示顺序",
+        "active": "活跃"
+      },
+      "deleteConfirm": "您确定要删除此客户吗？",
+      "deleteSuccess": "客户删除成功",
+      "saveSuccess": "客户保存成功"
     },
     "settings": {
       "title": "设置",
       "subtitle": "系统设置"
+    },
+    "services": {
+      "title": "服务",
+      "subtitle": "管理公司服务",
+      "allServices": "所有服务",
+      "addService": "添加服务",
+      "editService": "编辑服务",
+      "createDescription": "创建新服务",
+      "noServices": "还没有服务。添加第一个服务！",
+      "table": {
+        "name": "名称",
+        "description": "描述",
+        "order": "顺序",
+        "status": "状态",
+        "actions": "操作"
+      },
+      "form": {
+        "nameVi": "名称（越南语）",
+        "nameEn": "名称（英语）",
+        "nameZh": "名称（中文）",
+        "descriptionVi": "描述（越南语）",
+        "descriptionEn": "描述（英语）",
+        "descriptionZh": "描述（中文）",
+        "featuresVi": "特性（越南语）",
+        "featuresEn": "特性（英语）",
+        "featuresZh": "特性（中文）",
+        "icon": "图标",
+        "orderIndex": "显示顺序",
+        "selectIconPlaceholder": "选择图标",
+        "saveSuccess": "服务保存成功",
+        "saveError": "无法保存服务",
+        "deleteConfirm": "删除此服务？",
+        "deleteSuccess": "服务删除成功",
+        "deleteError": "无法删除服务"
+      }
+    },
+    "information": {
+      "title": "网站信息",
+      "subtitle": "管理公司信息和联系方式",
+      "contact": {
+        "title": "联系信息"
+      },
+      "localized": {
+        "title": "本地化信息"
+      },
+      "save": "保存更改",
+      "saveSuccess": "网站信息保存成功",
+      "saveError": "无法保存网站信息"
     }
   }
 }

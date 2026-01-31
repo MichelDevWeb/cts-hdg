@@ -31,15 +31,15 @@ export interface ContactInfo {
 export const contactInfo: ContactInfo = {
   company: {
     vi: "CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG HDG",
-    en: "HDG Design & Engineering Consultancy Joint Stock Company",
-    zh: "HDG设计工程咨询股份公司",
+    en: "HDG Construction Design Consulting Joint Stock Company",
+    zh: "HDG建筑设计咨询股份公司",
   },
   address: {
-    vi: "125/42/27 Bùi Đình Tuý, Phường Gia Định, Thành phố Hồ Chí Minh, Việt Nam",
-    en: "125/42/27 Bui Dinh Tuy, Ward Gia Dinh, Ho Chi Minh City, Vietnam",
-    zh: "125/42/27 Bui Dinh Tuy, Ward Gia Dinh, Ho Chi Minh City, Vietnam",
+    vi: "125/42/27 Bùi Đình Túy, Phường Bình Thạnh, TP. Hồ Chí Minh, Việt Nam",
+    en: "125/42/27 Bui Dinh Tuy Street, Binh Thanh Ward, Ho Chi Minh City, Vietnam",
+    zh: "越南胡志明市平盛区裴廷推街125/42/27号",
   },
-  phone: "+84 28 xxxx xxxx",
+  phone: "0931313599",
   email: "info@hdgcons.com.vn",
   workingHours: {
     vi: "Thứ 2 - Thứ 6: 8:00 - 17:30",
@@ -48,10 +48,27 @@ export const contactInfo: ContactInfo = {
   },
 };
 
+// Office address (separate from registered address)
+export const officeAddress = {
+  vi: "362 Mai Chí Thọ, An Phú, TP. Hồ Chí Minh, Việt Nam",
+  en: "362 Mai Chi Tho Street, An Phu Ward, Ho Chi Minh City, Vietnam",
+  zh: "越南胡志明市安富区梅志寿街362号",
+};
+
+// Website
+export const companyWebsite = "www.hdgcons.com.vn";
+
+// Legal representative
+export const legalRepresentative = {
+  name: "Hoàng Đình Cung",
+  nameEn: "Mr. Hoang Dinh Cung",
+};
+
 export function getLocalizedContactInfo(locale: Locale) {
   return {
     company: contactInfo.company[locale] || contactInfo.company.en,
     address: contactInfo.address[locale] || contactInfo.address.en,
+    officeAddress: officeAddress[locale] || officeAddress.en,
     phone: contactInfo.phone,
     email: contactInfo.email,
     workingHours: contactInfo.workingHours[locale] || contactInfo.workingHours.en,
@@ -1417,8 +1434,16 @@ export interface TeamMember {
     en: string;
     zh: string;
   };
-  experience?: string;
-  education?: string;
+  education?: {
+    vi: string;
+    en: string;
+    zh: string;
+  };
+  certifications?: {
+    vi: string[];
+    en: string[];
+    zh: string[];
+  };
 }
 
 export const teamMembers: TeamMember[] = [
@@ -1426,17 +1451,26 @@ export const teamMembers: TeamMember[] = [
   {
     id: "1",
     name: "Hoàng Đình Cung",
-    // photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
     photo: "/images/default-men.png",
     role: {
-      vi: "Chủ trì thiết kế",
-      en: "Design Lead",
-      zh: "设计负责人",
+      vi: "Chủ trì thiết kế / Giám sát xây dựng",
+      en: "Design Lead / Construction Supervisor",
+      zh: "设计负责人 / 施工监理",
     },
     bio: {
-      vi: "Chủ trì thiết kế với nhiều năm kinh nghiệm trong các dự án xây dựng lớn, đảm bảo chất lượng và tính khả thi của thiết kế.",
-      en: "Design lead with many years of experience in large construction projects, ensuring design quality and feasibility.",
-      zh: "设计负责人，在大型建筑项目中拥有多年经验，确保设计质量和可行性。",
+      vi: "Kỹ sư xây dựng với hơn 30 năm kinh nghiệm, chuyên giám sát công tác xây dựng công trình dân dụng, công nghiệp và hạ tầng kỹ thuật. Chứng chỉ hành nghề Hạng I.",
+      en: "Construction engineer with over 30 years of experience, specializing in supervising civil, industrial, and infrastructure construction works. Class I professional license.",
+      zh: "拥有30多年经验的建筑工程师，专门从事民用、工业和基础设施建设工程的监理工作。一级执业资格证书。",
+    },
+    education: {
+      vi: "Đại học Bách Khoa TP. Hồ Chí Minh - Kỹ sư xây dựng",
+      en: "Ho Chi Minh City University of Technology - Construction Engineer",
+      zh: "胡志明市理工大学 - 建筑工程师",
+    },
+    certifications: {
+      vi: ["Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I)"],
+      en: ["Construction Supervision for Civil - Industrial and Infrastructure Works (Class I)"],
+      zh: ["民用-工业及基础设施工程施工监理（一级）"],
     },
   },
   {
@@ -1444,14 +1478,24 @@ export const teamMembers: TeamMember[] = [
     name: "Trần Ngọc Chính",
     photo: "/images/default-men.png",
     role: {
-      vi: "Chủ trì thiết kế",
-      en: "Design Lead",
-      zh: "设计负责人",
+      vi: "Chủ trì thiết kế / Giám sát xây dựng",
+      en: "Design Lead / Construction Supervisor",
+      zh: "设计负责人 / 施工监理",
     },
     bio: {
-      vi: "Chủ trì thiết kế chuyên về các dự án công nghiệp và thương mại, có kinh nghiệm làm việc với các tập đoàn quốc tế.",
-      en: "Design lead specializing in industrial and commercial projects, with experience working with international corporations.",
-      zh: "设计负责人，专注于工业和商业项目，拥有与国际公司合作的经验。",
+      vi: "Kỹ sư xây dựng chuyên ngành kỹ thuật công trình với kinh nghiệm sâu rộng trong giám sát xây dựng công trình dân dụng, công nghiệp và hạ tầng. Chứng chỉ hành nghề Hạng I.",
+      en: "Construction engineer specializing in building technology with extensive experience in supervising civil, industrial, and infrastructure construction. Class I professional license.",
+      zh: "专门从事建筑技术的建筑工程师，在民用、工业和基础设施建设监理方面拥有丰富经验。一级执业资格证书。",
+    },
+    education: {
+      vi: "Đại học kỹ thuật - Đại học Quốc gia Tp.Hồ Chí Minh - Kỹ sư xây dựng ngành kỹ thuật công trình",
+      en: "University of Technology - Vietnam National University HCMC - Construction Engineer",
+      zh: "胡志明市国家大学技术大学 - 建筑工程师",
+    },
+    certifications: {
+      vi: ["Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I)"],
+      en: ["Construction Supervision for Civil - Industrial and Infrastructure Works (Class I)"],
+      zh: ["民用-工业及基础设施工程施工监理（一级）"],
     },
   },
   // Architectural Designers
@@ -1460,14 +1504,24 @@ export const teamMembers: TeamMember[] = [
     name: "Lê Xuân Đức",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế kiến trúc",
-      en: "Architectural Designer",
-      zh: "建筑设计师",
+      vi: "Kiến trúc sư",
+      en: "Architect",
+      zh: "建筑师",
     },
     bio: {
-      vi: "Chuyên gia thiết kế kiến trúc với nhiều dự án từ nhà ở đến công trình thương mại và công nghiệp.",
-      en: "Architectural design expert with projects ranging from residential to commercial and industrial buildings.",
-      zh: "建筑设计专家，项目涵盖住宅、商业和工业建筑。",
+      vi: "Kiến trúc sư với chứng chỉ thiết kế kiến trúc công trình và thiết kế đô thị. Chuyên về thiết kế kiến trúc trong đồ án quy hoạch và thiết kế đô thị.",
+      en: "Licensed architect with certifications in building architectural design and urban design. Specializes in architectural design for planning projects and urban design.",
+      zh: "持有建筑设计和城市设计资格证书的注册建筑师。专门从事规划项目和城市设计中的建筑设计。",
+    },
+    education: {
+      vi: "Đại học Kiến trúc Hà Nội - Kiến trúc sư",
+      en: "Hanoi Architectural University - Architect",
+      zh: "河内建筑大学 - 建筑师",
+    },
+    certifications: {
+      vi: ["Thiết kế kiến trúc công trình", "Thiết kế kiến trúc trong đồ án quy hoạch, thiết kế đô thị"],
+      en: ["Building Architectural Design", "Architectural Design in Planning Projects, Urban Design"],
+      zh: ["建筑设计", "规划项目和城市设计中的建筑设计"],
     },
   },
   {
@@ -1475,14 +1529,24 @@ export const teamMembers: TeamMember[] = [
     name: "Ngô Phước Quang Thặng",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế kiến trúc",
-      en: "Architectural Designer",
-      zh: "建筑设计师",
+      vi: "Kiến trúc sư",
+      en: "Architect",
+      zh: "建筑师",
     },
     bio: {
-      vi: "Thiết kế kiến trúc chuyên về các công trình cao tầng và tổ hợp đa chức năng.",
-      en: "Architectural designer specializing in high-rise buildings and mixed-use complexes.",
-      zh: "建筑设计师，专注于高层建筑和多功能综合体。",
+      vi: "Kiến trúc sư với chứng chỉ hành nghề thiết kế kiến trúc công trình. Chuyên về thiết kế các công trình cao tầng và tổ hợp đa chức năng.",
+      en: "Licensed architect with building architectural design certification. Specializes in high-rise buildings and mixed-use complexes.",
+      zh: "持有建筑设计执业资格证书的注册建筑师。专门从事高层建筑和综合体设计。",
+    },
+    education: {
+      vi: "Kiến trúc sư",
+      en: "Architect",
+      zh: "建筑师",
+    },
+    certifications: {
+      vi: ["Thiết kế kiến trúc công trình"],
+      en: ["Building Architectural Design"],
+      zh: ["建筑设计"],
     },
   },
   // Structural Designers
@@ -1491,14 +1555,24 @@ export const teamMembers: TeamMember[] = [
     name: "Đặng Hữu Lợi",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế kết cấu",
-      en: "Structural Designer",
-      zh: "结构设计师",
+      vi: "Kỹ sư kết cấu / Giám sát xây dựng",
+      en: "Structural Engineer / Construction Supervisor",
+      zh: "结构工程师 / 施工监理",
     },
     bio: {
-      vi: "Chuyên gia thiết kế kết cấu với kinh nghiệm trong các dự án nhà máy và công trình công nghiệp.",
-      en: "Structural design expert with experience in factory and industrial building projects.",
-      zh: "结构设计专家，在工厂和工业建筑项目中拥有丰富经验。",
+      vi: "Thạc sĩ kỹ thuật xây dựng công trình đặc biệt với chứng chỉ Hạng I về giám sát và thiết kế kết cấu. Chuyên về xây dựng dân dụng và công nghiệp.",
+      en: "Master's degree in special construction engineering with Class I certifications in supervision and structural design. Specializes in civil and industrial construction.",
+      zh: "特种建筑工程硕士学位，持有一级监理和结构设计资格证书。专门从事民用和工业建设。",
+    },
+    education: {
+      vi: "Học Viện kỹ thuật quân sự - Thạc sĩ kỹ thuật xây dựng công trình đặc biệt (Xây dựng dân dụng - công nghiệp)",
+      en: "Military Technical Academy - Master's in Special Construction Engineering (Civil - Industrial)",
+      zh: "军事技术学院 - 特种建筑工程硕士（民用-工业）",
+    },
+    certifications: {
+      vi: ["Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I)", "Thiết kế kết cấu công trình (Hạng I)"],
+      en: ["Construction Supervision for Civil - Industrial and Infrastructure Works (Class I)", "Structural Design (Class I)"],
+      zh: ["民用-工业及基础设施工程施工监理（一级）", "结构设计（一级）"],
     },
   },
   {
@@ -1506,14 +1580,24 @@ export const teamMembers: TeamMember[] = [
     name: "Nguyễn Đình Tuấn",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế kết cấu",
-      en: "Structural Designer",
-      zh: "结构设计师",
+      vi: "Kỹ sư kết cấu / Giám sát xây dựng",
+      en: "Structural Engineer / Construction Supervisor",
+      zh: "结构工程师 / 施工监理",
     },
     bio: {
-      vi: "Thiết kế kết cấu chuyên về kết cấu thép và bê tông cho các công trình lớn.",
-      en: "Structural designer specializing in steel and concrete structures for large-scale projects.",
-      zh: "结构设计师，专注于大型项目的钢结构和混凝土结构。",
+      vi: "Kỹ sư xây dựng với chứng chỉ Hạng II về thiết kế kết cấu và giám sát công trình dân dụng - công nghiệp. Chuyên về kết cấu thép và bê tông.",
+      en: "Construction engineer with Class II certifications in structural design and civil-industrial construction supervision. Specializes in steel and concrete structures.",
+      zh: "建筑工程师，持有二级结构设计和民用-工业建设监理资格证书。专门从事钢结构和混凝土结构。",
+    },
+    education: {
+      vi: "ĐH Kiến trúc TP.HCM - Kỹ sư xây dựng",
+      en: "Ho Chi Minh City University of Architecture - Construction Engineer",
+      zh: "胡志明市建筑大学 - 建筑工程师",
+    },
+    certifications: {
+      vi: ["Thiết kế kết cấu công trình dân dụng - công nghiệp (Hạng II)", "Giám sát công tác xây dựng công trình dân dụng - công nghiệp (Hạng II)", "Giám sát công tác xây dựng công trình hạ tầng kỹ thuật (Hạng III)"],
+      en: ["Structural Design for Civil - Industrial Works (Class II)", "Construction Supervision for Civil - Industrial Works (Class II)", "Infrastructure Construction Supervision (Class III)"],
+      zh: ["民用-工业工程结构设计（二级）", "民用-工业工程施工监理（二级）", "基础设施工程施工监理（三级）"],
     },
   },
   // MEPF Designers
@@ -1522,14 +1606,24 @@ export const teamMembers: TeamMember[] = [
     name: "Trương Thanh Hải",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế MEPF",
-      en: "MEPF Designer",
-      zh: "机电设计师",
+      vi: "Kỹ sư Cơ điện",
+      en: "MEP Engineer",
+      zh: "机电工程师",
     },
     bio: {
-      vi: "Chuyên gia thiết kế hệ thống MEPF (Cơ điện, Phòng cháy chữa cháy) cho các công trình công nghiệp và thương mại.",
-      en: "MEPF (Mechanical, Electrical, Plumbing, Fire protection) design expert for industrial and commercial buildings.",
-      zh: "工业和商业建筑的MEPF（机械、电气、管道、消防）设计专家。",
+      vi: "Kỹ sư điện - điện tử với chứng chỉ Hạng I về thiết kế cơ - điện công trình. Chuyên gia thiết kế hệ thống MEP cho các công trình công nghiệp và thương mại.",
+      en: "Electrical-Electronics engineer with Class I certification in MEP design. Expert in MEP system design for industrial and commercial buildings.",
+      zh: "电气电子工程师，持有一级机电设计资格证书。工业和商业建筑机电系统设计专家。",
+    },
+    education: {
+      vi: "Đại học Công Nghệ Sài Gòn - Kỹ sư điện - điện tử",
+      en: "Saigon Technology University - Electrical-Electronics Engineer",
+      zh: "西贡理工大学 - 电气电子工程师",
+    },
+    certifications: {
+      vi: ["Thiết kế cơ - điện công trình (Hạng I)"],
+      en: ["MEP Design (Class I)"],
+      zh: ["机电设计（一级）"],
     },
   },
   {
@@ -1537,14 +1631,24 @@ export const teamMembers: TeamMember[] = [
     name: "Huỳnh Văn Hùng",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế MEPF",
-      en: "MEPF Designer",
-      zh: "机电设计师",
+      vi: "Kỹ sư Cơ điện / Giám sát lắp đặt",
+      en: "MEP Engineer / Installation Supervisor",
+      zh: "机电工程师 / 安装监理",
     },
     bio: {
-      vi: "Thiết kế hệ thống HVAC và điện cho các công trình cao tầng và nhà máy.",
-      en: "HVAC and electrical systems designer for high-rise buildings and factories.",
-      zh: "高层建筑和工厂的暖通空调和电气系统设计师。",
+      vi: "Kỹ sư điện - điện tử với chứng chỉ thiết kế cơ điện Hạng II và giám sát lắp đặt thiết bị điện Hạng III. Chuyên về hệ thống HVAC và điện cho công trình cao tầng.",
+      en: "Electrical-Electronics engineer with Class II MEP design and Class III electrical installation supervision certifications. Specializes in HVAC and electrical systems for high-rise buildings.",
+      zh: "电气电子工程师，持有二级机电设计和三级电气安装监理资格证书。专门从事高层建筑的暖通空调和电气系统。",
+    },
+    education: {
+      vi: "ĐH Công nghệ Sài Gòn - Kỹ sư Điện - điện tử",
+      en: "Saigon Technology University - Electrical-Electronics Engineer",
+      zh: "西贡理工大学 - 电气电子工程师",
+    },
+    certifications: {
+      vi: ["Thiết kế cơ - điện công trình dân dụng - công nghiệp (Hạng II)", "Giám sát công tác lắp đặt thiết bị điện công trình dân dụng - công nghiệp (Hạng III)"],
+      en: ["MEP Design for Civil - Industrial Works (Class II)", "Electrical Installation Supervision for Civil - Industrial Works (Class III)"],
+      zh: ["民用-工业工程机电设计（二级）", "民用-工业工程电气安装监理（三级）"],
     },
   },
   {
@@ -1552,14 +1656,24 @@ export const teamMembers: TeamMember[] = [
     name: "Nguyễn Ngọc Tuấn",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế MEPF",
-      en: "MEPF Designer",
-      zh: "机电设计师",
+      vi: "Kỹ sư Cơ điện / Giám sát lắp đặt",
+      en: "MEP Engineer / Installation Supervisor",
+      zh: "机电工程师 / 安装监理",
     },
     bio: {
-      vi: "Chuyên về thiết kế hệ thống cấp thoát nước và phòng cháy chữa cháy.",
-      en: "Specializing in plumbing and fire protection system design.",
-      zh: "专注于给排水和消防系统设计。",
+      vi: "Kỹ sư điện khí hóa và cung cấp điện với chứng chỉ Hạng I về giám sát công tác lắp đặt thiết bị vào công trình.",
+      en: "Electrical engineer specializing in power supply with Class I certification for equipment installation supervision.",
+      zh: "电气化和供电工程师，持有一级设备安装监理资格证书。",
+    },
+    education: {
+      vi: "Đại học Sư phạm kỹ thuật Tp. Hồ Chí Minh - Kỹ sư Điện khí hóa và cung cấp điện",
+      en: "HCMC University of Technology and Education - Electrical Engineer (Power Supply)",
+      zh: "胡志明市技术教育大学 - 电气化和供电工程师",
+    },
+    certifications: {
+      vi: ["Giám sát công tác lắp đặt thiết bị vào công trình (Hạng I)"],
+      en: ["Equipment Installation Supervision (Class I)"],
+      zh: ["设备安装监理（一级）"],
     },
   },
   // Infrastructure Designer
@@ -1568,19 +1682,81 @@ export const teamMembers: TeamMember[] = [
     name: "Lê Xuân Lương",
     photo: "/images/default-men.png",
     role: {
-      vi: "Thiết kế hạ tầng",
-      en: "Infrastructure Designer",
-      zh: "基础设施设计师",
+      vi: "Kỹ sư Hạ tầng / Thiết kế giao thông",
+      en: "Infrastructure Engineer / Transportation Designer",
+      zh: "基础设施工程师 / 交通设计师",
     },
     bio: {
-      vi: "Chuyên gia thiết kế hạ tầng kỹ thuật cho các dự án khu công nghiệp và đô thị.",
-      en: "Infrastructure design expert for industrial parks and urban development projects.",
-      zh: "工业园区和城市发展项目的基础设施设计专家。",
+      vi: "Kỹ sư xây dựng cầu đường với nhiều chứng chỉ hành nghề Hạng II-III về định giá, thiết kế và giám sát công trình giao thông, hạ tầng kỹ thuật.",
+      en: "Bridge and road construction engineer with multiple Class II-III certifications in valuation, design, and supervision of transportation and infrastructure works.",
+      zh: "桥梁道路建设工程师，持有多项二级至三级估价、设计和交通基础设施工程监理资格证书。",
+    },
+    education: {
+      vi: "Đại học Lạc Hồng - KS XD Cầu đường",
+      en: "Lac Hong University - Bridge & Road Construction Engineer",
+      zh: "乐鸿大学 - 桥梁道路建设工程师",
+    },
+    certifications: {
+      vi: ["Định giá xây dựng (Hạng II)", "Thiết kế xây dựng công trình Giao thông: Đường bộ (Hạng II)", "Giám sát công tác xây dựng công trình Dân dụng - Công nghiệp - Hạ tầng kỹ thuật và Giao thông (Đường bộ) (Hạng II)", "Giám sát công tác xây dựng công trình Giao thông: Cầu đường bộ (Hạng III)"],
+      en: ["Construction Valuation (Class II)", "Transportation Design: Roads (Class II)", "Construction Supervision for Civil - Industrial - Infrastructure and Transportation (Roads) (Class II)", "Transportation Construction Supervision: Road Bridges (Class III)"],
+      zh: ["建设估价（二级）", "交通设计：公路（二级）", "民用-工业-基础设施及交通工程施工监理（公路）（二级）", "交通工程施工监理：公路桥梁（三级）"],
+    },
+  },
+  // Surveying Engineer
+  {
+    id: "11",
+    name: "Huỳnh Văn Phụng",
+    photo: "/images/default-men.png",
+    role: {
+      vi: "Kỹ sư Trắc địa",
+      en: "Surveying Engineer",
+      zh: "测量工程师",
+    },
+    bio: {
+      vi: "Kỹ sư Xây dựng Trắc địa và bản đồ với chứng chỉ Hạng II về khảo sát địa hình. Chuyên về khảo sát và đo đạc cho các dự án xây dựng.",
+      en: "Surveying and mapping engineer with Class II topographic survey certification. Specializes in surveying and measurement for construction projects.",
+      zh: "测量和制图工程师，持有二级地形测量资格证书。专门从事建设项目的测量和测绘工作。",
+    },
+    education: {
+      vi: "Đại học Bách Khoa - ĐH Quốc Gia TP.HCM - Kỹ sư Xây dựng Trắc địa và bản đồ",
+      en: "University of Technology - VNU HCMC - Surveying and Mapping Engineer",
+      zh: "胡志明市国家大学理工大学 - 测量和制图工程师",
+    },
+    certifications: {
+      vi: ["Khảo sát Địa hình (Hạng II)"],
+      en: ["Topographic Survey (Class II)"],
+      zh: ["地形测量（二级）"],
+    },
+  },
+  // Project Manager
+  {
+    id: "12",
+    name: "Nghiêm Trung Minh",
+    photo: "/images/default-men.png",
+    role: {
+      vi: "Quản lý dự án",
+      en: "Project Manager",
+      zh: "项目经理",
+    },
+    bio: {
+      vi: "Kỹ sư xây dựng cầu đường với chứng chỉ Hạng I về quản lý dự án đầu tư xây dựng công trình dân dụng. Nhiều năm kinh nghiệm điều phối dự án từ thiết kế đến hoàn thiện.",
+      en: "Bridge and road construction engineer with Class I certification in civil construction project management. Years of experience coordinating projects from design to completion.",
+      zh: "桥梁道路建设工程师，持有一级民用建设项目管理资格证书。多年项目协调经验，从设计到完工。",
+    },
+    education: {
+      vi: "Đại học Giao thông vận tải - Kỹ sư xây dựng cầu đường",
+      en: "University of Transport and Communications - Bridge & Road Construction Engineer",
+      zh: "交通运输大学 - 桥梁道路建设工程师",
+    },
+    certifications: {
+      vi: ["Quản lý dự án đầu tư xây dựng công trình dân dụng (Hạng I)"],
+      en: ["Civil Construction Investment Project Management (Class I)"],
+      zh: ["民用建设投资项目管理（一级）"],
     },
   },
   // Estimating Engineers
   {
-    id: "11",
+    id: "13",
     name: "Lâm Thị Lệ Thu",
     photo: "/images/default-women.png",
     role: {
@@ -1595,7 +1771,7 @@ export const teamMembers: TeamMember[] = [
     },
   },
   {
-    id: "12",
+    id: "14",
     name: "Nguyễn Châu Tuấn",
     photo: "/images/default-men.png",
     role: {
@@ -1607,38 +1783,6 @@ export const teamMembers: TeamMember[] = [
       vi: "Kỹ sư dự toán với kinh nghiệm trong các dự án xây dựng lớn, chuyên về phân tích giá và đấu thầu.",
       en: "Estimating engineer with experience in large construction projects, specializing in cost analysis and tendering.",
       zh: "估算工程师，在大型建筑项目中拥有丰富经验，专注于成本分析和招标。",
-    },
-  },
-  // Project Manager
-  {
-    id: "13",
-    name: "Nghiêm Tủng Minh",
-    photo: "/images/default-men.png",
-    role: {
-      vi: "Quản lý dự án",
-      en: "Project Manager",
-      zh: "项目经理",
-    },
-    bio: {
-      vi: "Quản lý dự án với nhiều năm kinh nghiệm điều phối các dự án từ giai đoạn thiết kế đến hoàn thiện.",
-      en: "Project manager with years of experience coordinating projects from design phase to completion.",
-      zh: "项目经理，在从设计阶段到完成的项目协调方面拥有多年经验。",
-    },
-  },
-  // Surveying Engineer
-  {
-    id: "14",
-    name: "Huỳnh Văn Phụng",
-    photo: "/images/default-men.png",
-    role: {
-      vi: "Kỹ sư trắc đạc",
-      en: "Surveying Engineer",
-      zh: "测量工程师",
-    },
-    bio: {
-      vi: "Chuyên gia trắc đạc và khảo sát địa hình, phục vụ các dự án xây dựng và quy hoạch.",
-      en: "Surveying and topographic survey expert, serving construction and planning projects.",
-      zh: "测量和地形测量专家，为建筑和规划项目提供服务。",
     },
   },
   // Chief Accountant
@@ -1664,6 +1808,8 @@ export function getLocalizedTeamMember(member: TeamMember, locale: Locale) {
     ...member,
     role: member.role[locale] || member.role.en,
     bio: member.bio?.[locale] || member.bio?.en,
+    education: member.education?.[locale] || member.education?.en,
+    certifications: member.certifications?.[locale] || member.certifications?.en,
   };
 }
 
@@ -1680,34 +1826,42 @@ export interface Client {
 }
 
 export const clients: Client[] = [
-  // Japanese Companies
-  { id: "1", name: "Ajinomoto", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "2", name: "Wacoal", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "3", name: "NEC/Tokin", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "4", name: "Shimazu", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "5", name: "Fukuvi", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "6", name: "Nissey", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  { id: "7", name: "Lixil", logo: "/images/clients/placeholder-logo.png", category: "japanese" },
-  // Multinational Corporations
-  { id: "8", name: "Heineken", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "9", name: "Colgate Palmolive", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "10", name: "Sanofi", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "11", name: "Unilever", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "12", name: "Mitsubishi Motors", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "13", name: "BP-PETRO", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  { id: "14", name: "Newhope", logo: "/images/clients/placeholder-logo.png", category: "multinational" },
-  // Construction & Engineering Firms
-  { id: "15", name: "HAZAMA Corporation", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "16", name: "Mitsui Construction", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "17", name: "SMEC", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "18", name: "Tracodi Group", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "19", name: "Dinco", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "20", name: "COFICO", logo: "/images/clients/placeholder-logo.png", category: "construction" },
-  { id: "21", name: "PEB Vietnam", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  { id: "1", name: "Ajinomoto", logo: "/images/clients/ajinomoto.ico", category: "japanese" },
+  { id: "2", name: "Wacoal", logo: "/images/clients/thumb_wacoal.png", category: "japanese" },
+  { id: "3", name: "Sanofi", logo: "/images/clients/sanofi.webp", category: "multinational" },
+  { id: "4", name: "Colgate Palmolive", logo: "/images/clients/Colgate-Palmolive.webp", category: "multinational" },
+  { id: "5", name: "Heineken", logo: "/images/clients/heineken.webp", category: "multinational" },
+  { id: "6", name: "Shing Mark", logo: "/images/clients/shing-mark.png", category: "construction" },
+  { id: "7", name: "Mitsubishi Motors", logo: "/images/clients/mitsubishi-motors-vietnam-logo.png", category: "multinational" },
+  { id: "8", name: "Bestmix", logo: "/images/clients/bestmix.jpg", category: "multinational" },
+  { id: "9", name: "R-PAC", logo: "/images/clients/r-pac_service.jpg", category: "multinational" },
+  { id: "10", name: "Tribeco", logo: "/images/clients/LOGO-TRIBECO.webp", category: "multinational" },
+  { id: "11", name: "Unilever", logo: "/images/clients/logo-unilever.png", category: "multinational" },
+  { id: "12", name: "Fukuvi", logo: "/images/clients/fukuvi.png", category: "japanese" },
+  { id: "13", name: "KTX Huế", logo: "/images/clients/ktx-hue.png", category: "construction" },
+  { id: "14", name: "Nissey", logo: "/images/clients/nissei.png", category: "japanese" },
+  { id: "15", name: "Air Water", logo: "/images/clients/air-water.png", category: "multinational" },
+  { id: "16", name: "VPIC", logo: "/images/clients/logo-vpic.webp", category: "multinational" },
+  { id: "17", name: "CMIT", logo: "/images/clients/cmit.png", category: "construction" },
+  { id: "18", name: "Vina Glass", logo: "/images/clients/vinaglass.png", category: "construction" },
+  { id: "19", name: "NEC/Tokin", logo: "/images/clients/tokin.png", category: "japanese" },
+  { id: "20", name: "Shimazu", logo: "/images/clients/shimadzu-logo.png", category: "japanese" },
+  { id: "21", name: "Lixil", logo: "/images/clients/lixil.png", category: "japanese" },
+  { id: "22", name: "Newhope", logo: "/images/clients/newhope-vn.jpeg", category: "multinational" },
+  { id: "23", name: "Vina Koyei", logo: "/images/clients/vina-kyoki.jpg", category: "construction" },
+  
+  // { id: "23", name: "SMEC", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "24", name: "Tracodi Group", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "25", name: "Dinco", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "26", name: "COFICO", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "27", name: "PEB Vietnam", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "28", name: "HAZAMA Corporation", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "29", name: "Mitsui Construction", logo: "/images/clients/placeholder-logo.png", category: "construction" },
+  // { id: "30", name: "BP-PETRO", logo: "/images/clients/placeholder-logo.png", category: "construction" },
   // Real Estate Developers
-  { id: "22", name: "Pure VN", logo: "/images/clients/placeholder-logo.png", category: "developer" },
-  { id: "23", name: "Tung Feng Vietnam", logo: "/images/clients/placeholder-logo.png", category: "developer" },
-  { id: "24", name: "Chi Thanh", logo: "/images/clients/placeholder-logo.png", category: "developer" },
+  // { id: "31", name: "Pure VN", logo: "/images/clients/placeholder-logo.png", category: "developer" },
+  // { id: "32", name: "Tung Feng Vietnam", logo: "/images/clients/placeholder-logo.png", category: "developer" },
+  // { id: "33", name: "Chi Thanh", logo: "/images/clients/placeholder-logo.png", category: "developer" },
 ];
 
 // ============================================
@@ -1864,5 +2018,5 @@ export const companyStats = {
   yearsExperience: 30,
   projectsCompleted: 50, // 35+ major projects documented
   clients: 24, // Updated to reflect actual client count
-  teamMembers: 16, // Updated to reflect actual team size
+  teamMembers: 15, // Updated to reflect actual team size
 };

@@ -50,7 +50,7 @@
   },
   "about": {
     "title": "About HDG",
-    "subtitle": "Trusted Design & Engineering Consultancy",
+    "subtitle": "Trusted Construction & Design Consulting",
     "intro": "HDG is a design and engineering consultancy providing highly feasible technical solutions, optimizing investment efficiency and aligning with real-world project conditions.",
     "role": "We act as a connector between design concepts, engineering solutions, and project execution.",
     "vision": {
@@ -94,6 +94,8 @@
       "experience": "Experience",
       "showAll": "Show All ({count} members)",
       "showLess": "Show Less",
+      "certifications": "Professional Certifications",
+      "more": "more certifications",
       "roles": {
         "designLead": "Design Lead",
         "architecturalDesigner": "Architectural Designer",
@@ -106,6 +108,8 @@
         "chiefAccountant": "Chief Accountant"
       }
     },
+    "companyProfile": "Company Profile",
+    "viewProfile": "View Company Profile",
     "stats": {
       "years": "Years Experience",
       "projects": "Projects Completed",
@@ -225,9 +229,11 @@
     },
     "info": {
       "title": "Contact Information",
-      "company": "HDG DESIGN & ENGINEERING CONSULTANCY JSC",
-      "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
+      "company": "HDG CONSTRUCTION & DESIGN CONSULTING JSC",
+      "companyEn": "HDG Construction & Design Consulting Joint Stock Company",
       "address": "Address",
+      "officeAddress": "Office Address",
+      "registeredAddress": "Registered Address",
       "phone": "Phone",
       "email": "Email",
       "workingHours": "Working Hours"
@@ -235,11 +241,11 @@
     "mapPlaceholder": "Map will be displayed here"
   },
   "footer": {
-    "description": "Trusted design and engineering consultancy providing optimal technical solutions.",
+    "description": "Trusted construction and design consulting providing optimal technical solutions.",
     "quickLinks": "Quick Links",
     "services": "Services",
     "contact": "Contact",
-    "copyright": "© 2026 HDG Design & Engineering Consultancy. All rights reserved.",
+    "copyright": "© 2026 HDG Construction & Design Consulting. All rights reserved.",
     "serviceDesign": "Design Consultancy",
     "serviceEngineering": "Engineering Design",
     "serviceArchitecture": "Architecture",
@@ -263,6 +269,8 @@
       "subtitle": "Manage your project portfolio",
       "allProjects": "All Projects",
       "addProject": "Add Project",
+      "editProject": "Edit Project",
+      "createDescription": "Create a new project",
       "noProjects": "No projects yet. Create your first project!",
       "table": {
         "title": "Title",
@@ -298,15 +306,134 @@
     },
     "team": {
       "title": "Team",
-      "subtitle": "Manage team members"
+      "subtitle": "Manage team members",
+      "allMembers": "All Team Members",
+      "addMember": "Add Member",
+      "editMember": "Edit Member",
+      "createDescription": "Add a new team member",
+      "noMembers": "No team members yet. Add your first member!",
+      "table": {
+        "name": "Name",
+        "role": "Role",
+        "status": "Status",
+        "order": "Order",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "form": {
+        "name": "Full Name",
+        "roleVi": "Role (Vietnamese)",
+        "roleEn": "Role (English)",
+        "roleZh": "Role (Chinese)",
+        "bioVi": "Bio (Vietnamese)",
+        "bioEn": "Bio (English)",
+        "bioZh": "Bio (Chinese)",
+        "educationVi": "Education (Vietnamese)",
+        "educationEn": "Education (English)",
+        "educationZh": "Education (Chinese)",
+        "certificationsVi": "Certifications (Vietnamese)",
+        "certificationsEn": "Certifications (English)",
+        "certificationsZh": "Certifications (Chinese)",
+        "photo": "Photo",
+        "orderIndex": "Display Order",
+        "active": "Active"
+      },
+      "deleteConfirm": "Are you sure you want to delete this team member?",
+      "deleteSuccess": "Team member deleted successfully",
+      "saveSuccess": "Team member saved successfully"
     },
     "clients": {
       "title": "Clients",
-      "subtitle": "Manage clients and partners"
+      "subtitle": "Manage clients and partners",
+      "allClients": "All Clients & Partners",
+      "addClient": "Add Client",
+      "editClient": "Edit Client",
+      "createDescription": "Add a new client or partner",
+      "noClients": "No clients yet. Add your first client!",
+      "table": {
+        "name": "Name",
+        "category": "Category",
+        "status": "Status",
+        "order": "Order",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "categories": {
+        "japanese": "Japanese Companies",
+        "multinational": "Multinational Corporations",
+        "construction": "Construction & Engineering",
+        "developer": "Real Estate Developers",
+        "other": "Other"
+      },
+      "form": {
+        "name": "Client Name",
+        "logoUrl": "Logo URL",
+        "website": "Website",
+        "category": "Category",
+        "orderIndex": "Display Order",
+        "active": "Active"
+      },
+      "deleteConfirm": "Are you sure you want to delete this client?",
+      "deleteSuccess": "Client deleted successfully",
+      "saveSuccess": "Client saved successfully"
     },
     "settings": {
       "title": "Settings",
       "subtitle": "System settings"
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Manage company services",
+      "allServices": "All Services",
+      "addService": "Add Service",
+      "editService": "Edit Service",
+      "createDescription": "Create a new service",
+      "noServices": "No services yet. Add your first service!",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "form": {
+        "nameVi": "Name (Vietnamese)",
+        "nameEn": "Name (English)",
+        "nameZh": "Name (Chinese)",
+        "descriptionVi": "Description (Vietnamese)",
+        "descriptionEn": "Description (English)",
+        "descriptionZh": "Description (Chinese)",
+        "featuresVi": "Features (Vietnamese)",
+        "featuresEn": "Features (English)",
+        "featuresZh": "Features (Chinese)",
+        "icon": "Icon",
+        "orderIndex": "Display Order",
+        "selectIconPlaceholder": "Select an icon",
+        "saveSuccess": "Service saved successfully",
+        "saveError": "Failed to save service",
+        "deleteConfirm": "Delete this service?",
+        "deleteSuccess": "Service deleted successfully",
+        "deleteError": "Failed to delete service"
+      }
+    },
+    "information": {
+      "title": "Site Information",
+      "subtitle": "Manage company information and contact details",
+      "contact": {
+        "title": "Contact Information"
+      },
+      "localized": {
+        "title": "Localized Information"
+      },
+      "save": "Save Changes",
+      "saveSuccess": "Site information saved successfully",
+      "saveError": "Failed to save site information"
     }
   }
 }

@@ -1,13 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { createClient } from "@/lib/supabase/server";
+import { getAllProjects } from "@/lib/db/queries/projects";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Edit, Trash2, Eye, EyeOff } from "lucide-react";
-import { Database } from "@/lib/supabase/types";
-
-type Project = Database["public"]["Tables"]["projects"]["Row"];
+import { Badge } from "@/components/ui/badge";
+import { Plus, Edit, Eye, EyeOff, Star, StarOff } from "lucide-react";
+import { ProjectActions } from "@/components/admin/project-actions";
+import { projectCategories } from "@/lib/data/mock-data";
+import type { Locale } from "@/lib/i18n/config";
 
 export const metadata: Metadata = {
   title: "Projects | HDG Admin",
@@ -22,18 +23,21 @@ export default async function AdminProjectsPage({
   setRequestLocale(locale);
   const t = await getTranslations("admin.projects");
 
-  const supabase = await createClient();
+  let projects: Awaited<ReturnType<typeof getAllProjects>> = [];
+  let error: string | null = null;
 
-  const { data, error } = await supabase
-    .from("projects")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  const projects = data as Project[] | null;
-
-  if (error) {
-    console.error("Error fetching projects:", error);
+  try {
+    projects = await getAllProjects();
+  } catch (e) {
+    console.error("Error fetching projects:", e);
+    error = "Failed to load projects";
   }
+
+  // Get localized category label
+  const getCategoryLabel = (category: string) => {
+    const cat = projectCategories[category as keyof typeof projectCategories];
+    return cat ? cat[locale as Locale] || cat.en : category;
+  };
 
   return (
     <div className="space-y-6">
@@ -42,7 +46,7 @@ export default async function AdminProjectsPage({
           <h1 className="font-heading text-3xl font-bold">{t("title")}</h1>
           <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
-        <Link href="/admin-projects/new">
+        <Link href={`/${locale}/admin-projects/new`}>
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             {t("addProject")}
@@ -55,7 +59,11 @@ export default async function AdminProjectsPage({
           <CardTitle>{t("allProjects")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {projects && projects.length > 0 ? (
+          {error ? (
+            <div className="py-8 text-center text-destructive">
+              <p>{error}</p>
+            </div>
+          ) : projects && projects.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -72,23 +80,28 @@ export default async function AdminProjectsPage({
                   {projects.map((project) => (
                     <tr key={project.id} className="border-b">
                       <td className="py-4">
-                        <div>
-                          <p className="font-medium">{project.title_en}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {project.title_vi}
-                          </p>
+                        <div className="flex items-center gap-2">
+                          {project.featured && (
+                            <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                          )}
+                          <div>
+                            <p className="font-medium">{project.titleEn}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {project.titleVi}
+                            </p>
+                          </div>
                         </div>
                       </td>
                       <td className="py-4">
-                        <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium capitalize text-primary">
-                          {project.category}
-                        </span>
+                        <Badge variant="secondary" className="capitalize">
+                          {getCategoryLabel(project.category)}
+                        </Badge>
                       </td>
                       <td className="py-4 text-sm">{project.location}</td>
                       <td className="py-4 text-sm">{project.year}</td>
                       <td className="py-4">
                         {project.published ? (
-                          <span className="flex items-center gap-1 text-sm text-accent">
+                          <span className="flex items-center gap-1 text-sm text-green-600">
                             <Eye className="h-4 w-4" />
                             {t("status.published")}
                           </span>
@@ -100,20 +113,7 @@ export default async function AdminProjectsPage({
                         )}
                       </td>
                       <td className="py-4">
-                        <div className="flex items-center gap-2">
-                          <Link href={`/admin-projects/${project.id}`}>
-                            <Button variant="ghost" size="icon">
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                          </Link>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="text-destructive"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
+                        <ProjectActions project={project} locale={locale} />
                       </td>
                     </tr>
                   ))}

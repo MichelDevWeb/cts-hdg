@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "HDG Design & Engineering Consultancy",
+    default: "HDG Construction & Design Consulting",
     template: "%s | HDG",
   },
   description:
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     "tư vấn thiết kế",
     "xây dựng",
   ],
-  authors: [{ name: "HDG Design & Engineering" }],
-  creator: "HDG Design & Engineering",
+  authors: [{ name: "HDG Construction & Design Consulting" }],
+  creator: "HDG Construction & Design Consulting",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://hdg.vn"),
   openGraph: {
     type: "website",
     locale: "vi_VN",
     alternateLocale: ["en_US", "zh_CN"],
-    siteName: "HDG Design & Engineering Consultancy",
+    siteName: "HDG Construction & Design Consulting",
   },
   twitter: {
     card: "summary_large_image",

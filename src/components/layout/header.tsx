@@ -43,7 +43,7 @@ export function Header() {
                 HDG
               </span>
               <span className="block text-xs text-muted-foreground">
-                Design & Engineering Consultancy
+                Construction & Design Consulting
               </span>
             </div>
           </Link>

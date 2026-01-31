@@ -30,6 +30,17 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
   return result[0];
 }
 
+// Get project by slug (for admin - includes unpublished)
+export async function getProjectBySlugAdmin(slug: string): Promise<Project | undefined> {
+  const result = await db
+    .select()
+    .from(projects)
+    .where(eq(projects.slug, slug))
+    .limit(1);
+
+  return result[0];
+}
+
 // Get project by ID (for admin)
 export async function getProjectById(id: string): Promise<Project | undefined> {
   const result = await db
@@ -80,14 +91,42 @@ export async function getProjectsByCategory(category: string): Promise<Project[]
     .orderBy(desc(projects.year));
 }
 
-// Get featured projects (latest 3)
+// Get featured projects (marked as featured)
 export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
   return db
     .select()
     .from(projects)
-    .where(eq(projects.published, true))
+    .where(and(eq(projects.published, true), eq(projects.featured, true)))
     .orderBy(desc(projects.year), desc(projects.createdAt))
     .limit(limit);
+}
+
+// Toggle featured status
+export async function toggleProjectFeatured(id: string): Promise<Project | undefined> {
+  const project = await getProjectById(id);
+  if (!project) return undefined;
+
+  const result = await db
+    .update(projects)
+    .set({ featured: !project.featured, updatedAt: new Date() })
+    .where(eq(projects.id, id))
+    .returning();
+
+  return result[0];
+}
+
+// Toggle published status
+export async function toggleProjectPublished(id: string): Promise<Project | undefined> {
+  const project = await getProjectById(id);
+  if (!project) return undefined;
+
+  const result = await db
+    .update(projects)
+    .set({ published: !project.published, updatedAt: new Date() })
+    .where(eq(projects.id, id))
+    .returning();
+
+  return result[0];
 }
 
 // Helper to get localized project fields
@@ -106,6 +145,12 @@ export function getLocalizedProject(project: Project, locale: string) {
         : locale === "zh"
           ? project.summaryZh
           : project.summaryEn,
+    content:
+      locale === "vi"
+        ? project.contentVi
+        : locale === "zh"
+          ? project.contentZh
+          : project.contentEn,
   };
 }
 

@@ -77,8 +77,12 @@ cts-hdg/
 │   │   │   ├── (admin)/              # Admin dashboard routes
 │   │   │   │   ├── dashboard/        # Dashboard overview
 │   │   │   │   ├── admin-projects/   # Project management
+│   │   │   │   ├── admin-services/   # Services management (NEW)
+│   │   │   │   ├── admin-team/       # Team member management
+│   │   │   │   ├── admin-clients/    # Clients & partners management
 │   │   │   │   ├── admin-inquiries/  # Inquiry management
-│   │   │   │   └── layout.tsx        # Admin layout (no main header/footer)
+│   │   │   │   ├── admin-information/# Site information management (NEW)
+│   │   │   │   └── layout.tsx        # Admin layout (with footer)
 │   │   │   ├── (auth)/               # Authentication routes
 │   │   │   │   └── login/            # Login page (no main header/footer)
 │   │   │   ├── about/                # About page
@@ -97,7 +101,16 @@ cts-hdg/
 │   ├── components/
 │   │   ├── admin/                    # Admin-specific components
 │   │   │   ├── admin-sidebar.tsx     # Sidebar with logo
-│   │   │   └── admin-header.tsx
+│   │   │   ├── admin-header.tsx      # Header with language switcher
+│   │   │   ├── admin-footer.tsx      # Footer with CheoTechStudio info
+│   │   │   ├── team-member-actions.tsx
+│   │   │   ├── team-member-form.tsx
+│   │   │   ├── client-actions.tsx
+│   │   │   ├── client-form.tsx
+│   │   │   ├── service-actions.tsx   # Service CRUD actions (NEW)
+│   │   │   ├── service-form.tsx      # Service edit form (NEW)
+│   │   │   ├── site-info-form.tsx    # Site info edit form (NEW)
+│   │   │   └── image-browser.tsx     # Browse images from storage
 │   │   ├── auth/                     # Auth components
 │   │   │   └── login-form.tsx        # Login form with logo & password reset
 │   │   ├── forms/                    # Form components
@@ -106,12 +119,18 @@ cts-hdg/
 │   │   │   ├── footer.tsx            # Main footer with logo
 │   │   │   └── language-switcher.tsx
 │   │   ├── sections/                 # Page sections
+│   │   │   ├── team-section.tsx      # Dynamic team display
+│   │   │   └── clients-carousel.tsx  # Dynamic clients carousel
 │   │   └── ui/                       # shadcn/ui components
+│   │       └── loading-section.tsx   # Loading states for API data
 │   ├── lib/
 │   │   ├── db/                       # Drizzle ORM
 │   │   │   ├── index.ts              # Database connection
 │   │   │   ├── schema.ts             # Table definitions
 │   │   │   └── queries/              # Query functions
+│   │   │       ├── projects.ts       # Project CRUD
+│   │   │       ├── team.ts           # Team member CRUD
+│   │   │       └── clients.ts        # Client CRUD
 │   │   ├── i18n/                     # Internationalization
 │   │   ├── supabase/                 # Supabase clients (auth)
 │   │   └── utils.ts                  # Utility functions
@@ -146,11 +165,12 @@ cts-hdg/
 | Table | Description | Type Export |
 |-------|-------------|-------------|
 | `projects` | Project portfolio | `Project`, `NewProject` |
-| `services` | Company services | `Service`, `NewService` |
-| `team` | Team members | `TeamMember`, `NewTeamMember` |
+| `services` | Company services (with multilingual features) | `Service`, `NewService` |
+| `site_info` | Site/company information (contact, address, etc.) | `SiteInfo`, `NewSiteInfo` |
+| `team` | Team members (with education, certifications, active) | `TeamMember`, `NewTeamMember` |
 | `posts` | News/blog articles | `Post`, `NewPost` |
 | `inquiries` | Contact submissions | `Inquiry`, `NewInquiry` |
-| `clients` | Client/partner logos | `Client`, `NewClient` |
+| `clients` | Client/partner logos (with category, active) | `Client`, `NewClient` |
 
 ### Key Fields (projects example)
 ```typescript
@@ -165,12 +185,16 @@ export const projects = pgTable("projects", {
   location: text("location").notNull(),
   scale: text("scale"),
   year: integer("year").notNull(),
+  client: text("client"), // Client/company name
   summaryVi: text("summary_vi"),
   summaryEn: text("summary_en"),
   summaryZh: text("summary_zh"),
+  contentVi: text("content_vi"), // Detailed content in Vietnamese
+  contentEn: text("content_en"), // Detailed content in English
+  contentZh: text("content_zh"), // Detailed content in Chinese
   coverImage: text("cover_image"),
   gallery: text("gallery").array().default([]),
-  content: jsonb("content"),
+  featured: boolean("featured").default(false), // Featured project flag
   published: boolean("published").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
@@ -183,12 +207,33 @@ export const projects = pgTable("projects", {
 // Projects
 getPublishedProjects()
 getProjectBySlug(slug)
-getFeaturedProjects(limit)
+getProjectBySlugAdmin(slug) // Includes unpublished projects
+getFeaturedProjects(limit) // Returns projects with featured=true
 getProjectsByCategory(category)
 createProject(data)
 updateProject(id, data)
 deleteProject(id)
+toggleProjectFeatured(id) // Toggle featured status
+toggleProjectPublished(id) // Toggle published status
 getLocalizedProject(project, locale)
+
+// Team Members
+getAllTeamMembers() // For admin (all members)
+getActiveTeamMembers() // For public (active only)
+getTeamMemberById(id)
+createTeamMember(data)
+updateTeamMember(id, data)
+deleteTeamMember(id)
+toggleTeamMemberActive(id, active)
+
+// Clients
+getAllClients() // For admin (all clients)
+getActiveClients() // For public (active only)
+getClientById(id)
+createClient(data)
+updateClient(id, data)
+deleteClient(id)
+toggleClientActive(id, active)
 
 // Inquiries
 getAllInquiries()
@@ -225,6 +270,10 @@ getNewInquiriesCount()
 - **NEW**: Drizzle ORM integration for type-safe queries.
 - Admin dashboard for projects, posts, team.
 - File upload and image optimization pipeline.
+- **NEW**: Supabase Storage integration for project images.
+- **NEW**: Featured projects functionality (toggle featured flag).
+- **NEW**: Project content fields (content_vi, content_en, content_zh) for detailed descriptions.
+- **NEW**: Client field for project client/company information.
 
 ### Phase 5: Lead Generation and Integrations ✅
 - ✅ **Contact form** with validation
@@ -260,6 +309,8 @@ getNewInquiriesCount()
 | **Reset Password** | `/[locale]/reset-password` | ✅ **NEW** |
 | Dashboard | `/[locale]/dashboard` | ✅ Complete |
 | Admin Projects | `/[locale]/admin-projects` | ✅ Complete |
+| **Admin Team** | `/[locale]/admin-team` | ✅ **NEW** |
+| **Admin Clients** | `/[locale]/admin-clients` | ✅ **NEW** |
 | Admin Inquiries | `/[locale]/admin-inquiries` | ✅ Complete |
 | **404 Not Found** | `/[locale]/[...rest]` | ✅ Complete |
 
@@ -302,6 +353,29 @@ npm run db:migrate
 # Open Drizzle Studio (GUI)
 npm run db:studio
 ```
+
+### Migration Files Structure
+
+The project uses Supabase migrations located in `supabase/migrations/`:
+
+1. **`00001_initial_schema.sql`**
+   - Creates all database tables (projects, services, team, inquiries, posts, clients)
+   - Includes all project fields: `client`, `content_vi`, `content_en`, `content_zh`, `featured`
+   - Creates indexes for performance
+   - Sets up triggers for `updated_at` timestamps
+   - Creates `project-images` storage bucket
+
+2. **`00002_rls_policies.sql`**
+   - Enables Row Level Security (RLS) on all tables
+   - Public read policies for published content
+   - Authenticated user policies for admin operations
+   - Storage bucket policies for project image uploads
+
+3. **`00003_seed_data.sql`**
+   - Seeds default services (Design Consultancy, Engineering Design, Integrated Solutions)
+   - Seeds **all 35 projects** from HDG business portfolio with full trilingual content
+   - Includes projects from Tracodi Group (2024), Tung Feng Vietnam (2022-2024), Pure VN (2020-2022), Chi Thanh (2018-2020), Dinco (2014-2018), Sanofi (2013-2014), COFICO (2012-2013), Colgate Palmolive (2007-2012), CMIT Port (2010), PEB Vietnam (2006-2007), SMEC (2004-2006), HAZAMA Vietnam (1997-2003), Mitsui Construction (1995-1997), GCC1 (1995)
+   - Uses `ON CONFLICT` to allow safe re-running
 
 ---
 
@@ -374,6 +448,18 @@ npm run db:studio
 - ✅ Created schema with type exports
 - ✅ Query functions for projects and inquiries
 - ✅ Helper functions for localized content
+- ✅ **Featured projects** query function (filters by featured flag)
+- ✅ **Toggle featured/published** functions for admin
+- ✅ **Project content fields** (content_vi, content_en, content_zh) for detailed descriptions
+- ✅ **Client field** added to projects table
+
+### Database Migrations
+- ✅ **Unified migrations**: Schema, RLS policies, and seed data consolidated
+  - `00001_initial_schema.sql` - Complete schema with all fields (including client, content_vi/en/zh, featured)
+  - `00002_rls_policies.sql` - RLS policies + Storage bucket policies for project images
+  - `00003_seed_data.sql` - Services + Full project portfolio (14 projects from business history)
+- ✅ **Storage bucket** `project-images` created with public read access
+- ✅ **Storage policies** for authenticated uploads/updates/deletes
 
 ### Mock Data & Localization
 - ✅ **Created centralized mock data file** (`src/lib/data/mock-data.ts`)
@@ -508,6 +594,52 @@ npm run db:studio
 - [x] **Clients carousel** with auto-scroll animation
 - [x] **Clients carousel** added to home and about pages
 
+### Database & Admin Enhancements
+- ✅ **Updated contact information** from business documents (correct addresses, phone, legal representative)
+- ✅ **Project schema updates** - Added client, content_vi/en/zh, featured fields
+- ✅ **Supabase Storage integration** - Project images stored in `project-images` bucket
+- ✅ **Admin project management** - Full CRUD with image upload, featured toggle, publish/unpublish
+- ✅ **Dynamic project data** - Home and projects pages fetch from Supabase, fallback to mock data
+- ✅ **Featured projects** - Admin can mark projects as featured to show on home page
+- ✅ **Unified migrations** - Consolidated schema, RLS, and seed data into 3 migration files
+- ✅ **Complete project seed data** - All 35 projects from mock-data.ts added to seed migration
+- ✅ **Image browser component** - Admin can browse and select existing images from Supabase Storage
+- ✅ **Storage list API** - Endpoint to list images from storage bucket with search functionality
+
+### Admin Team & Clients Management (NEW)
+- ✅ **Admin header language switcher** - Added LanguageSwitcher to admin header
+- ✅ **Admin footer** - Created AdminFooter with CheoTechStudio info
+- ✅ **Loading section component** - Created LoadingSection for API data loading states
+- ✅ **Team schema updates** - Added education_vi/en/zh, certifications_vi/en/zh, active fields
+- ✅ **Clients schema updates** - Added category, active fields
+- ✅ **Team seed data** - Added 15 team members to seed migration with full trilingual data
+- ✅ **Clients seed data** - Added 24 clients/partners to seed migration with categories
+- ✅ **Admin team page** - Full CRUD with image upload/selection, active toggle
+- ✅ **Admin clients page** - Full CRUD with logo upload/selection, category selection, active toggle
+- ✅ **Team member form** - Fields for name, roles (vi/en/zh), bio, photo, education, certifications, order
+- ✅ **Client form** - Fields for name, logo, website, category, order
+- ✅ **Public team API** - `/api/team` returns active team members
+- ✅ **Public clients API** - `/api/clients` returns active clients
+- ✅ **Dynamic team section** - TeamSection fetches from Supabase with useDynamicData prop
+- ✅ **Dynamic clients carousel** - ClientsCarousel fetches from Supabase with useDynamicData prop
+- ✅ **About page updated** - Uses useDynamicData for team and clients sections
+- ✅ **Home page updated** - Uses useDynamicData for clients carousel
+
+### Services & Site Information Management (NEW)
+- ✅ **Services schema updates** - Added features_vi/en/zh arrays for detailed service features
+- ✅ **Site info table** - New key-value table for company information with trilingual support
+- ✅ **Admin services page** - Full CRUD with feature list management, icon selection
+- ✅ **Admin information page** - Edit company contact details, addresses, working hours
+- ✅ **Service form** - Fields for name, description, features (vi/en/zh), icon, order, active toggle
+- ✅ **Site info form** - Fields for company name, addresses, phone, email, working hours
+- ✅ **Public services API** - `/api/services` returns active services
+- ✅ **Public site-info API** - `/api/site-info` returns company information
+- ✅ **Dynamic services on home page** - Services section fetches from Supabase
+- ✅ **Dynamic services page** - Services page fetches from Supabase with fallback to mock data
+- ✅ **Dynamic contact info** - Contact page and footer fetch from Supabase
+- ✅ **Icon utilities** - Added iconMap and getIconByName helpers for service icons
+- ✅ **External image support** - Updated next.config.mjs for placeholder image domains
+
 ---
 
 ## Future Enhancements
@@ -519,7 +651,18 @@ npm run db:studio
 - [ ] Session management and timeout
 
 ### Admin Features
-- [ ] Project CRUD forms with image upload
+- [x] **Project CRUD forms with image upload** ✅ Complete
+- [x] **Featured projects toggle** ✅ Complete
+- [x] **Published/unpublished toggle** ✅ Complete
+- [x] **Image upload to Supabase Storage** ✅ Complete (cover image + gallery)
+- [x] **Image browser from storage** ✅ Complete - Browse and select existing images
+- [x] **Team member management** ✅ Complete - Full CRUD with photo upload/selection
+- [x] **Clients management** ✅ Complete - Full CRUD with logo upload/selection
+- [x] **Services management** ✅ Complete - Full CRUD with feature list, icon selection
+- [x] **Site information management** ✅ Complete - Company info, contact details
+- [x] **Admin header language switcher** ✅ Complete
+- [x] **Admin footer with developer info** ✅ Complete
+- [x] **Loading states for API data** ✅ Complete
 - [ ] Rich text editor for project content
 - [ ] Bulk operations for projects
 - [ ] Export inquiries to CSV/PDF

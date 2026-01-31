@@ -8,6 +8,7 @@ ALTER TABLE team ENABLE ROW LEVEL SECURITY;
 ALTER TABLE inquiries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
+ALTER TABLE site_info ENABLE ROW LEVEL SECURITY;
 
 -- Projects policies
 CREATE POLICY "Public can view published projects"
@@ -79,4 +80,32 @@ CREATE POLICY "Authenticated users can manage clients"
     TO authenticated
     USING (true)
     WITH CHECK (true);
+
+-- Site Info policies
+CREATE POLICY "Public can view site info"
+    ON site_info FOR SELECT
+    USING (true);
+
+CREATE POLICY "Authenticated users can manage site info"
+    ON site_info FOR ALL
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);
+
+-- Storage policies for project images
+CREATE POLICY "Allow authenticated uploads" ON storage.objects
+FOR INSERT TO authenticated
+WITH CHECK (bucket_id = 'project-images');
+
+CREATE POLICY "Allow public read" ON storage.objects
+FOR SELECT TO public
+USING (bucket_id = 'project-images');
+
+CREATE POLICY "Allow authenticated updates" ON storage.objects
+FOR UPDATE TO authenticated
+USING (bucket_id = 'project-images');
+
+CREATE POLICY "Allow authenticated deletes" ON storage.objects
+FOR DELETE TO authenticated
+USING (bucket_id = 'project-images');
 

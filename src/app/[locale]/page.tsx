@@ -13,8 +13,20 @@ import {
   Layers,
   ArrowRight,
 } from "lucide-react";
-import { getFeaturedProjects, getLocalizedProject } from "@/lib/data/mock-data";
+import {
+  getFeaturedProjects as getFeaturedProjectsFromDB,
+  getLocalizedProject as getLocalizedProjectFromDB,
+} from "@/lib/db/queries/projects";
+import {
+  getActiveServices,
+  getLocalizedService,
+} from "@/lib/db/queries/services";
+import {
+  getFeaturedProjects as getMockFeaturedProjects,
+  getLocalizedProject as getMockLocalizedProject,
+} from "@/lib/data/mock-data";
 import type { Locale } from "@/lib/i18n/config";
+import { getIconByName } from "@/lib/utils";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -28,10 +40,52 @@ export default async function HomePage({ params }: HomePageProps) {
   const tServices = await getTranslations({ locale, namespace: "services" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
 
-  // Get localized featured projects
-  const featuredProjects = getFeaturedProjects().map((project) =>
-    getLocalizedProject(project, locale as Locale)
-  );
+  // Get services from database
+  let services: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    description: string | null;
+    features: string[];
+    icon: string | null;
+  }> = [];
+
+  try {
+    const dbServices = await getActiveServices();
+    services = dbServices.map((service) => getLocalizedService(service, locale));
+  } catch (error) {
+    console.error("Error fetching services from DB:", error);
+  }
+
+  // Try to get featured projects from database, fallback to mock data
+  let featuredProjects: Array<{
+    slug: string;
+    title: string;
+    category: string;
+    location: string;
+    year: number;
+    coverImage: string | null;
+  }> = [];
+
+  try {
+    const dbProjects = await getFeaturedProjectsFromDB(3);
+    if (dbProjects && dbProjects.length > 0) {
+      featuredProjects = dbProjects.map((project) =>
+        getLocalizedProjectFromDB(project, locale)
+      );
+    } else {
+      // Fallback to mock data
+      featuredProjects = getMockFeaturedProjects().map((project) =>
+        getMockLocalizedProject(project, locale as Locale)
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching projects from DB:", error);
+    // Fallback to mock data
+    featuredProjects = getMockFeaturedProjects().map((project) =>
+      getMockLocalizedProject(project, locale as Locale)
+    );
+  }
 
   return (
     <>
@@ -61,24 +115,41 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Services Section */}
       <Section title={t("services.title")} subtitle={t("services.subtitle")}>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <ServiceCard
-            title={tServices("design.title")}
-            description={tServices("design.description")}
-            icon={<Compass className="h-6 w-6" />}
-            href="/services"
-          />
-          <ServiceCard
-            title={tServices("engineering.title")}
-            description={tServices("engineering.description")}
-            icon={<PenTool className="h-6 w-6" />}
-            href="/services"
-          />
-          <ServiceCard
-            title={tServices("integrated.title")}
-            description={tServices("integrated.description")}
-            icon={<Layers className="h-6 w-6" />}
-            href="/services"
-          />
+          {services.length > 0 ? (
+            services.slice(0, 3).map((service) => {
+              const IconComponent = service.icon ? getIconByName(service.icon) : Compass;
+              return (
+                <ServiceCard
+                  key={service.id}
+                  title={service.name}
+                  description={service.description || ""}
+                  icon={<IconComponent className="h-6 w-6" />}
+                  href={`/services#${service.slug}`}
+                />
+              );
+            })
+          ) : (
+            <>
+              <ServiceCard
+                title={tServices("design.title")}
+                description={tServices("design.description")}
+                icon={<Compass className="h-6 w-6" />}
+                href="/services"
+              />
+              <ServiceCard
+                title={tServices("engineering.title")}
+                description={tServices("engineering.description")}
+                icon={<PenTool className="h-6 w-6" />}
+                href="/services"
+              />
+              <ServiceCard
+                title={tServices("integrated.title")}
+                description={tServices("integrated.description")}
+                icon={<Layers className="h-6 w-6" />}
+                href="/services"
+              />
+            </>
+          )}
         </div>
       </Section>
 
@@ -113,7 +184,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Clients Carousel Section */}
       <Section className="bg-muted/30">
-        <ClientsCarousel />
+        <ClientsCarousel useDynamicData />
       </Section>
 
       {/* CTA Section */}

@@ -4,7 +4,15 @@ import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
 import { ProjectCard } from "@/components/sections/project-card";
 import { CTASection } from "@/components/sections/cta-section";
-import { projects, getLocalizedProject, projectCategories } from "@/lib/data/mock-data";
+import {
+  getPublishedProjects as getPublishedProjectsFromDB,
+  getLocalizedProject as getLocalizedProjectFromDB,
+} from "@/lib/db/queries/projects";
+import {
+  projects as mockProjects,
+  getLocalizedProject as getMockLocalizedProject,
+  projectCategories,
+} from "@/lib/data/mock-data";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ProjectsPageProps {
@@ -30,13 +38,38 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const t = await getTranslations({ locale, namespace: "projects" });
   const tHome = await getTranslations({ locale, namespace: "home" });
 
-  // Get localized projects
-  const localizedProjects = projects.map((project) =>
-    getLocalizedProject(project, locale as Locale)
-  );
+  // Try to get projects from database, fallback to mock data
+  let localizedProjects: Array<{
+    slug: string;
+    title: string;
+    category: string;
+    location: string;
+    year: number;
+    coverImage: string | null;
+  }> = [];
+
+  try {
+    const dbProjects = await getPublishedProjectsFromDB();
+    if (dbProjects && dbProjects.length > 0) {
+      localizedProjects = dbProjects.map((project) =>
+        getLocalizedProjectFromDB(project, locale)
+      );
+    } else {
+      // Fallback to mock data
+      localizedProjects = mockProjects.map((project) =>
+        getMockLocalizedProject(project, locale as Locale)
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching projects from DB:", error);
+    // Fallback to mock data
+    localizedProjects = mockProjects.map((project) =>
+      getMockLocalizedProject(project, locale as Locale)
+    );
+  }
 
   // Get localized categories
-  const categories = ["all", "residential", "commercial", "industrial"] as const;
+  const categories = ["all", "residential", "commercial", "industrial", "infrastructure"] as const;
   const localizedCategories = categories.map((cat) => ({
     key: cat,
     label: projectCategories[cat][locale as Locale] || projectCategories[cat].en,

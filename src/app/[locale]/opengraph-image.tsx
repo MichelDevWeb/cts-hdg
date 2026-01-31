@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "HDG Design & Engineering Consultancy";
+export const alt = "HDG Construction & Design Consulting";
 export const size = {
   width: 1200,
   height: 630,
@@ -20,7 +20,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
 
   const subtitles: Record<string, string> = {
     vi: "Tư vấn Thiết kế Xây dựng",
-    en: "Design & Engineering Consultancy",
+    en: "Construction & Design Consulting",
     zh: "设计与工程咨询",
   };
 

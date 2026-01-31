@@ -6,6 +6,7 @@ import { ValueCard } from "@/components/sections/value-card";
 import { CTASection } from "@/components/sections/cta-section";
 import { TeamSection } from "@/components/sections/team-section";
 import { ClientsCarousel } from "@/components/sections/clients-carousel";
+import { CompanyProfileDialog } from "@/components/sections/company-profile-dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Target,
@@ -21,8 +22,7 @@ import {
   Users,
   Award,
 } from "lucide-react";
-import { teamMembers, getLocalizedTeamMember, companyStats } from "@/lib/data/mock-data";
-import type { Locale } from "@/lib/i18n/config";
+import { companyStats } from "@/lib/data/mock-data";
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
@@ -46,11 +46,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   const t = await getTranslations({ locale, namespace: "about" });
   const tHome = await getTranslations({ locale, namespace: "home" });
-
-  // Get localized team members
-  const localizedTeam = teamMembers.map((member) =>
-    getLocalizedTeamMember(member, locale as Locale)
-  );
 
   const stats = [
     {
@@ -83,6 +78,9 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {/* Hero */}
       <Hero title={t("title")} subtitle={t("subtitle")}>
         <p className="max-w-2xl text-lg text-primary-100">{t("intro")}</p>
+        <div className="mt-6">
+          <CompanyProfileDialog />
+        </div>
       </Hero>
 
       {/* Stats Section */}
@@ -183,12 +181,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Team Section */}
       <Section title={t("team.title")} subtitle={t("team.subtitle")}>
-        <TeamSection members={localizedTeam} />
+        <TeamSection useDynamicData />
       </Section>
 
       {/* Clients & Partners Section */}
       <Section className="bg-muted/30">
-        <ClientsCarousel />
+        <ClientsCarousel useDynamicData />
       </Section>
 
       {/* Quality Commitment */}

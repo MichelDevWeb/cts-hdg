@@ -2,11 +2,16 @@
 
 ## Contact Information
 
-- **Company**: CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG HDG (HDG Design & Engineering Consultancy Joint Stock Company)
-- **Address**: 125/42/27 Bùi Đình Tuý, Phường Gia Định, Thành phố Hồ Chí Minh, Việt Nam
-- **Phone**: +84 xxx xxx xxx
+- **Company Name (Vietnamese)**: CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG HDG
+- **Company Name (English)**: HDG CONSTRUCTION DESIGN CONSULTING JOINT STOCK COMPANY
+- **Abbreviation**: HDG CONSTRUCTION DESIGN CONSULTING JSC
+- **Registered Address**: 125/42/27 Bùi Đình Túy, Phường Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam
+- **Office Address**: 362 Mai Chí Thọ, An Phú, Thành phố Hồ Chí Minh, Việt Nam
+- **Phone**: 0931313599
 - **Email**: info@hdgcons.com.vn
+- **Website**: www.hdgcons.com.vn
 - **Working Hours**: Mon - Fri: 8:00 - 17:30
+- **Legal Representative**: Hoàng Đình Cung (Mr. Hoang Dinh Cung)
 
 ---
 
@@ -329,47 +334,127 @@
 
 ## Team & Organization
 
-### Design Leadership
-- **Hoàng Đình Cung** - Chủ trì thiết kế (Design Lead)
-- **Trần Ngọc Chính** - Chủ trì thiết kế (Design Lead)
+### Design Leadership (Chủ trì thiết kế)
 
-### Architectural Design Team
-- **Lê Xuân Đức** - Thiết kế kiến trúc (Architectural Designer)
-- **Ngô Phước Quang Thặng** - Thiết kế kiến trúc (Architectural Designer)
+#### Hoàng Đình Cung - Design Lead / Construction Supervisor
+- **DOB**: 23/10/1970
+- **Education**: Đại học Bách Khoa TP. Hồ Chí Minh (Ho Chi Minh City University of Technology)
+- **Degree**: Kỹ sư xây dựng (Construction Engineer)
+- **Certifications**:
+  - Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I) - Valid: 04/5/2022 - 04/5/2027
 
-### Structural Design Team
-- **Đặng Hữu Lợi** - Thiết kế kết cấu (Structural Designer)
-- **Nguyễn Đình Tuấn** - Thiết kế kết cấu (Structural Designer)
+#### Trần Ngọc Chính - Design Lead / Construction Supervisor
+- **DOB**: 10/10/1977
+- **Education**: Đại học kỹ thuật - Đại học Quốc gia Tp.Hồ Chí Minh
+- **Degree**: Kỹ sư xây dựng - ngành kỹ thuật công trình
+- **Certifications**:
+  - Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I) - Valid: 17/09/2024 - 17/09/2029
 
-### MEPF Design Team
-- **Trương Thanh Hải** - Thiết kế MEPF (MEPF Designer)
-- **Huỳnh Văn Hùng** - Thiết kế MEPF (MEPF Designer)
-- **Nguyễn Ngọc Tuấn** - Thiết kế MEPF (MEPF Designer)
+### Architectural Design Team (Thiết kế kiến trúc)
 
-### Infrastructure Design
-- **Lê Xuân Lương** - Thiết kế hạ tầng (Infrastructure Designer)
+#### Lê Xuân Đức - Architectural Designer
+- **DOB**: 26/9/1988
+- **Education**: Đại học Kiến trúc Hà Nội (Hanoi Architectural University)
+- **Degree**: Kiến trúc sư (Architect)
+- **Certifications**:
+  - Thiết kế kiến trúc công trình - Valid: 23/01/2025 - 22/01/2035
+  - Thiết kế kiến trúc trong đồ án quy hoạch, thiết kế đô thị - Valid: 23/01/2025 - 22/01/2035
 
-### Estimating & Cost Management
+#### Ngô Phước Quang Thặng - Architectural Designer
+- **DOB**: 20/6/1990
+- **Education**: (Details from certificate)
+- **Degree**: Kiến trúc sư (Architect)
+- **Certifications**:
+  - Thiết kế kiến trúc công trình - Valid: 09/01/2023 - 09/01/2033
+
+### Structural Design Team (Thiết kế kết cấu)
+
+#### Đặng Hữu Lợi - Structural Designer / Construction Supervisor
+- **DOB**: 27/05/1976
+- **Education**: Học Viện kỹ thuật quân sự (Military Technical Academy)
+- **Degree**: Thạc sĩ kỹ thuật xây dựng công trình đặc biệt (Xây dựng dân dụng - công nghiệp)
+- **Certifications**:
+  - Giám sát công tác xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật (Hạng I) - Valid: 08/7/2022 - 08/7/2027
+  - Thiết kế kết cấu công trình (Hạng I) - Valid: 08/7/2022 - 08/7/2027
+
+#### Nguyễn Đình Tuấn - Structural Designer / Construction Supervisor
+- **DOB**: 01/01/1976
+- **Education**: ĐH Kiến trúc TP.HCM (Ho Chi Minh City University of Architecture)
+- **Degree**: Kỹ sư xây dựng (Construction Engineer)
+- **Certifications**:
+  - Thiết kế kết cấu công trình dân dụng - công nghiệp (Hạng II) - Valid: 04/8/2021 - 04/8/2026
+  - Giám sát công tác xây dựng công trình dân dụng - công nghiệp (Hạng II) - Valid: 04/8/2021 - 04/8/2026
+  - Giám sát công tác xây dựng công trình hạ tầng kỹ thuật (Hạng III) - Valid: 04/8/2021 - 04/8/2026
+
+### MEPF Design Team (Thiết kế Cơ điện)
+
+#### Trương Thanh Hải - MEPF Designer
+- **DOB**: 08/12/1981
+- **Education**: Đại học Công Nghệ Sài Gòn (Saigon Technology University)
+- **Degree**: Kỹ sư điện - điện tử (Electrical-Electronics Engineer)
+- **Certifications**:
+  - Thiết kế cơ - điện công trình (Hạng I) - Valid: 10/10/2022 - 10/10/2027
+
+#### Huỳnh Văn Hùng - MEPF Designer / Supervisor
+- **DOB**: 25/12/1987
+- **Education**: ĐH Công nghệ Sài Gòn (Saigon Technology University)
+- **Degree**: Kỹ sư Điện - điện tử (Electrical-Electronics Engineer)
+- **Certifications**:
+  - Thiết kế cơ - điện công trình dân dụng - công nghiệp (Hạng II) - Valid: 18/6/2021 - 18/6/2026
+  - Giám sát công tác lắp đặt thiết bị điện công trình dân dụng - công nghiệp (Hạng III) - Valid: 18/6/2021 - 18/6/2026
+
+#### Nguyễn Ngọc Tuấn - MEPF Designer / Supervisor
+- **DOB**: 13/3/1984
+- **Education**: Đại học Sư phạm kỹ thuật Tp. Hồ Chí Minh
+- **Degree**: Kỹ sư Điện khí hóa và cung cấp điện (Electrical Engineer - Power Supply)
+- **Certifications**:
+  - Giám sát công tác lắp đặt thiết bị vào công trình (Hạng I) - Valid: 21/5/2021 - 21/5/2026
+
+### Infrastructure Design (Thiết kế hạ tầng)
+
+#### Lê Xuân Lương - Infrastructure Designer
+- **DOB**: 11/10/1984
+- **Education**: Đại học Lạc Hồng (Lac Hong University)
+- **Degree**: KS XD Cầu đường (Bridge & Road Construction Engineer)
+- **Certifications**:
+  - Định giá xây dựng (Hạng II) - Valid: 22/09/2022 - 21/09/2027
+  - Thiết kế xây dựng công trình Giao thông: Đường bộ (Hạng II) - Valid: 22/09/2022 - 21/09/2027
+  - Giám sát công tác xây dựng công trình Dân dụng - Công nghiệp - Hạ tầng kỹ thuật và Giao thông (Đường bộ) (Hạng II) - Valid: 22/09/2022 - 21/09/2027
+  - Giám sát công tác xây dựng công trình Giao thông: Cầu đường bộ (Hạng III) - Valid: 22/09/2022 - 21/09/2027
+
+### Surveying & Support (Trắc đạc)
+
+#### Huỳnh Văn Phụng - Surveying Engineer
+- **DOB**: 06/6/1986
+- **Education**: Đại học Bách Khoa - ĐH Quốc Gia TP.HCM
+- **Degree**: Kỹ sư Xây dựng Trắc địa và bản đồ (Surveying and Mapping Engineer)
+- **Certifications**:
+  - Khảo sát Địa hình (Hạng II) - Valid: 28/7/2021 - 28/7/2026
+
+### Project Management (Quản lý dự án)
+
+#### Nghiêm Trung Minh - Project Manager
+- **DOB**: 21/10/1979
+- **Education**: Đại học Giao thông vận tải (University of Transport and Communications)
+- **Degree**: Kỹ sư xây dựng cầu đường (Bridge & Road Construction Engineer)
+- **Certifications**:
+  - Quản lý dự án đầu tư xây dựng công trình dân dụng (Hạng I) - Valid: 09/05/2021 - 09/05/2026
+
+### Estimating & Cost Management (Dự toán)
 - **Lâm Thị Lệ Thu** - Kỹ sư Dự toán (Estimating Engineer)
 - **Nguyễn Châu Tuấn** - Kỹ sư Dự toán (Estimating Engineer)
 
-### Project Management
-- **Nghiêm Tủng Minh** - Quản lý dự án (Project Manager)
-
-### Surveying & Support
-- **Huỳnh Văn Phụng** - Kỹ sư trắc đạc (Surveying Engineer)
-
-### Finance & Administration
+### Finance & Administration (Tài chính & Hành chính)
 - **Nguyễn Thị Ngọc Hà** - Kế Toán Trưởng (Chief Accountant)
 
 ### Team Structure Summary
-- **Total Team Members**: 16
+- **Total Team Members**: 15
 - **Design Leads**: 2
 - **Architectural Designers**: 2
 - **Structural Designers**: 2
 - **MEPF Designers**: 3
 - **Infrastructure Designer**: 1
-- **Estimating Engineers**: 2
-- **Project Manager**: 1
 - **Surveying Engineer**: 1
+- **Project Manager**: 1
+- **Estimating Engineers**: 2
 - **Chief Accountant**: 1

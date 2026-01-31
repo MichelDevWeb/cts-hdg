@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ContactForm } from "@/components/forms/contact-form";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { getLocalizedContactInfo } from "@/lib/data/mock-data";
+import { getSiteInfoMap, getLocalizedSiteInfo } from "@/lib/db/queries/site-info";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ContactPageProps {
@@ -29,14 +30,68 @@ export default async function ContactPage({ params }: ContactPageProps) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "contact" });
-  const contact = getLocalizedContactInfo(locale as Locale);
+  
+  // Try to get contact info from database, fallback to mock data
+  let contact: {
+    company: string;
+    officeAddress: string;
+    registeredAddress: string;
+    phone: string;
+    email: string;
+    workingHours: string;
+    mapUrl: string;
+  };
+
+  try {
+    const siteInfoMap = await getSiteInfoMap();
+    if (Object.keys(siteInfoMap).length > 0) {
+      const dbContact = getLocalizedSiteInfo(siteInfoMap, locale);
+      contact = {
+        company: dbContact.company,
+        officeAddress: dbContact.officeAddress || "",
+        registeredAddress: dbContact.registeredAddress || "",
+        phone: dbContact.phone,
+        email: dbContact.email,
+        workingHours: dbContact.workingHours,
+        mapUrl: dbContact.mapUrl || "",
+      };
+    } else {
+      const mockContact = getLocalizedContactInfo(locale as Locale);
+      contact = {
+        company: mockContact.company,
+        officeAddress: mockContact.officeAddress,
+        registeredAddress: mockContact.address,
+        phone: mockContact.phone,
+        email: mockContact.email,
+        workingHours: mockContact.workingHours,
+        mapUrl: "",
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching site info from DB:", error);
+    const mockContact = getLocalizedContactInfo(locale as Locale);
+    contact = {
+      company: mockContact.company,
+      officeAddress: mockContact.officeAddress,
+      registeredAddress: mockContact.address,
+      phone: mockContact.phone,
+      email: mockContact.email,
+      workingHours: mockContact.workingHours,
+      mapUrl: "",
+    };
+  }
 
   const contactInfo = [
-    {
+    ...(contact.officeAddress ? [{
       icon: <MapPin className="h-5 w-5" />,
-      label: t("info.address"),
-      value: contact.address,
-    },
+      label: t("info.officeAddress"),
+      value: contact.officeAddress,
+    }] : []),
+    ...(contact.registeredAddress ? [{
+      icon: <MapPin className="h-5 w-5" />,
+      label: t("info.registeredAddress"),
+      value: contact.registeredAddress,
+    }] : []),
     {
       icon: <Phone className="h-5 w-5" />,
       label: t("info.phone"),
@@ -108,15 +163,28 @@ export default async function ContactPage({ params }: ContactPageProps) {
               </CardContent>
             </Card>
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <Card className="overflow-hidden">
               <div className="aspect-[4/3] bg-muted">
-                <div className="flex h-full items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <MapPin className="mx-auto mb-2 h-8 w-8" />
-                    <p className="text-sm">{t("mapPlaceholder")}</p>
+                {contact.mapUrl ? (
+                  <iframe
+                    src={contact.mapUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Office Location"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-muted-foreground">
+                    <div className="text-center">
+                      <MapPin className="mx-auto mb-2 h-8 w-8" />
+                      <p className="text-sm">{t("mapPlaceholder")}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </Card>
           </div>

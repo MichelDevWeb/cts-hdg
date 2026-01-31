@@ -94,6 +94,8 @@
       "experience": "Kinh nghiệm",
       "showAll": "Hiển thị tất cả ({count} thành viên)",
       "showLess": "Thu gọn",
+      "certifications": "Chứng chỉ hành nghề",
+      "more": "chứng chỉ khác",
       "roles": {
         "designLead": "Chủ trì thiết kế",
         "architecturalDesigner": "Thiết kế kiến trúc",
@@ -106,6 +108,8 @@
         "chiefAccountant": "Kế Toán Trưởng"
       }
     },
+    "companyProfile": "Hồ sơ năng lực công ty",
+    "viewProfile": "Xem hồ sơ năng lực",
     "stats": {
       "years": "Năm kinh nghiệm",
       "projects": "Dự án hoàn thành",
@@ -226,8 +230,10 @@
     "info": {
       "title": "Thông tin liên hệ",
       "company": "CÔNG TY CỔ PHẦN TƯ VẤN THIẾT KẾ XÂY DỰNG HDG",
-      "companyEn": "HDG Design & Engineering Consultancy Joint Stock Company",
+      "companyEn": "HDG Construction & Design Consulting Joint Stock Company",
       "address": "Địa chỉ",
+      "officeAddress": "Địa chỉ văn phòng",
+      "registeredAddress": "Địa chỉ đăng ký",
       "phone": "Điện thoại",
       "email": "Email",
       "workingHours": "Giờ làm việc"
@@ -239,7 +245,7 @@
     "quickLinks": "Liên kết nhanh",
     "services": "Dịch vụ",
     "contact": "Liên hệ",
-    "copyright": "© 2026 HDG Design & Engineering Consultancy. Đã đăng ký bản quyền.",
+    "copyright": "© 2026 HDG Construction & Design Consulting. Đã đăng ký bản quyền.",
     "serviceDesign": "Tư vấn thiết kế",
     "serviceEngineering": "Thiết kế kỹ thuật",
     "serviceArchitecture": "Kiến trúc",
@@ -263,6 +269,8 @@
       "subtitle": "Quản lý danh mục dự án",
       "allProjects": "Tất cả dự án",
       "addProject": "Thêm dự án",
+      "editProject": "Chỉnh sửa dự án",
+      "createDescription": "Tạo dự án mới",
       "noProjects": "Chưa có dự án nào. Tạo dự án đầu tiên!",
       "table": {
         "title": "Tiêu đề",
@@ -298,15 +306,134 @@
     },
     "team": {
       "title": "Đội ngũ",
-      "subtitle": "Quản lý thành viên nhóm"
+      "subtitle": "Quản lý thành viên nhóm",
+      "allMembers": "Tất cả thành viên",
+      "addMember": "Thêm thành viên",
+      "editMember": "Chỉnh sửa thành viên",
+      "createDescription": "Thêm thành viên mới",
+      "noMembers": "Chưa có thành viên nào. Thêm thành viên đầu tiên!",
+      "table": {
+        "name": "Họ tên",
+        "role": "Chức vụ",
+        "status": "Trạng thái",
+        "order": "Thứ tự",
+        "actions": "Thao tác"
+      },
+      "status": {
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động"
+      },
+      "form": {
+        "name": "Họ tên",
+        "roleVi": "Chức vụ (Tiếng Việt)",
+        "roleEn": "Chức vụ (Tiếng Anh)",
+        "roleZh": "Chức vụ (Tiếng Trung)",
+        "bioVi": "Tiểu sử (Tiếng Việt)",
+        "bioEn": "Tiểu sử (Tiếng Anh)",
+        "bioZh": "Tiểu sử (Tiếng Trung)",
+        "educationVi": "Học vấn (Tiếng Việt)",
+        "educationEn": "Học vấn (Tiếng Anh)",
+        "educationZh": "Học vấn (Tiếng Trung)",
+        "certificationsVi": "Chứng chỉ (Tiếng Việt)",
+        "certificationsEn": "Chứng chỉ (Tiếng Anh)",
+        "certificationsZh": "Chứng chỉ (Tiếng Trung)",
+        "photo": "Ảnh đại diện",
+        "orderIndex": "Thứ tự hiển thị",
+        "active": "Hoạt động"
+      },
+      "deleteConfirm": "Bạn có chắc muốn xóa thành viên này?",
+      "deleteSuccess": "Đã xóa thành viên thành công",
+      "saveSuccess": "Đã lưu thành viên thành công"
     },
     "clients": {
       "title": "Khách hàng",
-      "subtitle": "Quản lý khách hàng và đối tác"
+      "subtitle": "Quản lý khách hàng và đối tác",
+      "allClients": "Tất cả khách hàng & đối tác",
+      "addClient": "Thêm khách hàng",
+      "editClient": "Chỉnh sửa khách hàng",
+      "createDescription": "Thêm khách hàng hoặc đối tác mới",
+      "noClients": "Chưa có khách hàng nào. Thêm khách hàng đầu tiên!",
+      "table": {
+        "name": "Tên",
+        "category": "Danh mục",
+        "status": "Trạng thái",
+        "order": "Thứ tự",
+        "actions": "Thao tác"
+      },
+      "status": {
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động"
+      },
+      "categories": {
+        "japanese": "Công ty Nhật Bản",
+        "multinational": "Tập đoàn đa quốc gia",
+        "construction": "Xây dựng & Kỹ thuật",
+        "developer": "Bất động sản",
+        "other": "Khác"
+      },
+      "form": {
+        "name": "Tên khách hàng",
+        "logoUrl": "URL Logo",
+        "website": "Website",
+        "category": "Danh mục",
+        "orderIndex": "Thứ tự hiển thị",
+        "active": "Hoạt động"
+      },
+      "deleteConfirm": "Bạn có chắc muốn xóa khách hàng này?",
+      "deleteSuccess": "Đã xóa khách hàng thành công",
+      "saveSuccess": "Đã lưu khách hàng thành công"
     },
     "settings": {
       "title": "Cài đặt",
       "subtitle": "Cài đặt hệ thống"
+    },
+    "services": {
+      "title": "Dịch vụ",
+      "subtitle": "Quản lý dịch vụ công ty",
+      "allServices": "Tất cả dịch vụ",
+      "addService": "Thêm dịch vụ",
+      "editService": "Chỉnh sửa dịch vụ",
+      "createDescription": "Tạo dịch vụ mới",
+      "noServices": "Chưa có dịch vụ. Thêm dịch vụ đầu tiên!",
+      "table": {
+        "name": "Tên",
+        "description": "Mô tả",
+        "order": "Thứ tự",
+        "status": "Trạng thái",
+        "actions": "Hành động"
+      },
+      "form": {
+        "nameVi": "Tên (Tiếng Việt)",
+        "nameEn": "Tên (Tiếng Anh)",
+        "nameZh": "Tên (Tiếng Trung)",
+        "descriptionVi": "Mô tả (Tiếng Việt)",
+        "descriptionEn": "Mô tả (Tiếng Anh)",
+        "descriptionZh": "Mô tả (Tiếng Trung)",
+        "featuresVi": "Tính năng (Tiếng Việt)",
+        "featuresEn": "Tính năng (Tiếng Anh)",
+        "featuresZh": "Tính năng (Tiếng Trung)",
+        "icon": "Biểu tượng",
+        "orderIndex": "Thứ tự hiển thị",
+        "selectIconPlaceholder": "Chọn biểu tượng",
+        "saveSuccess": "Đã lưu dịch vụ thành công",
+        "saveError": "Không thể lưu dịch vụ",
+        "deleteConfirm": "Xóa dịch vụ này?",
+        "deleteSuccess": "Đã xóa dịch vụ thành công",
+        "deleteError": "Không thể xóa dịch vụ"
+      }
+    },
+    "information": {
+      "title": "Thông tin trang",
+      "subtitle": "Quản lý thông tin công ty và chi tiết liên hệ",
+      "contact": {
+        "title": "Thông tin liên hệ"
+      },
+      "localized": {
+        "title": "Thông tin đa ngôn ngữ"
+      },
+      "save": "Lưu thay đổi",
+      "saveSuccess": "Đã lưu thông tin trang thành công",
+      "saveError": "Không thể lưu thông tin trang"
     }
   }
 }

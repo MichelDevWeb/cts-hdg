@@ -9,10 +9,12 @@ interface ProjectCardProps {
   category: string;
   location: string;
   year: number;
-  coverImage: string;
+  coverImage?: string | null;
   slug: string;
   className?: string;
 }
+
+const DEFAULT_COVER_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop";
 
 export function ProjectCard({
   title,
@@ -33,7 +35,7 @@ export function ProjectCard({
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
-            src={coverImage}
+            src={coverImage || DEFAULT_COVER_IMAGE}
             alt={title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"

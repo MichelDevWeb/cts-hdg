@@ -17,38 +17,72 @@ import {
   ChevronRight,
   Building2,
 } from "lucide-react";
-import { projects, getLocalizedProject, projectCategories } from "@/lib/data/mock-data";
+import {
+  getProjectBySlug as getProjectBySlugFromDB,
+  getPublishedProjects as getPublishedProjectsFromDB,
+  getLocalizedProject as getLocalizedProjectFromDB,
+} from "@/lib/db/queries/projects";
+import {
+  projects as mockProjects,
+  getLocalizedProject as getMockLocalizedProject,
+  projectCategories,
+} from "@/lib/data/mock-data";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ProjectDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
+// Helper to get project (DB first, then mock)
+async function getProject(slug: string) {
+  try {
+    const dbProject = await getProjectBySlugFromDB(slug);
+    if (dbProject) {
+      return { type: "db" as const, project: dbProject };
+    }
+  } catch (error) {
+    console.error("Error fetching project from DB:", error);
+  }
+  
+  const mockProject = mockProjects.find((p) => p.slug === slug);
+  if (mockProject) {
+    return { type: "mock" as const, project: mockProject };
+  }
+  
+  return null;
+}
+
 export async function generateMetadata({
   params,
 }: ProjectDetailPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const result = await getProject(slug);
 
-  if (!project) {
+  if (!result) {
     return { title: "Project Not Found" };
   }
 
-  const localizedProject = getLocalizedProject(project, locale as Locale);
+  const localizedProject = result.type === "db"
+    ? getLocalizedProjectFromDB(result.project, locale)
+    : getMockLocalizedProject(result.project, locale as Locale);
+
+  const coverImage = result.type === "db"
+    ? result.project.coverImage
+    : result.project.coverImage;
 
   return {
     title: localizedProject.title,
     description: localizedProject.summary,
     openGraph: {
       title: localizedProject.title as string,
-      description: localizedProject.summary as string,
-      images: [project.coverImage],
+      description: (localizedProject.summary || "") as string,
+      images: coverImage ? [coverImage] : [],
     },
   };
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
+  return mockProjects.map((project) => ({
     slug: project.slug,
   }));
 }
@@ -57,38 +91,69 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const project = projects.find((p) => p.slug === slug);
+  const result = await getProject(slug);
 
-  if (!project) {
+  if (!result) {
     notFound();
   }
 
   const t = await getTranslations({ locale, namespace: "projects" });
   const tHome = await getTranslations({ locale, namespace: "home" });
 
-  const localizedProject = getLocalizedProject(project, locale as Locale);
+  const { type, project } = result;
+  const localizedProject = type === "db"
+    ? getLocalizedProjectFromDB(project, locale)
+    : getMockLocalizedProject(project, locale as Locale);
 
-  // Find previous and next projects for navigation
-  const publishedProjects = projects.filter(p => p.published);
-  const currentIndex = publishedProjects.findIndex((p) => p.slug === slug);
-  const prevProject = currentIndex > 0 ? publishedProjects[currentIndex - 1] : null;
-  const nextProject = currentIndex < publishedProjects.length - 1 ? publishedProjects[currentIndex + 1] : null;
+  // Get all published projects for navigation
+  let allProjects: Array<{ slug: string; title: string }> = [];
+  try {
+    const dbProjects = await getPublishedProjectsFromDB();
+    if (dbProjects && dbProjects.length > 0) {
+      allProjects = dbProjects.map((p) => ({
+        slug: p.slug,
+        title: getLocalizedProjectFromDB(p, locale).title,
+      }));
+    } else {
+      allProjects = mockProjects.filter((p) => p.published).map((p) => ({
+        slug: p.slug,
+        title: getMockLocalizedProject(p, locale as Locale).title,
+      }));
+    }
+  } catch (error) {
+    allProjects = mockProjects.filter((p) => p.published).map((p) => ({
+      slug: p.slug,
+      title: getMockLocalizedProject(p, locale as Locale).title,
+    }));
+  }
+
+  const currentIndex = allProjects.findIndex((p) => p.slug === slug);
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
 
   // Get category label using translation
   const categoryKey = project.category as keyof typeof projectCategories;
   const categoryLabel = projectCategories[categoryKey]?.[locale as Locale] || t(`filter.${categoryKey}`) || project.category;
 
+  // Get project properties
+  const coverImage = type === "db" ? project.coverImage : project.coverImage;
+  const gallery = type === "db" ? project.gallery : project.gallery;
+  const services = type === "db" ? project.services : project.services;
+  const client = type === "db" ? project.client : project.client;
+
   return (
     <>
       {/* Hero Image */}
       <section className="relative h-[50vh] min-h-[400px] lg:h-[60vh]">
-        <Image
-          src={project.coverImage}
-          alt={localizedProject.title as string}
-          fill
-          className="object-cover"
-          priority
-        />
+        {coverImage && (
+          <Image
+            src={coverImage}
+            alt={localizedProject.title as string}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-hdg-dark-900/80 via-hdg-dark-900/40 to-transparent" />
         
         {/* Back Button */}
@@ -129,13 +194,13 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               </div>
 
               {/* Gallery */}
-              {project.gallery && project.gallery.length > 0 && (
+              {gallery && gallery.length > 0 && (
                 <div className="space-y-4">
                   <h3 className="font-heading text-xl font-semibold">
                     {t("gallery")}
                   </h3>
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {project.gallery.map((image, index) => (
+                    {gallery.map((image, index) => (
                       <div
                         key={index}
                         className="group relative aspect-[4/3] overflow-hidden rounded-lg"
@@ -188,23 +253,23 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                       </div>
                     )}
 
-                    {project.client && (
+                    {client && (
                       <div className="flex items-start gap-3">
                         <Building2 className="mt-1 h-5 w-5 text-hdg-blue-500" />
                         <div>
                           <p className="text-sm text-muted-foreground">{t("details.client")}</p>
-                          <p className="font-medium">{project.client}</p>
+                          <p className="font-medium">{client}</p>
                         </div>
                       </div>
                     )}
 
-                    {project.services && project.services.length > 0 && (
+                    {services && services.length > 0 && (
                       <div className="flex items-start gap-3">
                         <Layers className="mt-1 h-5 w-5 text-hdg-blue-500" />
                         <div>
                           <p className="text-sm text-muted-foreground">{t("details.services")}</p>
                           <div className="flex flex-wrap gap-2 mt-1">
-                            {project.services.map((service) => (
+                            {services.map((service) => (
                               <span
                                 key={service}
                                 className="rounded-full bg-hdg-blue-50 px-3 py-1 text-xs font-medium text-hdg-blue-600"
@@ -247,7 +312,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                     {t("previous")}
                   </p>
                   <p className="font-medium">
-                    {getLocalizedProject(prevProject, locale as Locale).title}
+                    {prevProject.title}
                   </p>
                 </div>
               </Link>
@@ -265,7 +330,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                     {t("next")}
                   </p>
                   <p className="font-medium">
-                    {getLocalizedProject(nextProject, locale as Locale).title}
+                    {nextProject.title}
                   </p>
                 </div>
                 <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

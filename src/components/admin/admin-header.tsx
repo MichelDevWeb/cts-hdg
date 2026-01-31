@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User as UserIcon, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 interface AdminHeaderProps {
   user: User;
@@ -42,7 +43,10 @@ export function AdminHeader({ user }: AdminHeaderProps) {
         </Link>
       </div>
 
-      <DropdownMenu>
+      <div className="flex items-center gap-4">
+        <LanguageSwitcher />
+        
+        <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-medium text-white">
@@ -65,6 +69,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
     </header>
   );
 }

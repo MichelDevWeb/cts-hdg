@@ -12,6 +12,8 @@ import {
   MessageSquare,
   Settings,
   Building2,
+  Briefcase,
+  Info,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -27,30 +29,40 @@ const navItems = [
     icon: FolderKanban,
   },
   {
-    key: "posts",
-    href: "/admin-posts",
-    icon: FileText,
+    key: "services",
+    href: "/admin-services",
+    icon: Briefcase,
   },
+  // {
+  //   key: "posts",
+  //   href: "/admin-posts",
+  //   icon: FileText,
+  // },
   {
     key: "team",
     href: "/admin-team",
     icon: Users,
   },
-  {
-    key: "inquiries",
-    href: "/admin-inquiries",
-    icon: MessageSquare,
-  },
+  // {
+  //   key: "inquiries",
+  //   href: "/admin-inquiries",
+  //   icon: MessageSquare,
+  // },
   {
     key: "clients",
     href: "/admin-clients",
     icon: Building2,
   },
   {
-    key: "settings",
-    href: "/admin-settings",
-    icon: Settings,
+    key: "information",
+    href: "/admin-information",
+    icon: Info,
   },
+  // {
+  //   key: "settings",
+  //   href: "/admin-settings",
+  //   icon: Settings,
+  // },
 ];
 
 export function AdminSidebar() {

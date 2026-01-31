@@ -1,13 +1,14 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { getLocalizedContactInfo } from "@/lib/data/mock-data";
-import { useLocale } from "next-intl";
 import type { Locale } from "@/lib/i18n/config";
+import type { SiteInfo } from "@/lib/db/schema";
 
 const quickLinks = [
   { href: "/about", labelKey: "about" },
@@ -16,11 +17,60 @@ const quickLinks = [
   { href: "/process", labelKey: "process" },
 ] as const;
 
+// Helper to get localized value from site info map
+function getLocalizedValue(
+  infoMap: Record<string, SiteInfo>,
+  key: string,
+  locale: string
+): string {
+  const info = infoMap[key];
+  if (!info) return "";
+  if (info.valuePlain) return info.valuePlain;
+  return locale === "vi"
+    ? (info.valueVi || info.valueEn || "")
+    : locale === "zh"
+      ? (info.valueZh || info.valueEn || "")
+      : (info.valueEn || "");
+}
+
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const locale = useLocale() as Locale;
-  const contact = getLocalizedContactInfo(locale);
+  const mockContact = getLocalizedContactInfo(locale);
+
+  const [contact, setContact] = useState({
+    officeAddress: mockContact.officeAddress,
+    registeredAddress: mockContact.address,
+    phone: mockContact.phone,
+    email: mockContact.email,
+  });
+
+  useEffect(() => {
+    // Fetch site info from API
+    fetch("/api/site-info")
+      .then((res) => res.json())
+      .then((data: Record<string, SiteInfo>) => {
+        if (data && Object.keys(data).length > 0) {
+          const officeAddress = getLocalizedValue(data, "office_address", locale);
+          const registeredAddress = getLocalizedValue(data, "registered_address", locale);
+          const phone = getLocalizedValue(data, "phone", locale);
+          const email = getLocalizedValue(data, "email", locale);
+
+          if (officeAddress || registeredAddress || phone || email) {
+            setContact({
+              officeAddress: officeAddress || mockContact.officeAddress,
+              registeredAddress: registeredAddress || mockContact.address,
+              phone: phone || mockContact.phone,
+              email: email || mockContact.email,
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching site info:", error);
+      });
+  }, [locale, mockContact.address, mockContact.phone, mockContact.email]);
 
   return (
     <footer className="border-t bg-hdg-dark-900 text-gray-300">
@@ -41,7 +91,7 @@ export function Footer() {
                   HDG
                 </span>
                 <span className="block text-xs text-gray-400">
-                  Design & Engineering Consultancy
+                  Construction & Design Consulting
                 </span>
               </div>
             </Link>
@@ -96,12 +146,22 @@ export function Footer() {
               {t("contact")}
             </h3>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li className="flex items-start gap-3 group">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
-                <span className="group-hover:text-white transition-colors">
-                  {contact.address}
-                </span>
-              </li>
+              {contact.officeAddress && (
+                <li className="flex items-start gap-3 group">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
+                  <span className="group-hover:text-white transition-colors">
+                    {contact.officeAddress}
+                  </span>
+                </li>
+              )}
+              {contact.registeredAddress && contact.registeredAddress !== contact.officeAddress && (
+                <li className="flex items-start gap-3 group">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
+                  <span className="group-hover:text-white transition-colors">
+                    {contact.registeredAddress}
+                  </span>
+                </li>
+              )}
               <li className="flex items-center gap-3 group">
                 <Phone className="h-4 w-4 shrink-0 text-hdg-blue-400 transition-transform group-hover:scale-110" />
                 <span className="group-hover:text-white transition-colors">

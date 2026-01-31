@@ -3,17 +3,58 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { clients } from "@/lib/data/mock-data";
+import { clients as mockClients } from "@/lib/data/mock-data";
+import { LoadingSection } from "@/components/ui/loading-section";
+import type { Client } from "@/lib/db/schema";
 
 interface ClientsCarouselProps {
   showTitle?: boolean;
+  useDynamicData?: boolean;
 }
 
-export function ClientsCarousel({ showTitle = true }: ClientsCarouselProps) {
+interface ClientItem {
+  id: string;
+  name: string;
+  logo?: string | null;
+}
+
+export function ClientsCarousel({ showTitle = true, useDynamicData = false }: ClientsCarouselProps) {
   const t = useTranslations("home");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [dynamicClients, setDynamicClients] = useState<ClientItem[]>([]);
+  const [loading, setLoading] = useState(useDynamicData);
 
+  // Fetch dynamic data if enabled
+  useEffect(() => {
+    if (useDynamicData) {
+      const fetchClients = async () => {
+        try {
+          const response = await fetch("/api/clients");
+          if (!response.ok) throw new Error("Failed to fetch clients");
+          const data: Client[] = await response.json();
+          
+          const transformedClients = data.map((client) => ({
+            id: client.id,
+            name: client.name,
+            logo: client.logoUrl,
+          }));
+          
+          setDynamicClients(transformedClients);
+        } catch (error) {
+          console.error("Error fetching clients:", error);
+          // Fallback to mock data on error
+          setDynamicClients(mockClients.map(c => ({ id: c.id, name: c.name, logo: c.logo })));
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchClients();
+    }
+  }, [useDynamicData]);
+
+  const clients = useDynamicData ? dynamicClients : mockClients.map(c => ({ id: c.id, name: c.name, logo: c.logo }));
+  
   // Duplicate clients for seamless infinite scroll
   const duplicatedClients = [...clients, ...clients];
 

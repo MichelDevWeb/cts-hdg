@@ -18,7 +18,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 
 export const metadata: Metadata = {
   title: {
-    default: "HDG Design & Engineering Consultancy",
+    default: "HDG Construction & Design Consulting",
     template: "%s | HDG",
   },
   description:

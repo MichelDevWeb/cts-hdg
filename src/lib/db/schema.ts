@@ -24,12 +24,16 @@ export const projects = pgTable("projects", {
   location: text("location").notNull(),
   scale: text("scale"),
   year: integer("year").notNull(),
+  client: text("client"), // Client/company name for the project
   summaryVi: text("summary_vi"),
   summaryEn: text("summary_en"),
   summaryZh: text("summary_zh"),
+  contentVi: text("content_vi"), // Detailed content in Vietnamese
+  contentEn: text("content_en"), // Detailed content in English
+  contentZh: text("content_zh"), // Detailed content in Chinese
   coverImage: text("cover_image"),
   gallery: text("gallery").array().default([]),
-  content: jsonb("content"),
+  featured: boolean("featured").default(false), // Featured project flag
   published: boolean("published").default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
@@ -44,19 +48,42 @@ export type NewProject = typeof projects.$inferInsert;
 
 export const services = pgTable("services", {
   id: uuid("id").primaryKey().defaultRandom(),
+  slug: text("slug").unique().notNull(),
   nameVi: text("name_vi").notNull(),
   nameEn: text("name_en").notNull(),
   nameZh: text("name_zh").notNull(),
   descriptionVi: text("description_vi"),
   descriptionEn: text("description_en"),
   descriptionZh: text("description_zh"),
+  featuresVi: text("features_vi").array().default([]),
+  featuresEn: text("features_en").array().default([]),
+  featuresZh: text("features_zh").array().default([]),
   icon: text("icon"),
   orderIndex: integer("order_index").default(0),
+  active: boolean("active").default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
 export type Service = typeof services.$inferSelect;
 export type NewService = typeof services.$inferInsert;
+
+// ============================================================================
+// SITE INFO TABLE
+// ============================================================================
+
+export const siteInfo = pgTable("site_info", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  key: text("key").unique().notNull(),
+  valueVi: text("value_vi"),
+  valueEn: text("value_en"),
+  valueZh: text("value_zh"),
+  valuePlain: text("value_plain"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+});
+
+export type SiteInfo = typeof siteInfo.$inferSelect;
+export type NewSiteInfo = typeof siteInfo.$inferInsert;
 
 // ============================================================================
 // TEAM TABLE
@@ -71,8 +98,15 @@ export const team = pgTable("team", {
   bioVi: text("bio_vi"),
   bioEn: text("bio_en"),
   bioZh: text("bio_zh"),
+  educationVi: text("education_vi"),
+  educationEn: text("education_en"),
+  educationZh: text("education_zh"),
+  certificationsVi: text("certifications_vi").array().default([]),
+  certificationsEn: text("certifications_en").array().default([]),
+  certificationsZh: text("certifications_zh").array().default([]),
   photo: text("photo"),
   orderIndex: integer("order_index").default(0),
+  active: boolean("active").default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
@@ -131,7 +165,9 @@ export const clients = pgTable("clients", {
   name: text("name").notNull(),
   logoUrl: text("logo_url"),
   website: text("website"),
+  category: text("category").default("other"),
   orderIndex: integer("order_index").default(0),
+  active: boolean("active").default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
@@ -153,4 +189,6 @@ export const inquiriesRelations = relations(inquiries, ({}) => ({}));
 export const postsRelations = relations(posts, ({}) => ({}));
 
 export const clientsRelations = relations(clients, ({}) => ({}));
+
+export const siteInfoRelations = relations(siteInfo, ({}) => ({}));
 
