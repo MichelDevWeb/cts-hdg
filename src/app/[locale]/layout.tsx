@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { ConditionalLayout } from "@/components/layout/conditional-layout";
 import "@/app/globals.css";
@@ -64,6 +65,7 @@ export default async function LocaleLayout({
           <ConditionalLayout>{children}</ConditionalLayout>
         </NextIntlClientProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
