@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import {
   getAllProjects,
@@ -8,6 +9,13 @@ import {
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate all project-related pages
+function revalidateProjectPages() {
+  revalidatePath("/[locale]", "page");
+  revalidatePath("/[locale]/projects", "page");
+  revalidatePath("/[locale]/projects/[slug]", "page");
+}
 
 // GET all projects
 export async function GET() {
@@ -46,6 +54,8 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
     const project = await createProject(data);
+    // Revalidate cached pages
+    revalidateProjectPages();
     return NextResponse.json(project, { status: 201 });
   } catch (error) {
     console.error("Error creating project:", error);
@@ -86,6 +96,8 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    // Revalidate cached pages
+    revalidateProjectPages();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error deleting project:", error);

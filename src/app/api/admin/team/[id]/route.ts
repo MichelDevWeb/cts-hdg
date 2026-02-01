@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import {
   getTeamMemberById,
@@ -9,6 +10,11 @@ import type { NewTeamMember } from "@/lib/db/schema";
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate pages that display team members
+function revalidateTeamPages() {
+  revalidatePath("/[locale]/about", "page");
+}
 
 export async function GET(
   request: NextRequest,
@@ -89,6 +95,8 @@ export async function PUT(
       );
     }
 
+    // Revalidate cached pages
+    revalidateTeamPages();
     return NextResponse.json(teamMember);
   } catch (error) {
     console.error("Error updating team member:", error);
@@ -116,6 +124,8 @@ export async function DELETE(
     const { id } = await params;
     await deleteTeamMember(id);
 
+    // Revalidate cached pages
+    revalidateTeamPages();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error deleting team member:", error);

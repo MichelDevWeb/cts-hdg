@@ -34,6 +34,7 @@ interface TeamMemberActionsProps {
 export function TeamMemberActions({ member, locale }: TeamMemberActionsProps) {
   const router = useRouter();
   const t = useTranslations("admin.team");
+  const tCommon = useTranslations("common.toast");
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -48,11 +49,11 @@ export function TeamMemberActions({ member, locale }: TeamMemberActionsProps) {
         throw new Error("Failed to delete team member");
       }
 
-      toast.success(t("deleteSuccess"));
+      toast.success(tCommon("deleteSuccess"));
       router.refresh();
     } catch (error) {
       console.error("Error deleting team member:", error);
-      toast.error("Failed to delete team member");
+      toast.error(tCommon("deleteError"));
     } finally {
       setIsDeleting(false);
       setShowDeleteDialog(false);
@@ -71,11 +72,11 @@ export function TeamMemberActions({ member, locale }: TeamMemberActionsProps) {
         throw new Error("Failed to update team member");
       }
 
-      toast.success(t("saveSuccess"));
+      toast.success(tCommon("updateSuccess"));
       router.refresh();
     } catch (error) {
       console.error("Error updating team member:", error);
-      toast.error("Failed to update team member");
+      toast.error(tCommon("updateError"));
     }
   };
 

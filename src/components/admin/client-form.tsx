@@ -52,6 +52,7 @@ const clientCategories = [
 export function ClientForm({ client, locale }: ClientFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.clients");
+  const tCommon = useTranslations("common.toast");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [logo, setLogo] = useState<string | null>(client?.logoUrl || null);
   const [uploadingLogo, setUploadingLogo] = useState(false);
@@ -97,10 +98,10 @@ export function ClientForm({ client, locale }: ClientFormProps) {
       const data = await response.json();
       setLogo(data.url);
       setValue("logoUrl", data.url);
-      toast.success("Logo uploaded successfully");
+      toast.success(tCommon("uploadSuccess"));
     } catch (error) {
       console.error("Upload error:", error);
-      toast.error("Failed to upload logo");
+      toast.error(tCommon("uploadError"));
     } finally {
       setUploadingLogo(false);
     }
@@ -117,7 +118,7 @@ export function ClientForm({ client, locale }: ClientFormProps) {
       setValue("logoUrl", imageUrlInput.trim());
       setImageUrlInput("");
       setShowUrlInput(false);
-      toast.success("Logo URL set successfully");
+      toast.success(tCommon("urlSetSuccess"));
     }
   };
 
@@ -140,13 +141,12 @@ export function ClientForm({ client, locale }: ClientFormProps) {
 
       if (!response.ok) throw new Error("Failed to save client");
 
-    //   toast.success(t("form.saveSuccess"));
-      toast.success("Client saved successfully");
+      toast.success(tCommon("saveSuccess"));
       router.push(`/${locale}/admin-clients`);
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);
-      toast.error("Failed to save client");
+      toast.error(tCommon("saveError"));
     } finally {
       setIsSubmitting(false);
     }

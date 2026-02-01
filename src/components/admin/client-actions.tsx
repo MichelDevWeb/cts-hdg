@@ -34,6 +34,7 @@ interface ClientActionsProps {
 export function ClientActions({ client, locale }: ClientActionsProps) {
   const router = useRouter();
   const t = useTranslations("admin.clients");
+  const tCommon = useTranslations("common.toast");
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -48,11 +49,11 @@ export function ClientActions({ client, locale }: ClientActionsProps) {
         throw new Error("Failed to delete client");
       }
 
-      toast.success(t("deleteSuccess"));
+      toast.success(tCommon("deleteSuccess"));
       router.refresh();
     } catch (error) {
       console.error("Error deleting client:", error);
-      toast.error("Failed to delete client");
+      toast.error(tCommon("deleteError"));
     } finally {
       setIsDeleting(false);
       setShowDeleteDialog(false);
@@ -71,11 +72,11 @@ export function ClientActions({ client, locale }: ClientActionsProps) {
         throw new Error("Failed to update client");
       }
 
-      toast.success(t("saveSuccess"));
+      toast.success(tCommon("updateSuccess"));
       router.refresh();
     } catch (error) {
       console.error("Error updating client:", error);
-      toast.error("Failed to update client");
+      toast.error(tCommon("updateError"));
     }
   };
 

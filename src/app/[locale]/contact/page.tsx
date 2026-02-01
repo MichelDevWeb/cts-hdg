@@ -9,6 +9,10 @@ import { getLocalizedContactInfo } from "@/lib/data/mock-data";
 import { getSiteInfoMap, getLocalizedSiteInfo } from "@/lib/db/queries/site-info";
 import type { Locale } from "@/lib/i18n/config";
 
+// Revalidate this page every 60 seconds as a fallback
+// On-demand revalidation happens when admin updates data
+export const revalidate = 60;
+
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
 }

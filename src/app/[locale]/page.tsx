@@ -28,6 +28,10 @@ import {
 import type { Locale } from "@/lib/i18n/config";
 import { getIconByName } from "@/lib/utils";
 
+// Revalidate this page every 60 seconds as a fallback
+// On-demand revalidation happens when admin updates data
+export const revalidate = 60;
+
 interface HomePageProps {
   params: Promise<{ locale: string }>;
 }

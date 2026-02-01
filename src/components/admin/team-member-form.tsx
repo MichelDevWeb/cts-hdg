@@ -49,6 +49,7 @@ interface TeamMemberFormProps {
 export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.team");
+  const tCommon = useTranslations("common.toast");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photo, setPhoto] = useState<string | null>(member?.photo || null);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
@@ -115,10 +116,10 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
       const data = await response.json();
       setPhoto(data.url);
       setValue("photo", data.url);
-      toast.success("Photo uploaded successfully");
+      toast.success(tCommon("uploadSuccess"));
     } catch (error) {
       console.error("Upload error:", error);
-      toast.error("Failed to upload photo");
+      toast.error(tCommon("uploadError"));
     } finally {
       setUploadingPhoto(false);
     }
@@ -135,7 +136,7 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
       setValue("photo", imageUrlInput.trim());
       setImageUrlInput("");
       setShowUrlInput(false);
-      toast.success("Image URL set successfully");
+      toast.success(tCommon("urlSetSuccess"));
     }
   };
 
@@ -206,12 +207,12 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
 
       if (!response.ok) throw new Error("Failed to save team member");
 
-      toast.success(t("form.saveSuccess"));
+      toast.success(tCommon("saveSuccess"));
       router.push(`/${locale}/admin-team`);
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);
-      toast.error("Failed to save team member");
+      toast.error(tCommon("saveError"));
     } finally {
       setIsSubmitting(false);
     }

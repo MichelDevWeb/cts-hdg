@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { getAllClients, createClient as createClientRecord } from "@/lib/db/queries/clients";
 import type { NewClient } from "@/lib/db/schema";
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate pages that display clients
+function revalidateClientPages() {
+  revalidatePath("/[locale]", "page");
+}
 
 export async function GET() {
   try {
@@ -51,6 +57,8 @@ export async function POST(request: NextRequest) {
     };
 
     const client = await createClientRecord(clientData);
+    // Revalidate cached pages
+    revalidateClientPages();
     return NextResponse.json(client, { status: 201 });
   } catch (error) {
     console.error("Error creating client:", error);

@@ -11,7 +11,18 @@
     "viewAll": "View all",
     "learnMore": "Learn more",
     "contactUs": "Contact us",
-    "getStarted": "Get started"
+    "getStarted": "Get started",
+    "toast": {
+      "saveSuccess": "Saved successfully",
+      "saveError": "Failed to save",
+      "deleteSuccess": "Deleted successfully",
+      "deleteError": "Failed to delete",
+      "updateSuccess": "Updated successfully",
+      "updateError": "Failed to update",
+      "uploadSuccess": "Uploaded successfully",
+      "uploadError": "Failed to upload",
+      "urlSetSuccess": "URL set successfully"
+    }
   },
   "nav": {
     "home": "Home",

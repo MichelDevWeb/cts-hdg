@@ -24,6 +24,10 @@ import {
 } from "lucide-react";
 import { companyStats } from "@/lib/data/mock-data";
 
+// Revalidate this page every 60 seconds as a fallback
+// On-demand revalidation happens when admin updates data
+export const revalidate = 60;
+
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
 }

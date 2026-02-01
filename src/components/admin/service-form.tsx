@@ -42,6 +42,7 @@ type ServiceFormData = z.infer<typeof serviceSchema>;
 export function ServiceForm({ service, locale }: ServiceFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.services");
+  const tCommon = useTranslations("common.toast");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // State for features
@@ -130,12 +131,12 @@ export function ServiceForm({ service, locale }: ServiceFormProps) {
 
       if (!response.ok) throw new Error("Failed to save service");
 
-      toast.success(t("form.saveSuccess"));
+      toast.success(tCommon("saveSuccess"));
       router.push(`/${locale}/admin-services`);
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);
-      toast.error(t("form.saveError"));
+      toast.error(tCommon("saveError"));
     } finally {
       setIsSubmitting(false);
     }

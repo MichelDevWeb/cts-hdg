@@ -11,7 +11,18 @@
     "viewAll": "Xem tất cả",
     "learnMore": "Tìm hiểu thêm",
     "contactUs": "Liên hệ",
-    "getStarted": "Bắt đầu"
+    "getStarted": "Bắt đầu",
+    "toast": {
+      "saveSuccess": "Lưu thành công",
+      "saveError": "Không thể lưu",
+      "deleteSuccess": "Xóa thành công",
+      "deleteError": "Không thể xóa",
+      "updateSuccess": "Cập nhật thành công",
+      "updateError": "Không thể cập nhật",
+      "uploadSuccess": "Tải lên thành công",
+      "uploadError": "Không thể tải lên",
+      "urlSetSuccess": "Đã đặt URL thành công"
+    }
   },
   "nav": {
     "home": "Trang chủ",

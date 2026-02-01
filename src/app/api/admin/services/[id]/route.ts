@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import {
   getServiceById,
@@ -9,6 +10,12 @@ import type { NewService } from "@/lib/db/schema";
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate all service-related pages
+function revalidateServicePages() {
+  revalidatePath("/[locale]", "page");
+  revalidatePath("/[locale]/services", "page");
+}
 
 export async function GET(
   request: NextRequest,
@@ -69,6 +76,8 @@ export async function PUT(
       );
     }
 
+    // Revalidate cached pages
+    revalidateServicePages();
     return NextResponse.json(service);
   } catch (error) {
     console.error("Error updating service:", error);
@@ -95,6 +104,8 @@ export async function DELETE(
 
     const { id } = await params;
     await deleteService(id);
+    // Revalidate cached pages
+    revalidateServicePages();
     return NextResponse.json({ message: "Service deleted successfully" });
   } catch (error) {
     console.error("Error deleting service:", error);

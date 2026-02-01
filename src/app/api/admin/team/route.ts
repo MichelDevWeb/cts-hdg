@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import {
   getAllTeamMembers,
@@ -8,6 +9,11 @@ import type { NewTeamMember } from "@/lib/db/schema";
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate pages that display team members
+function revalidateTeamPages() {
+  revalidatePath("/[locale]/about", "page");
+}
 
 export async function GET() {
   try {
@@ -64,6 +70,8 @@ export async function POST(request: NextRequest) {
     };
 
     const teamMember = await createTeamMember(teamMemberData);
+    // Revalidate cached pages
+    revalidateTeamPages();
     return NextResponse.json(teamMember, { status: 201 });
   } catch (error) {
     console.error("Error creating team member:", error);

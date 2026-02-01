@@ -15,6 +15,10 @@ import {
 } from "@/lib/data/mock-data";
 import type { Locale } from "@/lib/i18n/config";
 
+// Revalidate this page every 60 seconds as a fallback
+// On-demand revalidation happens when admin updates data
+export const revalidate = 60;
+
 interface ProjectsPageProps {
   params: Promise<{ locale: string }>;
 }

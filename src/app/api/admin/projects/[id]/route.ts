@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import {
   getProjectById,
@@ -10,6 +11,16 @@ import {
 
 // Force dynamic rendering since this route uses cookies for authentication
 export const dynamic = "force-dynamic";
+
+// Helper to revalidate all project-related pages
+function revalidateProjectPages() {
+  // Revalidate home page (featured projects)
+  revalidatePath("/[locale]", "page");
+  // Revalidate projects list page
+  revalidatePath("/[locale]/projects", "page");
+  // Revalidate all project detail pages
+  revalidatePath("/[locale]/projects/[slug]", "page");
+}
 
 // GET single project
 export async function GET(
@@ -73,6 +84,8 @@ export async function PATCH(
           { status: 404 }
         );
       }
+      // Revalidate cached pages
+      revalidateProjectPages();
       return NextResponse.json(project);
     }
 
@@ -84,6 +97,8 @@ export async function PATCH(
           { status: 404 }
         );
       }
+      // Revalidate cached pages
+      revalidateProjectPages();
       return NextResponse.json(project);
     }
 
@@ -97,6 +112,8 @@ export async function PATCH(
       );
     }
 
+    // Revalidate cached pages
+    revalidateProjectPages();
     return NextResponse.json(project);
   } catch (error) {
     console.error("Error updating project:", error);
@@ -132,6 +149,8 @@ export async function DELETE(
       );
     }
 
+    // Revalidate cached pages
+    revalidateProjectPages();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error deleting project:", error);

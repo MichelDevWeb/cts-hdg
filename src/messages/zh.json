@@ -11,7 +11,18 @@
     "viewAll": "查看全部",
     "learnMore": "了解更多",
     "contactUs": "联系我们",
-    "getStarted": "开始"
+    "getStarted": "开始",
+    "toast": {
+      "saveSuccess": "保存成功",
+      "saveError": "保存失败",
+      "deleteSuccess": "删除成功",
+      "deleteError": "删除失败",
+      "updateSuccess": "更新成功",
+      "updateError": "更新失败",
+      "uploadSuccess": "上传成功",
+      "uploadError": "上传失败",
+      "urlSetSuccess": "URL设置成功"
+    }
   },
   "nav": {
     "home": "首页",
