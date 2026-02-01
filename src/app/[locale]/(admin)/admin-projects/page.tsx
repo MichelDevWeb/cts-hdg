@@ -68,6 +68,7 @@ export default async function AdminProjectsPage({
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
+                    <th className="pb-3 font-medium w-10">#</th>
                     <th className="pb-3 font-medium">{t("table.title")}</th>
                     <th className="pb-3 font-medium">{t("table.category")}</th>
                     <th className="pb-3 font-medium">{t("table.location")}</th>
@@ -79,6 +80,14 @@ export default async function AdminProjectsPage({
                 <tbody>
                   {projects.map((project) => (
                     <tr key={project.id} className="border-b">
+                      <td className="py-4">
+                        <Link
+                          href={`/${locale}/admin-projects/${project.id}`}
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          {project.orderIndex ?? 0}
+                        </Link>
+                      </td>
                       <td className="py-4">
                         <div className="flex items-center gap-2">
                           {project.featured && (

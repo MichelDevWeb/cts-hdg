@@ -1,4 +1,4 @@
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, asc } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { projects, type Project, type NewProject } from "@/lib/db/schema";
 
@@ -8,7 +8,7 @@ export async function getPublishedProjects(): Promise<Project[]> {
     .select()
     .from(projects)
     .where(eq(projects.published, true))
-    .orderBy(desc(projects.year), desc(projects.createdAt));
+    .orderBy(asc(projects.orderIndex), desc(projects.year), desc(projects.createdAt));
 }
 
 // Get all projects (for admin)
@@ -16,7 +16,7 @@ export async function getAllProjects(): Promise<Project[]> {
   return db
     .select()
     .from(projects)
-    .orderBy(desc(projects.createdAt));
+    .orderBy(asc(projects.orderIndex), desc(projects.year), desc(projects.createdAt));
 }
 
 // Get project by slug
@@ -88,7 +88,7 @@ export async function getProjectsByCategory(category: string): Promise<Project[]
     .select()
     .from(projects)
     .where(and(eq(projects.category, category), eq(projects.published, true)))
-    .orderBy(desc(projects.year));
+    .orderBy(asc(projects.orderIndex), desc(projects.year));
 }
 
 // Get featured projects (marked as featured)
@@ -97,7 +97,7 @@ export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
     .select()
     .from(projects)
     .where(and(eq(projects.published, true), eq(projects.featured, true)))
-    .orderBy(desc(projects.year), desc(projects.createdAt))
+    .orderBy(asc(projects.orderIndex), desc(projects.year), desc(projects.createdAt))
     .limit(limit);
 }
 

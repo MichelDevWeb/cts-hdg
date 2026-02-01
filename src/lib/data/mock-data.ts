@@ -516,6 +516,40 @@ export const projects: Project[] = [
   },
 
   // ============================================
+  // SHING MARK HOSPITAL (2017)
+  // ============================================
+  {
+    slug: "shing-mark-hospital",
+    category: "commercial",
+    location: "Long Binh Tan, Bien Hoa City, Dong Nai",
+    year: 2017,
+    client: "Shing Mark University Medical Hospital Co., Ltd",
+    scale: "Hospital complex",
+    services: ["design", "engineering"],
+    coverImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=800&fit=crop",
+    gallery: [
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800&h=600&fit=crop",
+    ],
+    title: {
+      vi: "Bệnh viện Shing Mark",
+      en: "Shing Mark Hospital",
+      zh: "盛马医院",
+    },
+    summary: {
+      vi: "Bệnh viện đại học y dược hiện đại với trang thiết bị y tế tiên tiến",
+      en: "Modern university medical hospital with advanced medical equipment",
+      zh: "现代化大学医院，配备先进的医疗设备",
+    },
+    content: {
+      vi: "Bệnh viện Shing Mark là cơ sở y tế hiện đại thuộc Công ty TNHH bệnh viện Đại học Y dược Shing Mark, tọa lạc tại Long Bình Tân, TP. Biên Hòa, tỉnh Đồng Nai. Công trình được thiết kế theo tiêu chuẩn bệnh viện quốc tế với hệ thống cơ điện tiên tiến, đáp ứng các yêu cầu khắt khe về vệ sinh y tế và an toàn bệnh nhân.",
+      en: "Shing Mark Hospital is a modern medical facility owned by Shing Mark University Medical Hospital Co., Ltd, located in Long Binh Tan, Bien Hoa City, Dong Nai Province. The building is designed to international hospital standards with advanced MEP systems, meeting strict requirements for medical hygiene and patient safety.",
+      zh: "盛马医院是盛马大学医院有限公司拥有的现代化医疗设施，位于同奈省边和市隆平新。该建筑按国际医院标准设计，配备先进的机电系统，满足医疗卫生和患者安全的严格要求。",
+    },
+    published: true,
+  },
+
+  // ============================================
   // DINCO PROJECTS (2014-2018)
   // ============================================
   {

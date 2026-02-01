@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Upload, X, Loader2, Plus, FolderOpen, ArrowLeft } from "lucide-react";
+import { Upload, X, Loader2, Plus, FolderOpen, ArrowLeft, Link as LinkIcon } from "lucide-react";
 import Link from "next/link";
 import type { Project } from "@/lib/db/schema";
 import { ImageBrowser } from "./image-browser";
@@ -44,6 +44,7 @@ const projectSchema = z.object({
   services: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   published: z.boolean().default(false),
+  orderIndex: z.coerce.number().default(0),
 });
 
 type ProjectFormData = z.infer<typeof projectSchema>;
@@ -77,6 +78,10 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [showCoverBrowser, setShowCoverBrowser] = useState(false);
   const [showGalleryBrowser, setShowGalleryBrowser] = useState(false);
+  const [coverImageUrlInput, setCoverImageUrlInput] = useState("");
+  const [showCoverUrlInput, setShowCoverUrlInput] = useState(false);
+  const [galleryImageUrlInput, setGalleryImageUrlInput] = useState("");
+  const [showGalleryUrlInput, setShowGalleryUrlInput] = useState(false);
 
   const {
     register,
@@ -105,6 +110,7 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
       services: project?.services || [],
       featured: project?.featured || false,
       published: project?.published || false,
+      orderIndex: project?.orderIndex || 0,
     },
   });
 
@@ -172,6 +178,22 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
 
   const removeGalleryImage = (index: number) => {
     setGallery((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleCoverImageUrlSubmit = () => {
+    if (coverImageUrlInput.trim()) {
+      setCoverImage(coverImageUrlInput.trim());
+      setCoverImageUrlInput("");
+      setShowCoverUrlInput(false);
+    }
+  };
+
+  const handleGalleryImageUrlSubmit = () => {
+    if (galleryImageUrlInput.trim()) {
+      setGallery((prev) => [...prev, galleryImageUrlInput.trim()]);
+      setGalleryImageUrlInput("");
+      setShowGalleryUrlInput(false);
+    }
   };
 
   const toggleService = (service: string) => {
@@ -504,6 +526,18 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
                   onCheckedChange={(checked) => setValue("featured", checked)}
                 />
               </div>
+              <div className="space-y-2 pt-2 border-t">
+                <Label htmlFor="orderIndex">Order Index</Label>
+                <Input
+                  id="orderIndex"
+                  type="number"
+                  {...register("orderIndex")}
+                  placeholder="0"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Lower numbers appear first. Default: 0
+                </p>
+              </div>
             </CardContent>
           </Card>
 
@@ -561,6 +595,43 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
                     <FolderOpen className="mr-2 h-4 w-4" />
                     Select from Storage
                   </Button>
+
+                  {showCoverUrlInput ? (
+                    <div className="flex gap-2">
+                      <Input
+                        value={coverImageUrlInput}
+                        onChange={(e) => setCoverImageUrlInput(e.target.value)}
+                        placeholder="Enter image URL"
+                        className="flex-1"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        onClick={handleCoverImageUrlSubmit}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setShowCoverUrlInput(false)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => setShowCoverUrlInput(true)}
+                    >
+                      <LinkIcon className="mr-2 h-4 w-4" />
+                      Enter URL
+                    </Button>
+                  )}
                 </div>
               )}
             </CardContent>
@@ -621,6 +692,45 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
                     <FolderOpen className="mr-1 h-3 w-3" />
                     Browse Storage
                   </Button>
+                  {showGalleryUrlInput ? (
+                    <div className="flex gap-1">
+                      <Input
+                        value={galleryImageUrlInput}
+                        onChange={(e) => setGalleryImageUrlInput(e.target.value)}
+                        placeholder="Enter image URL"
+                        className="flex-1 text-xs h-8"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={handleGalleryImageUrlSubmit}
+                      >
+                        <Plus className="h-3 w-3" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => setShowGalleryUrlInput(false)}
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-xs"
+                      onClick={() => setShowGalleryUrlInput(true)}
+                    >
+                      <LinkIcon className="mr-1 h-3 w-3" />
+                      Enter URL
+                    </Button>
+                  )}
                 </div>
               </div>
             </CardContent>

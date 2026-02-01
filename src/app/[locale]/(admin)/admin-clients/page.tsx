@@ -76,9 +76,9 @@ export default async function AdminClientsPage({
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
+                    <th className="pb-3 font-medium w-10">#</th>
                     <th className="pb-3 font-medium">{t("table.name")}</th>
                     <th className="pb-3 font-medium">{t("table.category")}</th>
-                    <th className="pb-3 font-medium">{t("table.order")}</th>
                     <th className="pb-3 font-medium">{t("table.status")}</th>
                     <th className="pb-3 font-medium">{t("table.actions")}</th>
                   </tr>
@@ -86,6 +86,14 @@ export default async function AdminClientsPage({
                 <tbody>
                   {clients.map((client) => (
                     <tr key={client.id} className="border-b">
+                      <td className="py-4">
+                        <Link
+                          href={`/${locale}/admin-clients/${client.id}`}
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          {client.orderIndex}
+                        </Link>
+                      </td>
                       <td className="py-4">
                         <div className="flex items-center gap-3">
                           <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-muted">
@@ -110,7 +118,6 @@ export default async function AdminClientsPage({
                           {getCategoryLabel(client.category || "other")}
                         </Badge>
                       </td>
-                      <td className="py-4 text-sm">{client.orderIndex}</td>
                       <td className="py-4">
                         {client.active ? (
                           <span className="flex items-center gap-1 text-sm text-green-600">

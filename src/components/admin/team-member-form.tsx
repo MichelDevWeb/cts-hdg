@@ -15,7 +15,8 @@ import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Upload, X, Loader2, Plus, FolderOpen, Users, Link as LinkIcon } from "lucide-react";
+import { Upload, X, Loader2, Plus, FolderOpen, Users, Link as LinkIcon, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import type { TeamMember } from "@/lib/db/schema";
 import { ImageBrowser } from "./image-browser";
 
@@ -229,6 +230,33 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
         folder="team"
       />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4">
+          <Link href={`/${locale}/admin-team`}>
+            <Button type="button" variant="ghost" size="icon">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+          <div className="flex-1" />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              "Save Team Member"
+            )}
+          </Button>
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Main Content */}
           <div className="space-y-6 lg:col-span-2">
@@ -577,18 +605,6 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
                 )}
               </CardContent>
             </Card>
-
-            {/* Submit */}
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                "Save Team Member"
-              )}
-            </Button>
           </div>
         </div>
       </form>

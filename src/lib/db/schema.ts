@@ -35,6 +35,7 @@ export const projects = pgTable("projects", {
   gallery: text("gallery").array().default([]),
   featured: boolean("featured").default(false), // Featured project flag
   published: boolean("published").default(false),
+  orderIndex: integer("order_index").default(0),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });

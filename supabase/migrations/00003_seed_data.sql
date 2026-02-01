@@ -86,11 +86,11 @@ ON CONFLICT (slug) DO UPDATE SET
     active = EXCLUDED.active;
 
 -- Insert project data (based on HDG project portfolio from business-projects.md)
--- All 35 projects from mock-data.ts
+-- All 36 projects from mock-data.ts
 INSERT INTO projects (
     slug, title_vi, title_en, title_zh, category, services, location, scale, year, client,
     summary_vi, summary_en, summary_zh, content_vi, content_en, content_zh,
-    cover_image, gallery, featured, published
+    cover_image, gallery, featured, published, order_index
 ) VALUES
 -- TRACODI GROUP PROJECTS (2024-Present)
 (
@@ -113,7 +113,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     true,
-    true
+    true,
+    1
 ),
 (
     'hue-dormitory',
@@ -135,7 +136,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop'],
     true,
-    true
+    true,
+    2
 ),
 (
     'bestmix-ha-nam',
@@ -157,7 +159,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    3
 ),
 (
     'vn-apparel',
@@ -179,7 +182,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    4
 ),
 
 -- TUNG FENG VIETNAM PROJECTS (2022-2024)
@@ -203,7 +207,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    5
 ),
 (
     'villa-complex',
@@ -225,7 +230,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop'],
     true,
-    true
+    true,
+    6
 ),
 (
     'chateau-project',
@@ -247,7 +253,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    7
 ),
 
 -- PURE VN PROJECTS (2020-2022)
@@ -271,7 +278,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    8
 ),
 (
     'wonder-sea-office',
@@ -293,7 +301,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    9
 ),
 (
     'iml-factory',
@@ -315,7 +324,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    10
 ),
 
 -- CHI THANH PROJECTS (2018-2020)
@@ -339,7 +349,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    11
 ),
 (
     'nhat-pham-food',
@@ -361,7 +372,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1606836576983-8b458e75221d?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1606836576983-8b458e75221d?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    12
 ),
 (
     'king-yuan-tong-phase-2',
@@ -383,7 +395,33 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    13
+),
+
+-- SHING MARK HOSPITAL (2017)
+(
+    'shing-mark-hospital',
+    'Bệnh viện Shing Mark',
+    'Shing Mark Hospital',
+    '盛马医院',
+    'commercial',
+    ARRAY['design', 'engineering'],
+    'Long Binh Tan, Bien Hoa City, Dong Nai',
+    'Hospital complex',
+    2017,
+    'Shing Mark University Medical Hospital Co., Ltd',
+    'Bệnh viện đại học y dược hiện đại với trang thiết bị y tế tiên tiến',
+    'Modern university medical hospital with advanced medical equipment',
+    '现代化大学医院，配备先进的医疗设备',
+    'Bệnh viện Shing Mark là cơ sở y tế hiện đại thuộc Công ty TNHH bệnh viện Đại học Y dược Shing Mark, tọa lạc tại Long Bình Tân, TP. Biên Hòa, tỉnh Đồng Nai. Công trình được thiết kế theo tiêu chuẩn bệnh viện quốc tế với hệ thống cơ điện tiên tiến, đáp ứng các yêu cầu khắt khe về vệ sinh y tế và an toàn bệnh nhân.',
+    'Shing Mark Hospital is a modern medical facility owned by Shing Mark University Medical Hospital Co., Ltd, located in Long Binh Tan, Bien Hoa City, Dong Nai Province. The building is designed to international hospital standards with advanced MEP systems, meeting strict requirements for medical hygiene and patient safety.',
+    '盛马医院是盛马大学医院有限公司拥有的现代化医疗设施，位于同奈省边和市隆平新。该建筑按国际医院标准设计，配备先进的机电系统，满足医疗卫生和患者安全的严格要求。',
+    'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=800&fit=crop',
+    ARRAY['https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800&h=600&fit=crop'],
+    false,
+    true,
+    14
 ),
 
 -- DINCO PROJECTS (2014-2018)
@@ -407,7 +445,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    15
 ),
 (
     'heineken-factory',
@@ -429,7 +468,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    16
 ),
 (
     'fukuvi-factory',
@@ -451,7 +491,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    17
 ),
 
 -- SANOFI VIETNAM (2013-2014)
@@ -475,7 +516,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1563213126-a4273aed2016?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    18
 ),
 
 -- COFICO PROJECTS (2012-2013)
@@ -499,7 +541,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    19
 ),
 (
     'vina-glass-phase-3',
@@ -521,7 +564,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    20
 ),
 (
     'vina-koyei',
@@ -543,7 +587,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    21
 ),
 (
     'air-water-factory',
@@ -565,7 +610,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    22
 ),
 
 -- COLGATE PALMOLIVE (2007-2012)
@@ -589,7 +635,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    23
 ),
 
 -- CMIT PORT (2010)
@@ -613,7 +660,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    24
 ),
 
 -- PEB VIETNAM (2006-2007)
@@ -637,7 +685,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    25
 ),
 
 -- SMEC INFRASTRUCTURE PROJECTS (2004-2006)
@@ -661,7 +710,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    26
 ),
 (
     'giao-long-port',
@@ -683,7 +733,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    27
 ),
 
 -- HAZAMA VIETNAM PROJECTS (1997-2003)
@@ -707,7 +758,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    28
 ),
 (
     'shimazu-factory',
@@ -729,7 +781,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    29
 ),
 (
     'nec-tokin-factory',
@@ -751,7 +804,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    30
 ),
 (
     'ajinomoto-factory',
@@ -773,7 +827,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1606836576983-8b458e75221d?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    31
 ),
 (
     'japanese-school',
@@ -795,7 +850,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    32
 ),
 
 -- MITSUI CONSTRUCTION (1995-1997)
@@ -819,7 +875,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    33
 ),
 
 -- GCC1 (1995)
@@ -843,7 +900,8 @@ INSERT INTO projects (
     'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200&h=800&fit=crop',
     ARRAY['https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&h=600&fit=crop', 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'],
     false,
-    true
+    true,
+    34
 )
 ON CONFLICT (slug) DO UPDATE SET
     title_vi = EXCLUDED.title_vi,
@@ -865,6 +923,7 @@ ON CONFLICT (slug) DO UPDATE SET
     gallery = EXCLUDED.gallery,
     featured = EXCLUDED.featured,
     published = EXCLUDED.published,
+    order_index = EXCLUDED.order_index,
     updated_at = NOW();
 
 -- ============================================
@@ -1169,7 +1228,7 @@ INSERT INTO clients (name, logo_url, website, category, order_index, active) VAL
 ('Sanofi', '/images/clients/sanofi.webp', NULL, 'multinational', 3, true),
 ('Colgate Palmolive', '/images/clients/Colgate-Palmolive.webp', NULL, 'multinational', 4, true),
 ('Heineken', '/images/clients/heineken.webp', NULL, 'multinational', 5, true),
-('Shing Mark', '/images/clients/shink-mak.png', NULL, 'construction', 6, true),
+('Shing Mark', '/images/clients/shing-mark.png', NULL, 'construction', 6, true),
 ('Mitsubishi Motors', '/images/clients/mitsubishi-motors-vietnam-logo.png', NULL, 'multinational', 7, true),
 ('Bestmix', '/images/clients/bestmix.jpg', NULL, 'multinational', 8, true),
 ('R-PAC', '/images/clients/r-pac_service.jpg', NULL, 'multinational', 9, true),

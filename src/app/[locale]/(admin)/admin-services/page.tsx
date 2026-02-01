@@ -84,11 +84,11 @@ export default async function AdminServicesPage({
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
+                    <th className="pb-3 font-medium w-10">#</th>
                     <th className="pb-3 font-medium">{t("table.name")}</th>
                     <th className="pb-3 font-medium">
                       {t("table.description")}
                     </th>
-                    <th className="pb-3 font-medium">{t("table.order")}</th>
                     <th className="pb-3 font-medium">{t("table.status")}</th>
                     <th className="pb-3 font-medium">{t("table.actions")}</th>
                   </tr>
@@ -96,6 +96,14 @@ export default async function AdminServicesPage({
                 <tbody>
                   {services.map((service) => (
                     <tr key={service.id} className="border-b">
+                      <td className="py-4">
+                        <Link
+                          href={`/${locale}/admin-services/${service.id}`}
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          {service.orderIndex}
+                        </Link>
+                      </td>
                       <td className="py-4">
                         <div className="flex items-center gap-3">
                           <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -113,7 +121,6 @@ export default async function AdminServicesPage({
                       <td className="max-w-xs truncate py-4 text-sm text-muted-foreground">
                         {getLocalizedDescription(service)}
                       </td>
-                      <td className="py-4 text-sm">{service.orderIndex}</td>
                       <td className="py-4">
                         <Badge variant={service.active ? "default" : "secondary"}>
                           {service.active ? "Active" : "Inactive"}

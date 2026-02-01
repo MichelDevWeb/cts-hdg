@@ -27,6 +27,7 @@ CREATE TABLE projects (
     gallery TEXT[] DEFAULT '{}',
     featured BOOLEAN DEFAULT false,
     published BOOLEAN DEFAULT false,
+    order_index INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -132,6 +133,7 @@ CREATE INDEX idx_projects_slug ON projects(slug);
 CREATE INDEX idx_projects_category ON projects(category);
 CREATE INDEX idx_projects_published ON projects(published);
 CREATE INDEX idx_projects_featured ON projects(featured);
+CREATE INDEX idx_projects_order_index ON projects(order_index);
 CREATE INDEX idx_posts_slug ON posts(slug);
 CREATE INDEX idx_posts_published ON posts(published);
 CREATE INDEX idx_inquiries_status ON inquiries(status);

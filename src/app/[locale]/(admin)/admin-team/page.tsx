@@ -74,9 +74,9 @@ export default async function AdminTeamPage({
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
+                    <th className="pb-3 font-medium w-10">#</th>
                     <th className="pb-3 font-medium">{t("table.name")}</th>
                     <th className="pb-3 font-medium">{t("table.role")}</th>
-                    <th className="pb-3 font-medium">{t("table.order")}</th>
                     <th className="pb-3 font-medium">{t("table.status")}</th>
                     <th className="pb-3 font-medium">{t("table.actions")}</th>
                   </tr>
@@ -84,6 +84,14 @@ export default async function AdminTeamPage({
                 <tbody>
                   {members.map((member) => (
                     <tr key={member.id} className="border-b">
+                      <td className="py-4">
+                        <Link
+                          href={`/${locale}/admin-team/${member.id}`}
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          {member.orderIndex}
+                        </Link>
+                      </td>
                       <td className="py-4">
                         <div className="flex items-center gap-3">
                           <div className="relative h-10 w-10 overflow-hidden rounded-full bg-hdg-blue-100">
@@ -106,7 +114,6 @@ export default async function AdminTeamPage({
                       <td className="py-4 text-sm">
                         {getLocalizedRole(member)}
                       </td>
-                      <td className="py-4 text-sm">{member.orderIndex}</td>
                       <td className="py-4">
                         {member.active ? (
                           <span className="flex items-center gap-1 text-sm text-green-600">

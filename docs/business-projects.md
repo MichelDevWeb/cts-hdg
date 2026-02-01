@@ -82,7 +82,20 @@
 
 ---
 
-### 5. Công ty Dinco
+### 5. Shing Mark Hospital
+**Period**: 2017  
+**Position**: Thiết kế kỹ thuật (Technical Design)  
+**Sectors**: Bệnh viện (Hospital)
+
+**Projects Managed**:
+- Bệnh viện Shing Mark (Shing Mark Hospital)
+  - **Investor**: Công ty TNHH bệnh viện Đại học Y dược Shing Mark (Shing Mark University Medical Hospital Co., Ltd)
+  - **Location**: Long Bình Tân, TP. Biên Hòa, Đồng Nai (Long Binh Tan, Bien Hoa City, Dong Nai Province)
+  - **Construction Time**: 2017
+
+---
+
+### 6. Công ty Dinco
 **Period**: 4/2014 – 9/2018  
 **Position**: Giám đốc dự án, quản lý đấu thầu (Project Director, Tender Management)  
 **Sectors**: Nhà máy (Factory)
@@ -94,7 +107,7 @@
 
 ---
 
-### 6. Sanofi Việt Nam
+### 7. Sanofi Việt Nam
 **Period**: 2013 – 04/2014  
 **Position**: Quản lý xây dựng (Construction Manager)  
 **Sectors**: Nhà máy dược (Pharmaceutical Factory)
@@ -104,7 +117,7 @@
 
 ---
 
-### 7. COFICO
+### 8. COFICO
 **Period**: 11/2012 – 11/2013  
 **Position**: Giám đốc dự án (Project Director)  
 **Sectors**: Nhà máy, Thương mại (Factory, Commercial)
@@ -117,7 +130,7 @@
 
 ---
 
-### 8. Colgate Palmolive
+### 9. Colgate Palmolive
 **Period**: 12/2010 – 11/2012  
 **Position**: Quản lý xây dựng dự án (Project Construction Manager)  
 **Sectors**: Nhà máy (Factory)
@@ -127,7 +140,7 @@
 
 ---
 
-### 9. CMIT (Cảng quốc tế Cái Mép)
+### 10. CMIT (Cảng quốc tế Cái Mép)
 **Period**: 04/2010 – 12/2010  
 **Position**: Quản lý xây dựng dự án (Project Construction Manager)  
 **Sectors**: Cảng (Port)
@@ -137,7 +150,7 @@
 
 ---
 
-### 10. Colgate Palmolive (Earlier Period)
+### 11. Colgate Palmolive (Earlier Period)
 **Period**: 7/2007 – 04/2010  
 **Position**: Quản lý xây dựng dự án (Project Construction Manager)  
 **Sectors**: Nhà máy (Factory)
@@ -147,7 +160,7 @@
 
 ---
 
-### 11. PEB Việt Nam
+### 12. PEB Việt Nam
 **Period**: 06/2006 – 07/2007  
 **Position**: Quản lý dự án (Project Manager)  
 **Sectors**: Nhà tiền chế và kết cấu thép (Pre-engineered Buildings & Steel Structures)
@@ -157,7 +170,7 @@
 
 ---
 
-### 12. SMEC (Công ty tư vấn xây dựng Úc)
+### 13. SMEC (Công ty tư vấn xây dựng Úc)
 **Period**: 04/2004 – 05/2006  
 **Position**: Kỹ sư thường trú (Resident Engineer)  
 **Sectors**: Cầu, Bảo vệ mái dốc, Cảng, Nạo vét (Bridges, Slope Protection, Ports, Dredging)
@@ -170,7 +183,7 @@
 
 ---
 
-### 13. PMU 12
+### 14. PMU 12
 **Period**: 09/2003 – 08/2004  
 **Position**: Quản lý kỹ thuật (Technical Manager)  
 **Sectors**: Đường, Campus (Roads, Campus)
@@ -182,7 +195,7 @@
 
 ---
 
-### 14. HAZAMA VN
+### 15. HAZAMA VN
 **Period**: 3/1997 – 09/2003  
 **Position**: Quản lý công trường (Site Manager)  
 **Sectors**: Nhà máy, Campus (Factory, Campus)
@@ -201,7 +214,7 @@
 
 ---
 
-### 15. Công ty Xây dựng Mitsui
+### 16. Công ty Xây dựng Mitsui
 **Period**: 08/1995 – 03/1997  
 **Position**: Kỹ thuật công trường (Site Engineer)  
 **Sectors**: Nhà máy (Factory)
@@ -211,7 +224,7 @@
 
 ---
 
-### 16. GCC1
+### 17. GCC1
 **Period**: 04/1995 – 08/1995  
 **Position**: Kỹ thuật công trường (Site Engineer)  
 **Sectors**: Nhà máy (Factory)
@@ -221,7 +234,7 @@
 
 ---
 
-### 17. Nhà máy Tribeco
+### 18. Nhà máy Tribeco
 **Period**: (Earlier career)  
 **Position**: Site Engineer  
 **Sectors**: Factory
@@ -261,6 +274,11 @@
 | BP-PETRO Factory | Mitsui | 1995-1997 |
 | Mitsubishi Motors VN | GCC1 | 1995 |
 | Tribeco Factory | - | Earlier |
+
+### Healthcare Projects
+| Project | Company | Year |
+|---------|---------|------|
+| Shing Mark Hospital | Shing Mark University Medical Hospital | 2017 |
 
 ### Commercial / Real Estate Projects
 | Project | Company | Year |

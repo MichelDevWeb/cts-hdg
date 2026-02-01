@@ -20,7 +20,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Upload, X, Loader2, FolderOpen, Building2, Link as LinkIcon, Plus } from "lucide-react";
+import { Upload, X, Loader2, FolderOpen, Building2, Link as LinkIcon, Plus, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import type { Client } from "@/lib/db/schema";
 import { ImageBrowser } from "./image-browser";
 
@@ -164,6 +165,33 @@ export function ClientForm({ client, locale }: ClientFormProps) {
         folder="clients"
       />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4">
+          <Link href={`/${locale}/admin-clients`}>
+            <Button type="button" variant="ghost" size="icon">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+          <div className="flex-1" />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              "Save Client"
+            )}
+          </Button>
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Main Content */}
           <div className="space-y-6 lg:col-span-2">
@@ -354,18 +382,6 @@ export function ClientForm({ client, locale }: ClientFormProps) {
                 )}
               </CardContent>
             </Card>
-
-            {/* Submit */}
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                "Save Client"
-              )}
-            </Button>
           </div>
         </div>
       </form>
