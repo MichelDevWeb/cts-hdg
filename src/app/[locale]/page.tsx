@@ -69,7 +69,6 @@ export default async function HomePage({ params }: HomePageProps) {
 
   try {
     const dbProjects = await getFeaturedProjectsFromDB(3);
-    console.log("dbProjects", dbProjects);
     if (dbProjects && dbProjects.length > 0) {
       featuredProjects = dbProjects.map((project) =>
         getLocalizedProjectFromDB(project, locale)

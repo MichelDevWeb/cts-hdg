@@ -8,6 +8,9 @@ import {
   toggleProjectPublished,
 } from "@/lib/db/queries/projects";
 
+// Force dynamic rendering since this route uses cookies for authentication
+export const dynamic = "force-dynamic";
+
 // GET single project
 export async function GET(
   request: NextRequest,

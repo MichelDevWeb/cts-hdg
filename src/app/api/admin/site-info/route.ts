@@ -3,6 +3,9 @@ import { createClient } from "@/lib/supabase/server";
 import { getAllSiteInfo, upsertSiteInfo } from "@/lib/db/queries/site-info";
 import type { NewSiteInfo } from "@/lib/db/schema";
 
+// Force dynamic rendering since this route uses cookies for authentication
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const supabase = await createClient();

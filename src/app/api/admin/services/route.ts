@@ -3,6 +3,9 @@ import { createClient } from "@/lib/supabase/server";
 import { getAllServices, createService } from "@/lib/db/queries/services";
 import type { NewService } from "@/lib/db/schema";
 
+// Force dynamic rendering since this route uses cookies for authentication
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const supabase = await createClient();

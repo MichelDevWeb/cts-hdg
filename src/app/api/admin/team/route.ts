@@ -6,6 +6,9 @@ import {
 } from "@/lib/db/queries/team";
 import type { NewTeamMember } from "@/lib/db/schema";
 
+// Force dynamic rendering since this route uses cookies for authentication
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const supabase = await createClient();

@@ -7,6 +7,9 @@ import {
 } from "@/lib/db/queries/clients";
 import type { NewClient } from "@/lib/db/schema";
 
+// Force dynamic rendering since this route uses cookies for authentication
+export const dynamic = "force-dynamic";
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
