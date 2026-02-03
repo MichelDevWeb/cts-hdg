@@ -64,3 +64,17 @@ export async function toggleTeamMemberActive(
   return results[0];
 }
 
+// Bulk update orderIndex for multiple team members
+export async function updateTeamMembersOrder(
+  updates: Array<{ id: string; orderIndex: number }>
+): Promise<void> {
+  await Promise.all(
+    updates.map(({ id, orderIndex }) =>
+      db
+        .update(team)
+        .set({ orderIndex })
+        .where(eq(team.id, id))
+    )
+  );
+}
+

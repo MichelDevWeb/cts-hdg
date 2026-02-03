@@ -60,3 +60,17 @@ export async function toggleClientActive(
   return results[0];
 }
 
+// Bulk update orderIndex for multiple clients
+export async function updateClientsOrder(
+  updates: Array<{ id: string; orderIndex: number }>
+): Promise<void> {
+  await Promise.all(
+    updates.map(({ id, orderIndex }) =>
+      db
+        .update(clients)
+        .set({ orderIndex })
+        .where(eq(clients.id, id))
+    )
+  );
+}
+

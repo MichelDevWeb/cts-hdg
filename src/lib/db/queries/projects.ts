@@ -129,6 +129,20 @@ export async function toggleProjectPublished(id: string): Promise<Project | unde
   return result[0];
 }
 
+// Bulk update orderIndex for multiple projects
+export async function updateProjectsOrder(
+  updates: Array<{ id: string; orderIndex: number }>
+): Promise<void> {
+  await Promise.all(
+    updates.map(({ id, orderIndex }) =>
+      db
+        .update(projects)
+        .set({ orderIndex, updatedAt: new Date() })
+        .where(eq(projects.id, id))
+    )
+  );
+}
+
 // Helper to get localized project fields
 export function getLocalizedProject(project: Project, locale: string) {
   return {

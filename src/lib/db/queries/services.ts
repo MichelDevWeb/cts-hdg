@@ -71,6 +71,20 @@ export async function toggleServiceActive(
   return results[0];
 }
 
+// Bulk update orderIndex for multiple services
+export async function updateServicesOrder(
+  updates: Array<{ id: string; orderIndex: number }>
+): Promise<void> {
+  await Promise.all(
+    updates.map(({ id, orderIndex }) =>
+      db
+        .update(services)
+        .set({ orderIndex })
+        .where(eq(services.id, id))
+    )
+  );
+}
+
 // Helper to get localized service
 export function getLocalizedService(
   service: Service,
