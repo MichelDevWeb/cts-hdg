@@ -65,9 +65,10 @@ const serviceOptions = [
 interface ProjectFormProps {
   project?: Project;
   locale: string;
+  onSuccess?: () => void;
 }
 
-export function ProjectForm({ project, locale }: ProjectFormProps) {
+export function ProjectForm({ project, locale, onSuccess }: ProjectFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [coverImage, setCoverImage] = useState<string | null>(
@@ -230,7 +231,11 @@ export function ProjectForm({ project, locale }: ProjectFormProps) {
       });
 
       if (response.ok) {
-        router.push(`/${locale}/admin-projects`);
+        if (onSuccess) {
+          onSuccess();
+        } else {
+          router.push(`/${locale}/admin-projects`);
+        }
         router.refresh();
       } else {
         console.error("Error saving project");

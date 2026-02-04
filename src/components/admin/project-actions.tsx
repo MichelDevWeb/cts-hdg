@@ -36,9 +36,10 @@ import type { Project } from "@/lib/db/schema";
 interface ProjectActionsProps {
   project: Project;
   locale: string;
+  onEdit?: (project: Project) => void;
 }
 
-export function ProjectActions({ project, locale }: ProjectActionsProps) {
+export function ProjectActions({ project, locale, onEdit }: ProjectActionsProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -108,11 +109,17 @@ export function ProjectActions({ project, locale }: ProjectActionsProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <Link href={`/${locale}/admin-projects/${project.id}`}>
-              <Edit className="mr-2 h-4 w-4" />
-              Edit
-            </Link>
+          <DropdownMenuItem
+            onClick={() => {
+              if (onEdit) {
+                onEdit(project);
+              } else {
+                router.push(`/${locale}/admin-projects/${project.id}`);
+              }
+            }}
+          >
+            <Edit className="mr-2 h-4 w-4" />
+            Edit
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link

@@ -22,6 +22,7 @@ import { iconOptions } from "@/lib/utils";
 interface ServiceFormProps {
   service?: Service;
   locale: string;
+  onSuccess?: () => void;
 }
 
 const serviceSchema = z.object({
@@ -39,7 +40,7 @@ const serviceSchema = z.object({
 
 type ServiceFormData = z.infer<typeof serviceSchema>;
 
-export function ServiceForm({ service, locale }: ServiceFormProps) {
+export function ServiceForm({ service, locale, onSuccess }: ServiceFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.services");
   const tCommon = useTranslations("common.toast");
@@ -132,7 +133,11 @@ export function ServiceForm({ service, locale }: ServiceFormProps) {
       if (!response.ok) throw new Error("Failed to save service");
 
       toast.success(tCommon("saveSuccess"));
-      router.push(`/${locale}/admin-services`);
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push(`/${locale}/admin-services`);
+      }
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);

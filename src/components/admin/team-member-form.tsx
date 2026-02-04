@@ -44,9 +44,10 @@ type TeamMemberFormData = z.infer<typeof teamMemberSchema>;
 interface TeamMemberFormProps {
   member?: TeamMember;
   locale: string;
+  onSuccess?: () => void;
 }
 
-export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
+export function TeamMemberForm({ member, locale, onSuccess }: TeamMemberFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.team");
   const tCommon = useTranslations("common.toast");
@@ -208,7 +209,11 @@ export function TeamMemberForm({ member, locale }: TeamMemberFormProps) {
       if (!response.ok) throw new Error("Failed to save team member");
 
       toast.success(tCommon("saveSuccess"));
-      router.push(`/${locale}/admin-team`);
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push(`/${locale}/admin-team`);
+      }
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);

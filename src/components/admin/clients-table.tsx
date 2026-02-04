@@ -39,11 +39,13 @@ const clientCategories: Record<string, Record<Locale, string>> = {
 interface ClientsTableProps {
   clients: Client[];
   locale: string;
+  onEdit?: (client: Client) => void;
 }
 
 export function ClientsTable({
   clients,
   locale,
+  onEdit,
 }: ClientsTableProps) {
   const router = useRouter();
   const t = useTranslations("admin.clients");
@@ -186,7 +188,11 @@ export function ClientsTable({
                     )}
                   </td>
                   <td className="py-4">
-                    <ClientActions client={client} locale={locale} />
+                    <ClientActions
+                      client={client}
+                      locale={locale}
+                      onEdit={onEdit}
+                    />
                   </td>
                 </SortableRow>
               ))}

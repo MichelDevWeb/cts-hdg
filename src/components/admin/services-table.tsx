@@ -31,11 +31,13 @@ import type { Locale } from "@/lib/i18n/config";
 interface ServicesTableProps {
   services: Service[];
   locale: string;
+  onEdit?: (service: Service) => void;
 }
 
 export function ServicesTable({
   services,
   locale,
+  onEdit,
 }: ServicesTableProps) {
   const router = useRouter();
   const t = useTranslations("admin.services");
@@ -181,7 +183,11 @@ export function ServicesTable({
                     </Badge>
                   </td>
                   <td className="py-4">
-                    <ServiceActions service={service} locale={locale} />
+                    <ServiceActions
+                      service={service}
+                      locale={locale}
+                      onEdit={onEdit}
+                    />
                   </td>
                 </SortableRow>
               ))}

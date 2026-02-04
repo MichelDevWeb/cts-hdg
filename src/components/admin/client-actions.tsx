@@ -29,9 +29,10 @@ import type { Client } from "@/lib/db/schema";
 interface ClientActionsProps {
   client: Client;
   locale: string;
+  onEdit?: (client: Client) => void;
 }
 
-export function ClientActions({ client, locale }: ClientActionsProps) {
+export function ClientActions({ client, locale, onEdit }: ClientActionsProps) {
   const router = useRouter();
   const t = useTranslations("admin.clients");
   const tCommon = useTranslations("common.toast");
@@ -89,11 +90,17 @@ export function ClientActions({ client, locale }: ClientActionsProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <Link href={`/${locale}/admin-clients/${client.id}`}>
-              <Edit className="mr-2 h-4 w-4" />
-              Edit
-            </Link>
+          <DropdownMenuItem
+            onClick={() => {
+              if (onEdit) {
+                onEdit(client);
+              } else {
+                router.push(`/${locale}/admin-clients/${client.id}`);
+              }
+            }}
+          >
+            <Edit className="mr-2 h-4 w-4" />
+            Edit
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleToggleActive}>
             {client.active ? (

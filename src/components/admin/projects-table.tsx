@@ -32,11 +32,13 @@ import { projectCategories } from "@/lib/data/mock-data";
 interface ProjectsTableProps {
   projects: Project[];
   locale: string;
+  onEdit?: (project: Project) => void;
 }
 
 export function ProjectsTable({
   projects,
   locale,
+  onEdit,
 }: ProjectsTableProps) {
   const router = useRouter();
   const t = useTranslations("admin.projects");
@@ -213,7 +215,11 @@ export function ProjectsTable({
                     </Button>
                   </td>
                   <td className="py-4">
-                    <ProjectActions project={project} locale={locale} />
+                    <ProjectActions
+                      project={project}
+                      locale={locale}
+                      onEdit={onEdit}
+                    />
                   </td>
                 </SortableRow>
               ))}

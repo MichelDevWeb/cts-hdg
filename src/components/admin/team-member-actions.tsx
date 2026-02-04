@@ -29,9 +29,10 @@ import type { TeamMember } from "@/lib/db/schema";
 interface TeamMemberActionsProps {
   member: TeamMember;
   locale: string;
+  onEdit?: (member: TeamMember) => void;
 }
 
-export function TeamMemberActions({ member, locale }: TeamMemberActionsProps) {
+export function TeamMemberActions({ member, locale, onEdit }: TeamMemberActionsProps) {
   const router = useRouter();
   const t = useTranslations("admin.team");
   const tCommon = useTranslations("common.toast");
@@ -89,11 +90,17 @@ export function TeamMemberActions({ member, locale }: TeamMemberActionsProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <Link href={`/${locale}/admin-team/${member.id}`}>
-              <Edit className="mr-2 h-4 w-4" />
-              Edit
-            </Link>
+          <DropdownMenuItem
+            onClick={() => {
+              if (onEdit) {
+                onEdit(member);
+              } else {
+                router.push(`/${locale}/admin-team/${member.id}`);
+              }
+            }}
+          >
+            <Edit className="mr-2 h-4 w-4" />
+            Edit
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleToggleActive}>
             {member.active ? (

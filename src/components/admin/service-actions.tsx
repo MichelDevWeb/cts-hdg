@@ -27,9 +27,10 @@ import type { Service } from "@/lib/db/schema";
 interface ServiceActionsProps {
   service: Service;
   locale: string;
+  onEdit?: (service: Service) => void;
 }
 
-export function ServiceActions({ service, locale }: ServiceActionsProps) {
+export function ServiceActions({ service, locale, onEdit }: ServiceActionsProps) {
   const router = useRouter();
   const t = useTranslations("admin.services");
   const tCommon = useTranslations("common");
@@ -63,7 +64,13 @@ export function ServiceActions({ service, locale }: ServiceActionsProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem
-            onClick={() => router.push(`/${locale}/admin-services/${service.id}`)}
+            onClick={() => {
+              if (onEdit) {
+                onEdit(service);
+              } else {
+                router.push(`/${locale}/admin-services/${service.id}`);
+              }
+            }}
           >
             <Edit className="mr-2 h-4 w-4" />
             {t("editService")}

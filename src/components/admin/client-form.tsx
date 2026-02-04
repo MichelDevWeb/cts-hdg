@@ -39,6 +39,7 @@ type ClientFormData = z.infer<typeof clientSchema>;
 interface ClientFormProps {
   client?: Client;
   locale: string;
+  onSuccess?: () => void;
 }
 
 const clientCategories = [
@@ -49,7 +50,7 @@ const clientCategories = [
   { value: "other", label: "Other" },
 ];
 
-export function ClientForm({ client, locale }: ClientFormProps) {
+export function ClientForm({ client, locale, onSuccess }: ClientFormProps) {
   const router = useRouter();
   const t = useTranslations("admin.clients");
   const tCommon = useTranslations("common.toast");
@@ -142,7 +143,11 @@ export function ClientForm({ client, locale }: ClientFormProps) {
       if (!response.ok) throw new Error("Failed to save client");
 
       toast.success(tCommon("saveSuccess"));
-      router.push(`/${locale}/admin-clients`);
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push(`/${locale}/admin-clients`);
+      }
       router.refresh();
     } catch (error) {
       console.error("Save error:", error);

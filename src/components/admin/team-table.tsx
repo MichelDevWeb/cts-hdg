@@ -30,11 +30,13 @@ import type { Locale } from "@/lib/i18n/config";
 interface TeamTableProps {
   members: TeamMember[];
   locale: string;
+  onEdit?: (member: TeamMember) => void;
 }
 
 export function TeamTable({
   members,
   locale,
+  onEdit,
 }: TeamTableProps) {
   const router = useRouter();
   const t = useTranslations("admin.team");
@@ -181,7 +183,11 @@ export function TeamTable({
                     )}
                   </td>
                   <td className="py-4">
-                    <TeamMemberActions member={member} locale={locale} />
+                    <TeamMemberActions
+                      member={member}
+                      locale={locale}
+                      onEdit={onEdit}
+                    />
                   </td>
                 </SortableRow>
               ))}
