@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Calendar } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ImageWithDimensions } from "@/components/ui/image-with-dimensions";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -25,6 +29,14 @@ export function ProjectCard({
   slug,
   className,
 }: ProjectCardProps) {
+  const t = useTranslations("projects.filter");
+  
+  // Get localized category label
+  const getCategoryLabel = (cat: string) => {
+    if (cat === "all") return t("all");
+    return t(cat as "residential" | "commercial" | "industrial" | "infrastructure") || cat;
+  };
+
   return (
     <Link href={`/projects/${slug}`}>
       <Card
@@ -34,7 +46,7 @@ export function ProjectCard({
         )}
       >
         <div className="relative aspect-[4/3] overflow-hidden">
-          <Image
+          <ImageWithDimensions
             src={coverImage || DEFAULT_COVER_IMAGE}
             alt={title}
             fill
@@ -42,7 +54,7 @@ export function ProjectCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <span className="absolute left-4 top-4 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-            {category}
+            {getCategoryLabel(category)}
           </span>
         </div>
         <CardContent className="p-4">

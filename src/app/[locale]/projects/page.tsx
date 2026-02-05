@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
-import { ProjectCard } from "@/components/sections/project-card";
+import { ProjectsFilter } from "@/components/sections/projects-filter";
 import { CTASection } from "@/components/sections/cta-section";
 import {
   getPublishedProjects as getPublishedProjectsFromDB,
@@ -72,50 +72,17 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
     );
   }
 
-  // Get localized categories
-  const categories = ["all", "residential", "commercial", "industrial", "infrastructure"] as const;
-  const localizedCategories = categories.map((cat) => ({
-    key: cat,
-    label: projectCategories[cat][locale as Locale] || projectCategories[cat].en,
-  }));
-
   return (
     <>
       {/* Hero */}
       <Hero title={t("title")} subtitle={t("subtitle")} />
 
-      {/* Projects Grid */}
+      {/* Projects Grid with Filter */}
       <Section>
-        {/* Filter Tabs */}
-        <div className="mb-8 flex flex-wrap justify-center gap-2">
-          {localizedCategories.map((category) => (
-            <button
-              key={category.key}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                category.key === "all"
-                  ? "bg-primary text-white"
-                  : "bg-muted text-muted-foreground hover:bg-primary/10"
-              }`}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {localizedProjects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              title={project.title}
-              category={project.category}
-              location={project.location}
-              year={project.year}
-              coverImage={project.coverImage}
-              slug={project.slug}
-            />
-          ))}
-        </div>
+        <ProjectsFilter
+          projects={localizedProjects}
+          locale={locale}
+        />
       </Section>
 
       {/* CTA */}

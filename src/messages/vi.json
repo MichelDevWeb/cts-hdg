@@ -169,6 +169,9 @@
     "previous": "Trước",
     "next": "Tiếp theo",
     "inquireProject": "Liên hệ về dự án",
+    "relatedProjects": "Dự án liên quan",
+    "relatedProjectsDescription": "Khám phá thêm các dự án trong các danh mục tương tự",
+    "noProjectsFound": "Không tìm thấy dự án nào trong danh mục này.",
     "services": {
       "design": "Thiết kế",
       "engineering": "Kỹ thuật",

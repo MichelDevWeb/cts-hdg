@@ -1,12 +1,14 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { ImageWithDimensions } from "@/components/ui/image-with-dimensions";
 import { Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CTASection } from "@/components/sections/cta-section";
+import { RelatedProjects } from "@/components/sections/related-projects";
+import { Section } from "@/components/sections/section";
 import {
   ArrowLeft,
   MapPin,
@@ -111,6 +113,15 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   // Get all published projects for navigation
   let allProjects: Array<{ slug: string; title: string }> = [];
+  let relatedProjects: Array<{
+    slug: string;
+    title: string;
+    category: string;
+    location: string;
+    year: number;
+    coverImage: string | null;
+  }> = [];
+  
   try {
     const dbProjects = await getPublishedProjectsFromDB();
     if (dbProjects && dbProjects.length > 0) {
@@ -118,17 +129,59 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         slug: p.slug,
         title: getLocalizedProjectFromDB(p, locale).title,
       }));
+      // Only get projects with the same category
+      relatedProjects = dbProjects
+        .filter((p) => p.category === project.category)
+        .map((p) => {
+          const localized = getLocalizedProjectFromDB(p, locale);
+          return {
+            slug: p.slug,
+            title: localized.title as string,
+            category: p.category,
+            location: p.location,
+            year: p.year,
+            coverImage: p.coverImage,
+          };
+        });
     } else {
       allProjects = mockProjects.filter((p) => p.published).map((p) => ({
         slug: p.slug,
         title: getMockLocalizedProject(p, locale as Locale).title,
       }));
+      // Only get projects with the same category
+      relatedProjects = mockProjects
+        .filter((p) => p.published && p.category === project.category)
+        .map((p) => {
+          const localized = getMockLocalizedProject(p, locale as Locale);
+          return {
+            slug: p.slug,
+            title: localized.title as string,
+            category: p.category,
+            location: p.location,
+            year: p.year,
+            coverImage: p.coverImage || null,
+          };
+        });
     }
   } catch (error) {
     allProjects = mockProjects.filter((p) => p.published).map((p) => ({
       slug: p.slug,
       title: getMockLocalizedProject(p, locale as Locale).title,
     }));
+    // Only get projects with the same category
+    relatedProjects = mockProjects
+      .filter((p) => p.published && p.category === project.category)
+      .map((p) => {
+        const localized = getMockLocalizedProject(p, locale as Locale);
+        return {
+          slug: p.slug,
+          title: localized.title as string,
+          category: p.category,
+          location: p.location,
+          year: p.year,
+          coverImage: p.coverImage || null,
+        };
+      });
   }
 
   const currentIndex = allProjects.findIndex((p) => p.slug === slug);
@@ -150,7 +203,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       {/* Hero Image */}
       <section className="relative h-[50vh] min-h-[400px] lg:h-[60vh]">
         {coverImage && (
-          <Image
+          <ImageWithDimensions
             src={coverImage}
             alt={localizedProject.title as string}
             fill
@@ -209,7 +262,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                         key={index}
                         className="group relative aspect-[4/3] overflow-hidden rounded-lg"
                       >
-                        <Image
+                        <ImageWithDimensions
                           src={image}
                           alt={`${localizedProject.title} - Image ${index + 1}`}
                           fill
@@ -300,6 +353,24 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </div>
         </div>
       </section>
+
+      {/* Related Projects (Same Category) */}
+      {relatedProjects.length > 0 && (
+        <Section>
+          <div className="mb-8 text-center">
+            <h2 className="font-heading text-2xl font-bold md:text-3xl">
+              {t("relatedProjects") || "Related Projects"}
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              {t("relatedProjectsDescription") || "Explore more projects in similar categories"}
+            </p>
+          </div>
+          <RelatedProjects
+            projects={relatedProjects}
+            currentSlug={slug}
+          />
+        </Section>
+      )}
 
       {/* Project Navigation */}
       <section className="border-t bg-muted/30 py-8">

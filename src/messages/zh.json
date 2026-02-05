@@ -169,6 +169,9 @@
     "previous": "上一个",
     "next": "下一个",
     "inquireProject": "咨询此项目",
+    "relatedProjects": "相关项目",
+    "relatedProjectsDescription": "探索类似类别的更多项目",
+    "noProjectsFound": "此类别中未找到项目。",
     "services": {
       "design": "设计",
       "engineering": "工程",

@@ -26,13 +26,13 @@ export default async function AdminClientsPage({
   }
 
   if (error) {
-    return (
-      <div className="space-y-6">
+  return (
+    <div className="space-y-6">
         <div className="py-8 text-center text-destructive">
           <p>{error}</p>
         </div>
-      </div>
-    );
+    </div>
+  );
   }
 
   return <ClientsPageClient clients={clients} locale={locale} />;

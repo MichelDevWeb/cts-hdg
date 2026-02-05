@@ -169,6 +169,9 @@
     "previous": "Previous",
     "next": "Next",
     "inquireProject": "Inquire About This Project",
+    "relatedProjects": "Related Projects",
+    "relatedProjectsDescription": "Explore more projects in similar categories",
+    "noProjectsFound": "No projects found in this category.",
     "services": {
       "design": "Design",
       "engineering": "Engineering",

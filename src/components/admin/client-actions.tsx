@@ -99,8 +99,8 @@ export function ClientActions({ client, locale, onEdit }: ClientActionsProps) {
               }
             }}
           >
-            <Edit className="mr-2 h-4 w-4" />
-            Edit
+              <Edit className="mr-2 h-4 w-4" />
+              Edit
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleToggleActive}>
             {client.active ? (
